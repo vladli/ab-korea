@@ -5,7 +5,8 @@ import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Header from "@/components/Layout/Header";
 
 import Block_1 from "./Block_1";
-import Block_2 from "./Block_2";
+import BuyingGuide from "./BuyingGuide";
+import Block_2 from "./WhyWe";
 
 function Main() {
   const parallax = useRef<IParallax>(null);
@@ -14,7 +15,7 @@ function Main() {
   };
   return (
     <Parallax
-      pages={3}
+      pages={4}
       ref={parallax}
     >
       <ParallaxLayer
@@ -42,6 +43,12 @@ function Main() {
         style={{ backgroundColor: "#232946" }}
       >
         <Block_2 />
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={3}
+        style={{ backgroundColor: "#232946" }}
+      >
+        <BuyingGuide />
       </ParallaxLayer>
     </Parallax>
   );
