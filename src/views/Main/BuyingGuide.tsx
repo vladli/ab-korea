@@ -4,11 +4,13 @@ import Guide from "./components/Stepper";
 
 export default function BuyingGuide() {
   return (
-    <div>
-      <div className="mb-12 text-center">
-        <h1>ЭТАПЫ ПОКУПКИ АВТОМОБИЛЯ</h1>
+    <div className="flex flex-col h-full">
+      <div className="m-auto">
+        <div className="mb-14 text-center">
+          <h1>ЭТАПЫ ПОКУПКИ АВТОМОБИЛЯ</h1>
+        </div>
+        <Guide />
       </div>
-      <Guide />
     </div>
   );
 }
