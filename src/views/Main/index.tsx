@@ -15,11 +15,10 @@ function Main() {
   };
   return (
     <Parallax
-      pages={4}
+      pages={6}
       ref={parallax}
     >
       <ParallaxLayer
-        factor={3}
         offset={0}
         style={{ backgroundColor: "#232946" }}
       >
@@ -45,7 +44,7 @@ function Main() {
         <Block_2 />
       </ParallaxLayer>
       <ParallaxLayer
-        offset={3}
+        offset={4}
         style={{ backgroundColor: "#232946" }}
       >
         <BuyingGuide />
