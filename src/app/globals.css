@@ -13,3 +13,7 @@
     @apply text-2xl;
   }
 }
+
+.collapse-arrow .collapse-title:after {
+  @apply animate-pulse;
+}

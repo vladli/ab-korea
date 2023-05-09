@@ -11,7 +11,7 @@ import Block_2 from "./WhyWe";
 function Main() {
   const parallax = useRef<IParallax>(null);
   const handleclick = () => {
-    parallax.current?.scrollTo(2);
+    parallax.current?.scrollTo(3);
   };
   return (
     <Parallax
