@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const data = [
@@ -31,18 +32,20 @@ const data = [
 
 function WhyWe() {
   return (
-    <div className="select-none flex flex-col bg-gray-800 h-full">
+    <div className="flex h-full select-none flex-col bg-gray-800">
       <div className="m-auto">
         <div className="mb-14 text-center">
           <h1>ПОЧЕМУ ВЫБИРАЮТ НАС?</h1>
         </div>
         <div className="flex flex-row flex-wrap justify-around gap-y-20">
-          {data.map((item) => (
-            <div
-              className="basis-1/3 text-center px-4 [&:nth-child(n+4)]:basis-1/2"
+          {data.map((item, i) => (
+            <motion.div
+              animate={{ opacity: 1, transition: { delay: i - 0.25 } }}
+              className="basis-1/3 px-4 text-center [&:nth-child(n+4)]:basis-1/2"
+              initial={{ opacity: 0 }}
               key={item.title}
             >
-              <div className="flex justify-center">
+              <div className="flex justify-center overflow-x-hidden">
                 <Image
                   alt=""
                   height={100}
@@ -52,7 +55,7 @@ function WhyWe() {
               </div>
               <h3 className="uppercase">{item.title}</h3>
               <p>{item.text}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

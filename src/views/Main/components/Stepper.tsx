@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const data = [
@@ -46,8 +47,14 @@ function Guide() {
   return (
     <div>
       {data.map((item, i) => (
-        <div className="flex w-full justify-center" key={item.title}>
-          <Stepper opened={i === 0} {...{ item }} />
+        <div
+          className="flex w-full justify-center"
+          key={item.title}
+        >
+          <Stepper
+            opened={i === 0}
+            {...{ item }}
+          />
         </div>
       ))}
     </div>
@@ -71,7 +78,7 @@ const Stepper = ({ opened, item }: Props) => {
         className="collapse-title text-xl font-bold uppercase"
         onClick={() => setOpen(true)}
       >
-        <div className="flex  gap-2">
+        <div className="flex gap-2">
           <Image
             alt=""
             height={20}
