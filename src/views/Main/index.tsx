@@ -15,15 +15,16 @@ function Main() {
   return (
     <>
       <motion.div>
-        <motion.div className="h-[100vh]">
+        <motion.div className="min-h-[100vh]">
+          <Header />
           <Block_1 />
         </motion.div>
-        <div className="h-[100vh]">
+        <div className="min-h-[100vh]">
           <Block_2 />
         </div>
         <motion.div
           animate={{ opacity: 1, transition: { delay: 0.2 } }}
-          className="h-[100vh]"
+          className="min-h-[100vh]"
           initial={{ opacity: 0 }}
         >
           <BuyingGuide />
