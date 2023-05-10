@@ -13,24 +13,23 @@ function Main() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
 
   return (
-    <motion.div>
-      <motion.div className="h-[100vh]">
-        <Header />
-        <button className="btn">2nd</button>
-        asd
-        <Block_1 />
+    <>
+      <motion.div>
+        <motion.div className="h-[100vh]">
+          <Header />
+        </motion.div>
+        <div className="h-[100vh]">
+          <Block_2 />
+        </div>
+        <motion.div
+          animate={{ opacity: 1, transition: { delay: 0.2 } }}
+          className="h-[100vh]"
+          initial={{ opacity: 0 }}
+        >
+          <BuyingGuide />
+        </motion.div>
       </motion.div>
-      <div className="h-[100vh]">
-        <Block_2 />
-      </div>
-      <motion.div
-        animate={{ opacity: 1, transition: { delay: 0.2 } }}
-        className="h-[100vh]"
-        initial={{ opacity: 0 }}
-      >
-        <BuyingGuide />
-      </motion.div>
-    </motion.div>
+    </>
   );
 }
 
