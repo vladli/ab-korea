@@ -14,7 +14,7 @@ function Block_1() {
         src="video.mp4"
       />
       <div className="absolute top-0 flex h-10 w-full items-center bg-black/30">
-        AB Korea
+        AB Koreaa
       </div>
     </header>
   );
