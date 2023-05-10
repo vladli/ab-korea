@@ -16,7 +16,7 @@ function Main() {
     <>
       <motion.div>
         <motion.div className="h-[100vh]">
-          <Header />
+          <Block_1 />
         </motion.div>
         <div className="h-[100vh]">
           <Block_2 />
