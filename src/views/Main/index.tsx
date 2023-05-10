@@ -1,42 +1,34 @@
 "use client";
-import React, { useRef } from "react";
-import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
+import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+import Header from "@/components/Layout/Header";
 
 import Block_1 from "./Block_1";
-import Header from "./Header";
+import BuyingGuide from "./BuyingGuide";
+import Block_2 from "./WhyWe";
 
 function Main() {
-  const parallax = useRef<IParallax>(null);
-  const handleclick = () => {
-    console.log(parallax.current?.scrollTo(0));
-  };
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
+
   return (
     <>
-      <Parallax
-        pages={3}
-        ref={parallax}
-      >
-        <ParallaxLayer style={{ backgroundColor: "#232946" }}>
-          <Header />
-        </ParallaxLayer>
-        <ParallaxLayer
-          offset={1}
-          style={{ backgroundColor: "#232946" }}
-        >
+      <motion.div>
+        <motion.div className="h-[100vh]">
           <Block_1 />
-        </ParallaxLayer>
-        <ParallaxLayer
-          offset={2}
-          style={{ backgroundColor: "#8bd3dd" }}
+        </motion.div>
+        <div className="h-[100vh]">
+          <Block_2 />
+        </div>
+        <motion.div
+          animate={{ opacity: 1, transition: { delay: 0.2 } }}
+          className="h-[100vh]"
+          initial={{ opacity: 0 }}
         >
-          <button
-            className="btn"
-            onClick={handleclick}
-          >
-            2
-          </button>
-        </ParallaxLayer>
-      </Parallax>
+          <BuyingGuide />
+        </motion.div>
+      </motion.div>
     </>
   );
 }
