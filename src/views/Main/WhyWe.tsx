@@ -33,7 +33,7 @@ const data = [
 function WhyWe() {
   return (
     <section className="flex min-h-screen select-none flex-col bg-gray-800">
-      <div className="my-10 sm:m-auto">
+      <div className="m-auto py-10">
         <div className="mb-10 text-center">
           <h2>ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>
         </div>
