@@ -32,10 +32,10 @@ const data = [
 
 function WhyWe() {
   return (
-    <div className="flex h-full select-none flex-col bg-gray-800">
-      <div className="m-auto">
-        <div className="mb-14 text-center">
-          <h1>ПОЧЕМУ ВЫБИРАЮТ НАС?</h1>
+    <section className="flex min-h-screen select-none flex-col bg-gray-800">
+      <div className="my-10 sm:m-auto">
+        <div className="mb-10 text-center">
+          <h2>ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>
         </div>
         <div className="flex flex-row flex-wrap justify-around gap-y-20">
           {data.map((item, i) => (
@@ -59,7 +59,7 @@ function WhyWe() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

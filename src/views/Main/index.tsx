@@ -6,7 +6,7 @@ import Header from "@/components/Layout/Header";
 
 import Block_1 from "./Block_1";
 import BuyingGuide from "./BuyingGuide";
-import Block_2 from "./WhyWe";
+import WhyWe from "./WhyWe";
 
 function Main() {
   const { scrollYProgress } = useScroll();
@@ -19,12 +19,12 @@ function Main() {
           <Header />
           <Block_1 />
         </motion.div>
-        <div className="min-h-[100vh]">
-          <Block_2 />
-        </div>
+
+        <WhyWe />
+
         <motion.div
           animate={{ opacity: 1, transition: { delay: 0.2 } }}
-          className="min-h-[100vh]"
+          className="h-screen"
           initial={{ opacity: 0 }}
         >
           <BuyingGuide />
