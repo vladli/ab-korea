@@ -33,17 +33,18 @@ const data = [
 function WhyWe() {
   return (
     <section className="flex min-h-screen select-none flex-col bg-gray-800">
-      <div className="m-auto py-10">
+      <div className="m-auto p-10">
         <div className="mb-10 text-center">
           <h2>ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>
         </div>
         <div className="flex flex-row flex-wrap justify-around gap-y-20">
           {data.map((item, i) => (
             <motion.div
-              animate={{ opacity: 1, transition: { delay: i - 0.25 } }}
               className="basis-1/3 px-4 text-center [&:nth-child(n+4)]:basis-1/2"
               initial={{ opacity: 0 }}
               key={item.title}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, transition: { delay: i - 0.8 } }}
             >
               <div className="flex justify-center overflow-x-hidden">
                 <Image
