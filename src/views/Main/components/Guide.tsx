@@ -81,7 +81,7 @@ const Stepper = ({ opened, item }: Props) => {
         <div className="flex gap-2">
           <Image
             alt=""
-            height={20}
+            height={30}
             src={`/icons/${item.icon}.png`}
             width={30}
           />

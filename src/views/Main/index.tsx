@@ -59,6 +59,7 @@ function Main() {
           "fourthPage",
           "lastPage",
         ]}
+        licenseKey={"YOUR_KEY_HERE"}
         navigation
         navigationTooltips={["asd", "dsa"]}
         render={({ state, fullpageApi }) => (
@@ -74,6 +75,7 @@ function Main() {
             </div>
           </ReactFullpage.Wrapper>
         )}
+        scrollingSpeed={1000}
       />
     </>
   );

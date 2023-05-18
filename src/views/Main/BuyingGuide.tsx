@@ -1,6 +1,6 @@
 import React from "react";
 
-import Guide from "./components/Stepper";
+import Guide from "./components/Guide";
 
 export default function BuyingGuide() {
   return (
