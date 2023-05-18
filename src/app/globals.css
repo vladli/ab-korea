@@ -17,3 +17,12 @@
 .collapse-arrow .collapse-title:after {
   @apply animate-pulse;
 }
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  background: white !important;
+}
+
+.fp-watermark {
+  display: none;
+}
