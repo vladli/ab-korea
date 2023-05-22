@@ -75,7 +75,7 @@ const Stepper = ({ opened, item }: Props) => {
       )}
     >
       <div
-        className="collapse-title text-xl font-bold uppercase"
+        className="collapse-title text-xl font-medium uppercase"
         onClick={() => setOpen(true)}
       >
         <div className="flex gap-2">
@@ -88,7 +88,7 @@ const Stepper = ({ opened, item }: Props) => {
           {item.title}
         </div>
       </div>
-      <div className="collapse-content">{item.text}</div>
+      <div className="collapse-content text-lg">{item.text}</div>
     </div>
   );
 };

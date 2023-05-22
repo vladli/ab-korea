@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      data-theme="dark"
+      data-theme="light"
       lang="en"
     >
       <body>
