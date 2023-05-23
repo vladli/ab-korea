@@ -15,9 +15,7 @@ import WhyWe from "./WhyWe";
 function Main() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    return () => {
-      setMounted(true);
-    };
+    setMounted(true);
   }, []);
   if (!mounted) return null;
 
