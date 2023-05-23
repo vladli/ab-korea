@@ -5,7 +5,7 @@ export async function GET() {
     part: "snippet",
     key: process.env.GOOGLE_API as string,
     playlistId: process.env.AB_REVIEW_PLAYLIST_ID as string,
-    maxResults: "3",
+    maxResults: "15",
   };
   const request = await fetch(
     "https://www.googleapis.com/youtube/v3/playlistItems?" +

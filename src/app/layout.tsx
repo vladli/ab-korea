@@ -1,8 +1,5 @@
-import "swiper/css/bundle";
-
 import Providers from "./providers";
 
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import "./globals.css";
 export const metadata = {
   title: "Create Next Apps",

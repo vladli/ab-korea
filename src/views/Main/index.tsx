@@ -22,15 +22,12 @@ function Main() {
   return (
     <>
       <ReactFullpage
-        anchors={["firstPage", "secondPage", "thirdPage"]}
         licenseKey="YOUR_KEY_HERE"
         navigation
         render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
             <Header />
-            <section className="section">
-              <Reviews />
-            </section>
+
             <section className="section">
               <Block_1 />
             </section>
@@ -39,6 +36,9 @@ function Main() {
             </section>
             <section className="section">
               <BuyingGuide />
+            </section>
+            <section className="section">
+              <Reviews />
             </section>
           </ReactFullpage.Wrapper>
         )}

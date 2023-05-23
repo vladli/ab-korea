@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Header() {
   return (
@@ -19,20 +20,30 @@ function Header() {
         src="/AB.png"
         width={75}
       />
-      <ul className="m-auto flex items-center gap-10 px-10">
-        <li
-          className="active"
-          data-menuanchor="firstPage"
-        >
-          <a href="#firstPage">First section</a>
+      <ul className="m-auto flex items-center gap-10 px-10 font-semibold">
+        <li>
+          <Link href="/">Главная</Link>
         </li>
-        <li data-menuanchor="secondPage">
-          <a href="#secondPage">Second section</a>
+        <li>
+          <Link href="/">Заказ авто</Link>
         </li>
-        <li data-menuanchor="thirdPage">
-          <a href="#thirdPage">Third section</a>
+        <li>
+          <Link href="/">Каталог</Link>
+        </li>
+        <li>
+          <Link href="/">Отзывы</Link>
+        </li>
+        <li>
+          <Link href="/">Кейсы</Link>
+        </li>
+        <li>
+          <Link href="/">FAQ</Link>
+        </li>
+        <li>
+          <Link href="/">О нас</Link>
         </li>
       </ul>
+      <div className="flex items-center">Login</div>
     </div>
   );
 }
