@@ -4,15 +4,12 @@
 
 import React, { useEffect, useState } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
-import { randomFillSync } from "crypto";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Butcherman } from "next/font/google";
 
 import Header from "@/components/Layout/Header";
 
 import Block_1 from "./Block_1";
 import BuyingGuide from "./BuyingGuide";
-import Video from "./Reviews";
+import Reviews from "./Reviews";
 import WhyWe from "./WhyWe";
 
 function Main() {
@@ -34,7 +31,7 @@ function Main() {
           <ReactFullpage.Wrapper>
             <Header />
             <section className="section">
-              <Video />
+              <Reviews />
             </section>
             <section className="section">
               <Block_1 />

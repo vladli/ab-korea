@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
-import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
+import { Autoplay, EffectCreative, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
+
 type VideoType = {
   items: {
     id: string;
@@ -15,14 +16,33 @@ type VideoType = {
   }[];
 };
 
-function Video() {
+function Reviews() {
   const { data } = useSWR<VideoType>("/api/youtube/getReviews");
-
+  const navigationPrevRef = React.useRef(null);
+  const navigationNextRef = React.useRef(null);
   return (
     <Swiper
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
-      navigation
-      slidesPerView={1}
+      autoplay={{
+        delay: 3500,
+        disableOnInteraction: true,
+      }}
+      creativeEffect={{
+        prev: {
+          shadow: false,
+          translate: [0, 0, -400],
+        },
+        next: {
+          translate: ["100%", 0, 0],
+        },
+      }}
+      effect={"coverflow"}
+      loop={true}
+      modules={[Navigation, Pagination, Autoplay, EffectCreative]}
+      navigation={{
+        prevEl: navigationPrevRef.current,
+        nextEl: navigationNextRef.current,
+      }}
+      slidesPerView={"auto"}
     >
       {data?.items.map(({ id, snippet }) => {
         const {
@@ -31,7 +51,7 @@ function Video() {
 
         return (
           <SwiperSlide
-            className="select-none"
+            className="flex select-none justify-center"
             key={id}
           >
             <ReactPlayer
@@ -41,8 +61,36 @@ function Video() {
           </SwiperSlide>
         );
       })}
+      <div className="flex justify-center ">
+        <div
+          className="btn-ghost btn-wide btn"
+          ref={navigationPrevRef}
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+          </svg>
+        </div>
+        <div
+          className="btn-ghost btn-wide btn"
+          ref={navigationNextRef}
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+          </svg>
+        </div>
+      </div>
     </Swiper>
   );
 }
 
-export default Video;
+export default Reviews;
