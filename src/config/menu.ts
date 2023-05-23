@@ -1,4 +1,7 @@
+import { AiOutlineCar } from "react-icons/ai";
+import { BsBook } from "react-icons/bs";
 import { FaQuestion } from "react-icons/fa";
+import { MdOutlineInfo, MdOutlineRateReview } from "react-icons/md";
 import { TbBrandPagekit } from "react-icons/tb";
 type MenuItem = {
   icon?: any;
@@ -13,17 +16,17 @@ export const menu: MenuItem = [
     title: "Главная",
   },
   {
-    icon: TbBrandPagekit,
+    icon: AiOutlineCar,
     url: "/",
     title: "Заказ авто",
   },
   {
-    icon: TbBrandPagekit,
+    icon: BsBook,
     url: "/",
     title: "Каталог",
   },
   {
-    icon: TbBrandPagekit,
+    icon: MdOutlineRateReview,
     url: "/reviews",
     title: "Отзывы",
   },
@@ -38,7 +41,7 @@ export const menu: MenuItem = [
     title: "FAQ",
   },
   {
-    icon: TbBrandPagekit,
+    icon: MdOutlineInfo,
     url: "/about",
     title: "О нас",
   },

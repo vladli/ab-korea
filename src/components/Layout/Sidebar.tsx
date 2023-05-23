@@ -2,6 +2,7 @@
 import React from "react";
 import clsx from "clsx";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { menu } from "@/config/menu";
 
@@ -11,10 +12,12 @@ type Props = {
 };
 
 function Sidebar({ sideBar, setSideBar }: Props) {
+  const pathname = usePathname();
+
   return (
     <div
       className={clsx(
-        "fixed left-0 top-0 z-40 h-screen w-80  overflow-y-auto  bg-slate-900 p-4 transition-transform",
+        "fixed left-0 top-0 z-40 h-screen w-80 select-none  overflow-y-auto  bg-slate-900 p-4 transition-transform",
         {
           "-translate-x-full": !sideBar,
         }
@@ -50,7 +53,10 @@ function Sidebar({ sideBar, setSideBar }: Props) {
           {menu.map(({ icon: Icon, title, url }) => (
             <li key={title}>
               <Link
-                className="flex items-center rounded-lg p-2 text-white hover:bg-slate-800"
+                className={clsx(
+                  "flex items-center rounded-lg p-2 text-white hover:bg-slate-800",
+                  { "bg-slate-800": pathname === url }
+                )}
                 href={url}
               >
                 <Icon />
