@@ -52,18 +52,17 @@ function Reviews() {
         } = snippet;
 
         return (
-          <SwiperSlide
-            className="flex select-none justify-center"
-            key={id}
-          >
-            <iframe
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              height="480"
-              src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-              title="Embedded youtube"
-              width="853"
-            />
+          <SwiperSlide key={id}>
+            <div className="flex select-none justify-center">
+              <iframe
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                height="480"
+                src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+                title="Embedded youtube"
+                width="853"
+              />
+            </div>
           </SwiperSlide>
         );
       })}
