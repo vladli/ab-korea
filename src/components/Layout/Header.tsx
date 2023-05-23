@@ -1,6 +1,9 @@
 import React from "react";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+
+import { menu } from "@/config/menu";
 
 function Header() {
   return (
@@ -12,38 +15,31 @@ function Header() {
         zIndex: 100,
       }}
     >
-      <Image
-        alt=""
-        className="ml-5 p-2"
-        height={75}
-        priority
-        src="/AB.png"
-        width={75}
-      />
-      <ul className="m-auto flex items-center gap-10 px-10 font-semibold">
-        <li>
-          <Link href="/">Главная</Link>
-        </li>
-        <li>
-          <Link href="/">Заказ авто</Link>
-        </li>
-        <li>
-          <Link href="/">Каталог</Link>
-        </li>
-        <li>
-          <Link href="/">Отзывы</Link>
-        </li>
-        <li>
-          <Link href="/">Кейсы</Link>
-        </li>
-        <li>
-          <Link href="/">FAQ</Link>
-        </li>
-        <li>
-          <Link href="/">О нас</Link>
-        </li>
+      <div className="flex items-center p-2 lg:hidden">button</div>
+      <div className="mx-auto lg:m-0 lg:ml-2">
+        <Image
+          alt=""
+          height={75}
+          priority
+          src="/AB.png"
+          width={75}
+        />
+      </div>
+      <ul
+        className={clsx(
+          "mx-auto hidden",
+          "lg:flex lg:items-center lg:justify-center lg:gap-10 lg:font-semibold"
+        )}
+      >
+        {menu.map((item) => (
+          <li key={item.title}>
+            <Link href="/">{item.title}</Link>
+          </li>
+        ))}
       </ul>
-      <div className="flex items-center">Login</div>
+      <div className="flex items-center">
+        <div className="btn-ghost btn">Login</div>
+      </div>
     </div>
   );
 }
