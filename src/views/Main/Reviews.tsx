@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import ReactPlayer from "react-player";
+import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import ReactPlayer from "react-player/youtube";
 import { Autoplay, EffectCreative, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
@@ -18,6 +19,7 @@ type VideoType = {
 
 function Reviews() {
   const { data } = useSWR<VideoType>("/api/youtube/getReviews");
+
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
   return (
@@ -37,7 +39,7 @@ function Reviews() {
       }}
       effect={"coverflow"}
       loop={true}
-      modules={[Navigation, Pagination, Autoplay, EffectCreative]}
+      modules={[Navigation, Autoplay, EffectCreative]}
       navigation={{
         prevEl: navigationPrevRef.current,
         nextEl: navigationNextRef.current,
@@ -54,9 +56,13 @@ function Reviews() {
             className="flex select-none justify-center"
             key={id}
           >
-            <ReactPlayer
-              controls
-              url={`https://www.youtube.com/watch?v=${videoId}`}
+            <iframe
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              height="480"
+              src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+              title="Embedded youtube"
+              width="853"
             />
           </SwiperSlide>
         );
