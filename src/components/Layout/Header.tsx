@@ -15,6 +15,7 @@ function Header() {
         alt=""
         className="ml-5 p-2"
         height={75}
+        priority
         src="/AB.png"
         width={75}
       />

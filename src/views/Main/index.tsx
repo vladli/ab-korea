@@ -12,6 +12,7 @@ import Header from "@/components/Layout/Header";
 
 import Block_1 from "./Block_1";
 import BuyingGuide from "./BuyingGuide";
+import Video from "./Reviews";
 import WhyWe from "./WhyWe";
 
 function Main() {
@@ -27,11 +28,14 @@ function Main() {
     <>
       <ReactFullpage
         anchors={["firstPage", "secondPage", "thirdPage"]}
-        licenseKey={"YOUR_KEY_HERE"}
+        licenseKey="YOUR_KEY_HERE"
         navigation
         render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
             <Header />
+            <section className="section">
+              <Video />
+            </section>
             <section className="section">
               <Block_1 />
             </section>
