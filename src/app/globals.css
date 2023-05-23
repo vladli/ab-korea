@@ -20,7 +20,11 @@
 
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
-  background: white !important;
+  background: #0f172a !important;
+}
+
+.fp-tooltip {
+  color: black !important;
 }
 
 .fp-watermark {

@@ -22,7 +22,7 @@ module.exports = {
   plugins: ["react", "simple-import-sort"],
   rules: {
     // Possible errors
-    "no-console": "warn",
+    "no-console": "off",
     "no-undef": "off",
     "no-unused-vars": "off",
     // Best practices

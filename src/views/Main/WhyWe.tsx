@@ -11,17 +11,17 @@ const data = [
   {
     icon: "buy",
     title: "покупка",
-    text: "Официальная оплата, платежи осуществляются swift переводом через банк, что гарантирует прозрачность сделки",
+    text: "Официальная оплата, платежи осуществляются SWIFT переводом через банк, что гарантирует прозрачность сделки",
   },
   {
     icon: "consulting",
     title: "подбор",
-    text: "Поможем определиться с моделью, учитывая ваши потребности, бюджет и наличие на рынке. Мы всегда на связи. Быстро реагируем на объявления и получаем инофрмацию о хороших авто раньше всех",
+    text: "Поможем определиться с моделью, учитывая ваши потребности, бюджет и наличие на рынке",
   },
   {
     icon: "shipping",
     title: "доставка",
-    text: "Надежная доставка авто из Южной Кореи по морю машины транспортируются методом Ro-Ro без использования кранов",
+    text: "Надежная доставка авто из Южной Кореи по морю, машины транспортируются методом Ro-Ro без использования кранов",
   },
   {
     icon: "photo",
@@ -32,7 +32,7 @@ const data = [
 
 function WhyWe() {
   return (
-    <section className="flex min-h-screen select-none flex-col bg-gray-800">
+    <section className="flex min-h-screen select-none flex-col">
       <div className="m-auto p-10">
         <div className="mb-10 text-center">
           <h2>ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>
@@ -55,7 +55,7 @@ function WhyWe() {
                 />
               </div>
               <h3 className="uppercase">{item.title}</h3>
-              <p>{item.text}</p>
+              <p className="text-lg">{item.text}</p>
             </motion.div>
           ))}
         </div>
