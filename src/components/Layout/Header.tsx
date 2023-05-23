@@ -56,9 +56,9 @@ function Header() {
           "lg:flex lg:items-center lg:justify-center lg:gap-10 lg:font-semibold"
         )}
       >
-        {menu.map((item) => (
-          <li key={item.title}>
-            <Link href="/">{item.title}</Link>
+        {menu.map(({ title, url }) => (
+          <li key={title}>
+            <Link href={url}>{title}</Link>
           </li>
         ))}
       </ul>
