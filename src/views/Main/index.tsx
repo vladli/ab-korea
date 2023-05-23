@@ -14,6 +14,7 @@ import WhyWe from "./WhyWe";
 
 function Main() {
   const [mounted, setMounted] = useState(false);
+  const [sideBar, setSideBar] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -27,7 +28,6 @@ function Main() {
         render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
             <Header />
-
             <section className="section">
               <Block_1 />
             </section>
@@ -37,9 +37,9 @@ function Main() {
             <section className="section">
               <BuyingGuide />
             </section>
-            <section className="section">
+            {/*     <section className="section">
               <Reviews />
-            </section>
+            </section> */}
           </ReactFullpage.Wrapper>
         )}
         scrollingSpeed={1000}
