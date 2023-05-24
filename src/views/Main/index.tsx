@@ -5,6 +5,7 @@
 import React, { useEffect, useState } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 
+import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
 
 import Block_1 from "./Block_1";
@@ -29,13 +30,17 @@ function Main() {
           <ReactFullpage.Wrapper>
             <Header />
             <section className="section">
-              <Block_1 />
+              <h1 className="text-center">Антон - ЛОХ</h1>
+              <div className="text-center text-xs">еще он любит Яну</div>
             </section>
             <section className="section">
               <WhyWe />
             </section>
             <section className="section">
               <BuyingGuide />
+            </section>
+            <section className="section">
+              <Footer />
             </section>
             {/*     <section className="section">
               <Reviews />
