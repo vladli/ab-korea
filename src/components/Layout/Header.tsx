@@ -28,7 +28,6 @@ function Header() {
       }}
     >
       <button
-        aria-controls="drawer-navigation"
         className="flex items-center p-2 lg:hidden"
         onClick={() => setSideBar(true)}
       >

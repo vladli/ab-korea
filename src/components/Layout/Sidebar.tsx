@@ -34,7 +34,6 @@ function Sidebar({ sideBar, setSideBar }: Props) {
         onClick={() => setSideBar(false)}
       >
         <svg
-          aria-hidden="true"
           className="h-5 w-5"
           fill="currentColor"
           viewBox="0 0 20 20"
