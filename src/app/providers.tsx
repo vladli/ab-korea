@@ -4,10 +4,11 @@ import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
 
 type Props = {
+  session: any;
   children: React.ReactNode;
 };
 
-function Providers({ children }: Props) {
+function Providers({ session, children }: Props) {
   return (
     <SWRConfig
       value={{
@@ -15,7 +16,7 @@ function Providers({ children }: Props) {
           fetch(resource, init).then((res) => res.json()),
       }}
     >
-      <SessionProvider>{children}</SessionProvider>
+      <SessionProvider session={session}>{children}</SessionProvider>
     </SWRConfig>
   );
 }

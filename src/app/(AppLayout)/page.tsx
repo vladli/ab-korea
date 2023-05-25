@@ -1,5 +1,5 @@
-import { Metadata } from "next";
 import Image from "next/image";
+import type { Metadata } from "next/types";
 import { signIn, useSession } from "next-auth/react";
 
 import Header from "@/components/Layout/Header";

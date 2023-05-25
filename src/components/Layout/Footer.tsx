@@ -17,7 +17,7 @@ const socials = [
 
 function Footer() {
   return (
-    <div className="absolute bottom-0 min-h-fit w-full select-none divide-y divide-slate-700 bg-slate-900">
+    <div className="absolute bottom-0 min-h-fit w-full select-none divide-y divide-gray-700 bg-slate-900">
       <div className="p-3 text-center text-white">
         Подберём для вас оптимальное предложение на рынке Южной Кореи с
         персональной гарантией.
