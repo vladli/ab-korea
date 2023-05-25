@@ -1,11 +1,6 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-/* eslint-disable tailwindcss/classnames-order */
-
-import { redirect } from "next/navigation";
 import type { Metadata } from "next/types";
 
 import Header from "@/components/Layout/Header";
-import { isAuthenticated } from "@/lib/auth";
 import SocialButtons from "@/views/auth/signin/SocialButtons";
 export const metadata: Metadata = {
   title:
