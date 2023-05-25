@@ -82,9 +82,22 @@ function Header() {
             )}
           >
             {menu.map(({ title, url }) => (
-              <li key={title}>
-                <Link href={url}>{title}</Link>
-              </li>
+              <Link
+                className=""
+                href={url}
+                key={title}
+              >
+                <motion.li
+                  className={clsx("select-none hover:text-white/80", {
+                    "border-b border-b-white/80": pathname === url,
+                  })}
+                  whileHover={{
+                    scale: 1.1,
+                  }}
+                >
+                  {title}
+                </motion.li>
+              </Link>
             ))}
           </ul>
           <div className="mr-2 flex items-center">

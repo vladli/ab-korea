@@ -17,12 +17,12 @@ export const menu: MenuItem = [
   },
   {
     icon: AiOutlineCar,
-    url: "/",
+    url: "/order",
     title: "Заказ авто",
   },
   {
     icon: BsBook,
-    url: "/",
+    url: "/catalog",
     title: "Каталог",
   },
   {
@@ -32,7 +32,7 @@ export const menu: MenuItem = [
   },
   {
     icon: TbBrandPagekit,
-    url: "/",
+    url: "/cases",
     title: "Кейсы",
   },
   {
