@@ -8,8 +8,8 @@ import ReactFullpage from "@fullpage/react-fullpage";
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
 
-import Block_1 from "./Block_1";
 import BuyingGuide from "./BuyingGuide";
+import CarCheck from "./CarCheck";
 import Reviews from "./Reviews";
 import WhyWe from "./WhyWe";
 
@@ -29,9 +29,8 @@ function Main() {
         render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
             <Header />
-            <section className="section">
-              <h1 className="text-center">Антон - ЛОХ</h1>
-              <div className="text-center text-xs">еще он любит Яну</div>
+            <section className="section pt-16">
+              <CarCheck />
             </section>
             <section className="section">
               <WhyWe />

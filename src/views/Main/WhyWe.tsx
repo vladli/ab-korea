@@ -45,7 +45,7 @@ function WhyWe() {
               viewport={{ once: true }}
               whileInView={{ opacity: 1 }}
             >
-              <div className="flex h-36 justify-center overflow-x-hidden">
+              <div className="flex h-36 justify-center">
                 <dotlottie-player
                   autoplay
                   loop
