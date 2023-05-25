@@ -1,9 +1,8 @@
-import clsx from "clsx";
-
-import Header from "@/components/Layout/Header";
+import Image from "next/image";
 
 const data = [
   {
+    icon: "body",
     title: "Кузов",
     text: `Осмотр скрытых полостей кузова
     и несущих конструкций на
@@ -15,6 +14,7 @@ const data = [
     лакокрасочного покрытия.`,
   },
   {
+    icon: "suspension",
     title: "Подвеска",
     text: `Оцениваем износ рычагов,
     сайлентблоков и амортизаторов,
@@ -25,6 +25,7 @@ const data = [
     стуки и скрежеты.`,
   },
   {
+    icon: "electricity",
     title: "Электроника",
     text: `Проверяем систему зажигания,
     осветительные приборы,
@@ -35,6 +36,7 @@ const data = [
     многое другое.`,
   },
   {
+    icon: "brakes",
     title: "Тормозная система",
     text: `Проверяем общее состояние
     системы, отсутствие утечек,
@@ -44,6 +46,7 @@ const data = [
     замены.`,
   },
   {
+    icon: "gear",
     title: "Трансмиссия",
     text: `Проверяем плавность
     переключения передач,
@@ -51,6 +54,7 @@ const data = [
     ресурс вариатора.`,
   },
   {
+    icon: "engine",
     title: "Дивгатель",
     text: `Выполняем общий осмотр
     двигателя, заводим и слушает его.
@@ -59,12 +63,27 @@ const data = [
   },
 ];
 
-const right = [];
-
-const Block = ({ title, text }: { title: string; text: string }) => {
+const Block = ({
+  icon,
+  title,
+  text,
+}: {
+  icon?: string;
+  title: string;
+  text: string;
+}) => {
   return (
     <div className="gap-x-10 text-center">
-      <h3 className="uppercase">{title}</h3>
+      <span className="flex flex-col items-center">
+        <Image
+          alt=""
+          className="mask mask-hexagon my-1 bg-black/10 p-3"
+          height={64}
+          src={`/carParts/${icon}.png`}
+          width={64}
+        />
+        <h3 className="uppercase">{title}</h3>
+      </span>
       <p className="text-lg">{text}</p>
     </div>
   );
@@ -87,10 +106,10 @@ function CarCheck() {
               />
             </div>
           </div>
-          {data.map(({ title, text }) => (
+          {data.map(({ icon, title, text }) => (
             <Block
               key={title}
-              {...{ title, text }}
+              {...{ icon, title, text }}
             />
           ))}
         </div>
