@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 import Header from "@/components/Layout/Header";
 
-const left = [
+const data = [
   {
     title: "Кузов",
     text: `Осмотр скрытых полостей кузова
@@ -15,26 +15,6 @@ const left = [
     лакокрасочного покрытия.`,
   },
   {
-    title: "Электроника",
-    text: `Проверяем систему зажигания,
-    осветительные приборы,
-    приборную панель,
-    кондиционирование,
-    электроподъемники, аудио- и
-    видеосистемы, круиз-контроль И
-    многое другое.`,
-  },
-  {
-    title: "Трансмиссия",
-    text: `Проверяем плавность
-    переключения передач,
-    отсутствие течей, запотеваний и
-    ресурс вариатора.`,
-  },
-];
-
-const right = [
-  {
     title: "Подвеска",
     text: `Оцениваем износ рычагов,
     сайлентблоков и амортизаторов,
@@ -43,6 +23,16 @@ const right = [
     проводим тест-драйв, чтобы
     услышать непредусмотренные
     стуки и скрежеты.`,
+  },
+  {
+    title: "Электроника",
+    text: `Проверяем систему зажигания,
+    осветительные приборы,
+    приборную панель,
+    кондиционирование,
+    электроподъемники, аудио- и
+    видеосистемы, круиз-контроль И
+    многое другое.`,
   },
   {
     title: "Тормозная система",
@@ -54,6 +44,13 @@ const right = [
     замены.`,
   },
   {
+    title: "Трансмиссия",
+    text: `Проверяем плавность
+    переключения передач,
+    отсутствие течей, запотеваний и
+    ресурс вариатора.`,
+  },
+  {
     title: "Дивгатель",
     text: `Выполняем общий осмотр
     двигателя, заводим и слушает его.
@@ -62,9 +59,11 @@ const right = [
   },
 ];
 
+const right = [];
+
 const Block = ({ title, text }: { title: string; text: string }) => {
   return (
-    <div>
+    <div className="gap-x-10 text-center">
       <h3 className="uppercase">{title}</h3>
       <p className="text-lg">{text}</p>
     </div>
@@ -74,28 +73,26 @@ const Block = ({ title, text }: { title: string; text: string }) => {
 function CarCheck() {
   return (
     <>
-      <section className="flex select-none flex-col overflow-hidden">
+      <section className="flex min-h-[100vh-4rem] select-none flex-col p-10">
         <div className="mb-10 text-center">
           <h2>ПРОВЕРЯЕМ ПРИ ОСМОТРЕ</h2>
         </div>
-        <div className="flex flex-wrap p-4">
-          <div className="basis-1/3">
-            {left.map(({ title, text }) => (
-              <Block
-                key={title}
-                {...{ title, text }}
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <div className="col-start-1 row-span-3 row-start-4 place-self-center self-center lg:col-start-2 lg:row-start-1">
+            <div className="h-80 lg:h-fit">
+              <dotlottie-player
+                autoplay
+                loop
+                src={`/car_check.lottie`}
               />
-            ))}
+            </div>
           </div>
-          <div className="shrink-0 basis-1/3">img</div>
-          <div className="basis-1/3">
-            {right.map(({ title, text }) => (
-              <Block
-                key={title}
-                {...{ title, text }}
-              />
-            ))}
-          </div>
+          {data.map(({ title, text }) => (
+            <Block
+              key={title}
+              {...{ title, text }}
+            />
+          ))}
         </div>
       </section>
     </>

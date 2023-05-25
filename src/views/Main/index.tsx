@@ -29,7 +29,7 @@ function Main() {
         render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
             <Header />
-            <section className="section">
+            <section className="section pt-16">
               <CarCheck />
             </section>
             <section className="section">
