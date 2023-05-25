@@ -16,6 +16,8 @@ declare namespace JSX {
       intermission?: number;
       activeAnimationId?: string;
       style?: any;
+
+      [key: string]: any;
     };
   }
 }

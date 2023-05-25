@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const data = [
   {
@@ -14,7 +13,7 @@ const data = [
     text: "Официальная оплата, платежи осуществляются SWIFT переводом через банк, что гарантирует прозрачность сделки",
   },
   {
-    icon: "consulting",
+    icon: "chat",
     title: "подбор",
     text: "Поможем определиться с моделью, учитывая ваши потребности, бюджет и наличие на рынке",
   },
@@ -38,24 +37,23 @@ function WhyWe() {
           <h2>ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>
         </div>
         <div className="flex flex-row flex-wrap justify-around gap-y-20">
-          {data.map((item, i) => (
+          {data.map(({ icon, text, title }, i) => (
             <motion.div
               className="basis-1/3 px-4 text-center [&:nth-child(n+4)]:basis-1/2"
               initial={{ opacity: 0 }}
-              key={item.title}
+              key={title}
               viewport={{ once: true }}
-              whileInView={{ opacity: 1, transition: { delay: i - 0.8 } }}
+              whileInView={{ opacity: 1 }}
             >
-              <div className="flex justify-center overflow-x-hidden">
-                <Image
-                  alt=""
-                  height={100}
-                  src={`/icons/${item.icon}.png`}
-                  width={100}
+              <div className="flex h-36 justify-center overflow-x-hidden">
+                <dotlottie-player
+                  autoplay
+                  loop
+                  src={`/icons/${icon}.lottie`}
                 />
               </div>
-              <h3 className="uppercase">{item.title}</h3>
-              <p className="text-lg">{item.text}</p>
+              <h3 className="uppercase">{title}</h3>
+              <p className="text-lg">{text}</p>
             </motion.div>
           ))}
         </div>
