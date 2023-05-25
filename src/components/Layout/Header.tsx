@@ -1,10 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
 import { menu } from "@/config/menu";
+
+import Button from "../Button";
 
 import Sidebar from "./Sidebar";
 
@@ -28,19 +31,33 @@ function Header() {
       }}
     >
       <button
-        className="flex items-center p-2 lg:hidden"
+        className="btn-ghost btn-square btn my-auto ml-2 lg:hidden"
         onClick={() => setSideBar(true)}
       >
-        button
+        <svg
+          className="inline-block h-6 w-6 stroke-current"
+          fill="none"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          ></path>
+        </svg>
       </button>
       <Sidebar {...{ sideBar, setSideBar }} />
       {sideBar && (
-        <div
-          className="fixed left-0 top-0 block h-full w-full cursor-pointer bg-white opacity-75"
+        <motion.div
+          animate={{ opacity: 0.5 }}
+          className="fixed left-0 top-0 block h-full w-full cursor-pointer bg-black"
+          initial={{ opacity: 0 }}
           onClick={() => setSideBar(false)}
         />
       )}
-      <div className="mx-auto lg:m-0 lg:ml-2">
+      <div className="mx-auto select-none lg:m-0 lg:ml-2">
         <Image
           alt=""
           height={75}
@@ -61,8 +78,8 @@ function Header() {
           </li>
         ))}
       </ul>
-      <div className="flex items-center">
-        <div className="btn-ghost btn">Login</div>
+      <div className="mr-2 flex items-center">
+        <button className="btn-ghost btn">Login</button>
       </div>
     </div>
   );
