@@ -1,4 +1,3 @@
-import { Player } from "@lottiefiles/react-lottie-player";
 import Image from "next/image";
 
 function Footer() {
@@ -15,17 +14,24 @@ function Footer() {
           src="/AB.png"
           width={100}
         />
-        <div>
-          <Player
+        <div className="flex gap-10">
+          <dotlottie-player
             autoplay
-            className="h-14 cursor-pointer"
             loop
-            src="/socials/whats.json"
+            src="/socials/youtube.lottie"
+            style={{ width: "50px" }}
           />
           <dotlottie-player
             autoplay
             loop
-            src="/socials/whats.lottie"
+            src="/socials/whatsapp.lottie"
+            style={{ width: "50px" }}
+          />
+          <dotlottie-player
+            autoplay
+            loop
+            src="/socials/telegram.lottie"
+            style={{ width: "50px" }}
           />
         </div>
       </div>
