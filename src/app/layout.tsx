@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 import Providers from "./providers";
 
 import "./globals.css";
@@ -16,6 +18,9 @@ export default function RootLayout({
       data-theme="light"
       lang="en"
     >
+      <head>
+        <Script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js" />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>

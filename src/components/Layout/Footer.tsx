@@ -1,4 +1,3 @@
-import React from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import Image from "next/image";
 
@@ -19,10 +18,14 @@ function Footer() {
         <div>
           <Player
             autoplay
-            className="cursor-pointer"
+            className="h-14 cursor-pointer"
             loop
             src="/socials/whats.json"
-            style={{ height: "64px", width: "64px" }}
+          />
+          <dotlottie-player
+            autoplay
+            loop
+            src="/socials/whats.lottie"
           />
         </div>
       </div>
