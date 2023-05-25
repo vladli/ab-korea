@@ -28,7 +28,6 @@ function Main() {
         navigation
         render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
-            <Header />
             <section className="section">
               <WhyWe />
             </section>

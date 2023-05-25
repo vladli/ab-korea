@@ -19,7 +19,8 @@ function Header() {
   const [sideBar, setSideBar] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
-    if (pathname === "/") {
+    console.log(sideBar);
+    if (pathname === "/dsa") {
       if (sideBar) {
         window.fullpage_api.setAllowScrolling(false);
       } else {
@@ -57,23 +58,25 @@ function Header() {
               ></path>
             </svg>
           </button>
-          <Sidebar {...{ sideBar, setSideBar }} />
-          {sideBar && (
+          {sideBar ? <Sidebar {...{ sideBar, setSideBar }} /> : null}
+          {sideBar ? (
             <motion.div
               animate={{ opacity: 0.5 }}
               className="fixed left-0 top-0 block h-full w-full cursor-pointer bg-black"
               initial={{ opacity: 0 }}
               onClick={() => setSideBar(false)}
             />
-          )}
+          ) : null}
           <div className="mx-auto select-none lg:m-0 lg:ml-2">
-            <Image
-              alt=""
-              height={75}
-              priority
-              src="/AB.png"
-              width={75}
-            />
+            <Link href="/">
+              <Image
+                alt=""
+                height={75}
+                priority
+                src="/AB.png"
+                width={75}
+              />
+            </Link>
           </div>
           <ul
             className={clsx(

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 async function Page() {
   return (
-    <section className="hero min-h-screen">
+    <main className="hero min-h-screen">
       <Header />
       <div className="hero-content w-screen flex-col">
         <div className="text-center">
@@ -27,7 +27,7 @@ async function Page() {
           </div>
         </div>
       </div>
-    </section>
+    </main>
   );
 }
 
