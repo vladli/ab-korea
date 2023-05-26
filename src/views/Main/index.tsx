@@ -2,7 +2,7 @@
 //@ts-nocheck
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import clsx from "clsx";
 
@@ -22,11 +22,6 @@ const comps = [
 ];
 
 function Main() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) return null;
   return (
     <>
       <ReactFullpage
@@ -43,7 +38,7 @@ function Main() {
                     className={clsx("section", { "pt-28": i === 0 })}
                     key={i}
                   >
-                    {mounted ? item : null}
+                    {item}
                   </section>
                 );
               })}
