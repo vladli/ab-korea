@@ -4,6 +4,7 @@
 
 import React, { useEffect, useState } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
+import clsx from "clsx";
 
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
@@ -13,31 +14,39 @@ import CarCheck from "./CarCheck";
 import Reviews from "./Reviews";
 import WhyWe from "./WhyWe";
 
+const comps = [
+  <WhyWe key={0} />,
+  <CarCheck key={1} />,
+  <BuyingGuide key={2} />,
+  <Footer key={3} />,
+];
+
 function Main() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <>
       <ReactFullpage
-        licenseKey="YOUR_KEY_HERE"
+        licenseKey="OPEN-SOURCE-GPLV3-LICENSE"
         navigation
         render={({ state, fullpageApi }) => (
           <>
             <Header />
+
             <ReactFullpage.Wrapper>
-              <section className="section pt-28">
-                <WhyWe />
-              </section>
-              <section className="section">
-                <CarCheck />
-              </section>
-              <section className="section">
-                <BuyingGuide />
-              </section>
-              <section className="section">
-                <Footer />
-              </section>
-              {/*     <section className="section">
-              <Reviews />
-            </section> */}
+              {comps.map((item, i) => {
+                return (
+                  <section
+                    className={clsx("section", { "pt-28": i === 0 })}
+                    key={i}
+                  >
+                    {mounted ? item : null}
+                  </section>
+                );
+              })}
             </ReactFullpage.Wrapper>
           </>
         )}

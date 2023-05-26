@@ -1,5 +1,8 @@
+import { redirect } from "next/navigation";
 import type { Metadata } from "next/types";
+import { getServerSession } from "next-auth";
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import Header from "@/components/Layout/Header";
 import SocialButtons from "@/views/auth/signin/SocialButtons";
 export const metadata: Metadata = {
@@ -7,6 +10,10 @@ export const metadata: Metadata = {
     "Авторизация | AB Korea - Подбор автомобилей из Южной Кореи с доставкой",
 };
 async function Page() {
+  const session = await getServerSession(authOptions);
+  if (session) {
+    redirect("/");
+  }
   return (
     <main className="hero min-h-screen">
       <Header />
