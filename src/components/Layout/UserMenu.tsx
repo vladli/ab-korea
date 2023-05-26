@@ -14,6 +14,7 @@ function UserMenu() {
               <Image
                 alt=""
                 height={8}
+                quality={90}
                 src={session.user.image}
                 width={8}
               />
