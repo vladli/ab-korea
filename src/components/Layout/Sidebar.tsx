@@ -24,13 +24,13 @@ function Sidebar({ sideBar, setSideBar }: Props) {
       )}
     >
       <h5
-        className="text-base font-semibold uppercase text-gray-200"
+        className="text-base font-semibold uppercase text-white"
         id="drawer-navigation-label"
       >
         Меню
       </h5>
       <button
-        className="absolute right-2.5 top-2.5 inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+        className="absolute right-2.5 top-2.5 inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-white hover:bg-white/10"
         onClick={() => setSideBar(false)}
       >
         <svg

@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-import clsx from "clsx";
 import Image from "next/image";
 
 const data = [
@@ -38,7 +34,6 @@ const data = [
 ];
 
 type Props = {
-  opened: boolean;
   item: (typeof data)[number];
 };
 
@@ -47,36 +42,20 @@ function Guide() {
     <div>
       {data.map((item, i) => (
         <div
-          className="flex w-full justify-center"
+          className="my-2 flex w-full justify-center"
           key={item.title}
         >
-          <Stepper
-            opened={i === 0}
-            {...{ item }}
-          />
+          <Stepper {...{ item }} />
         </div>
       ))}
     </div>
   );
 }
 
-const Stepper = ({ opened, item }: Props) => {
-  const [open, setOpen] = useState(opened);
-
+const Stepper = ({ item }: Props) => {
   return (
-    <div
-      className={clsx(
-        "rounded-box collapse w-11/12 border border-base-300 bg-base-100",
-        {
-          "collapse-open": open,
-          "collapse-arrow": !open,
-        }
-      )}
-    >
-      <div
-        className="collapse-title text-xl font-medium uppercase"
-        onClick={() => setOpen(true)}
-      >
+    <div className="collapse-open rounded-box collapse w-11/12 border border-base-300 bg-base-100">
+      <div className="collapse-title text-xl font-medium uppercase">
         <div className="flex gap-2">
           <Image
             alt=""
