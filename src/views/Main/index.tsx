@@ -41,7 +41,7 @@ function Main() {
             </ReactFullpage.Wrapper>
           </>
         )}
-        scrollingSpeed={1000}
+        scrollingSpeed={1200}
       />
     </>
   );
