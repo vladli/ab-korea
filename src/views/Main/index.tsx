@@ -26,7 +26,7 @@ function Main() {
   useEffect(() => {
     setMounted(true);
   }, []);
-
+  if (!mounted) return null;
   return (
     <>
       <ReactFullpage
