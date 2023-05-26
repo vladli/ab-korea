@@ -16,6 +16,7 @@ function UserMenu() {
                 height={8}
                 quality={90}
                 src={session.user.image}
+                unoptimized
                 width={8}
               />
             </div>
