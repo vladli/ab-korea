@@ -19,8 +19,7 @@ function Header() {
   const [sideBar, setSideBar] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
-    console.log(sideBar);
-    if (pathname === "/dsa") {
+    if (pathname === "/") {
       if (sideBar) {
         window.fullpage_api.setAllowScrolling(false);
       } else {
@@ -34,12 +33,12 @@ function Header() {
       <header
         className="flex h-16 w-full flex-col bg-slate-900 text-white"
         style={{
-          position: "fixed",
+          position: "absolute",
           top: 0,
           zIndex: 100,
         }}
       >
-        <div className="flex">
+        <section className="flex">
           <button
             className="btn-ghost btn-square btn my-auto ml-2 lg:hidden"
             onClick={() => setSideBar(true)}
@@ -122,7 +121,7 @@ function Header() {
               {!session ? "Вход" : "Выход"}
             </button>
           </div>
-        </div>
+        </section>
         {session ? <UserMenu /> : null}
       </header>
     </>

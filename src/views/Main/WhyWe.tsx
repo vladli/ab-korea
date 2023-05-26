@@ -31,7 +31,7 @@ const data = [
 
 function WhyWe() {
   return (
-    <section className="flex min-h-screen select-none flex-col pt-28">
+    <section className="flex select-none flex-col">
       <div className="m-auto p-10">
         <div className="mb-10 text-center">
           <h2>ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>

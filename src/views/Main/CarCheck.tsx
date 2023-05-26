@@ -92,7 +92,7 @@ const Block = ({
 function CarCheck() {
   return (
     <>
-      <section className="flex min-h-[100vh-4rem] select-none flex-col p-10">
+      <section className="flex select-none flex-col p-10">
         <div className="mb-10 text-center">
           <h2>ПРОВЕРЯЕМ ПРИ ОСМОТРЕ</h2>
         </div>
