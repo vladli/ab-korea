@@ -5,7 +5,7 @@ import Header from "@/components/Layout/Header";
 import { titles } from "@/config/config";
 
 export const metadata: Metadata = {
-  title: titles.faq,
+  title: titles.carOrder,
 };
 
 function Page() {

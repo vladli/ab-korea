@@ -17,7 +17,7 @@ export const menu: MenuItem = [
   },
   {
     icon: AiOutlineCar,
-    url: "/order",
+    url: "/car-order",
     title: "Заказ авто",
   },
   {

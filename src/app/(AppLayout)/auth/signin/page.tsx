@@ -4,11 +4,13 @@ import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import Header from "@/components/Layout/Header";
+import { titles } from "@/config/config";
 import SocialButtons from "@/views/auth/signin/SocialButtons";
+
 export const metadata: Metadata = {
-  title:
-    "Авторизация | AB Korea - Подбор автомобилей из Южной Кореи с доставкой",
+  title: titles.login,
 };
+
 async function Page() {
   const session = await getServerSession(authOptions);
   if (session) {
