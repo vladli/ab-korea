@@ -4,7 +4,6 @@ import { useSession } from "next-auth/react";
 
 function UserMenu() {
   const { data: session } = useSession();
-
   return (
     <section className="h-12 w-screen border-t border-t-gray-700 bg-slate-900 p-1">
       <div className="flex items-center justify-end gap-2 pr-4">
