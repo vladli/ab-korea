@@ -7,6 +7,7 @@ import YandexProvider from "next-auth/providers/yandex";
 import { prisma } from "@/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
+  debug: false,
   session: {
     strategy: "jwt",
   },
