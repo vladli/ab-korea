@@ -2,9 +2,10 @@
 //@ts-nocheck
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import clsx from "clsx";
+import { useSession } from "next-auth/react";
 
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
@@ -22,6 +23,22 @@ const comps = [
 ];
 
 function Main() {
+  const { data: session, status } = useSession();
+
+  if (status === "loading") return null;
+  const items = comps.map((item, i) => {
+    return (
+      <section
+        className={clsx("section", {
+          "pt-16": i === 0 && !session,
+          "pt-28": i === 0 && session,
+        })}
+        key={i}
+      >
+        {item}
+      </section>
+    );
+  });
   return (
     <>
       <ReactFullpage
@@ -31,18 +48,7 @@ function Main() {
           <>
             <Header />
 
-            <ReactFullpage.Wrapper>
-              {comps.map((item, i) => {
-                return (
-                  <section
-                    className={clsx("section", { "pt-28": i === 0 })}
-                    key={i}
-                  >
-                    {item}
-                  </section>
-                );
-              })}
-            </ReactFullpage.Wrapper>
+            <ReactFullpage.Wrapper>{items}</ReactFullpage.Wrapper>
           </>
         )}
         scrollingSpeed={1200}

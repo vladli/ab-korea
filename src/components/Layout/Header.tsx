@@ -103,23 +103,28 @@ function Header() {
             ))}
           </ul>
           <div className="mr-2 flex items-center">
-            <button
-              className="btn-ghost btn gap-2"
-              onClick={() => (!session ? signIn() : signOut())}
-            >
-              {!session ? (
-                <MdOutlineLogin
-                  color="red"
-                  size="1.3rem"
-                />
-              ) : (
+            {!session ? (
+              <Link href="/auth/signin">
+                <button className="btn-ghost btn gap-2">
+                  <MdOutlineLogin
+                    color="red"
+                    size="1.3rem"
+                  />
+                  Вход
+                </button>
+              </Link>
+            ) : (
+              <button
+                className="btn-ghost btn gap-2"
+                onClick={() => signOut()}
+              >
                 <MdOutlineLogout
                   color="red"
                   size="1.3rem"
                 />
-              )}
-              {!session ? "Вход" : "Выход"}
-            </button>
+                Выход
+              </button>
+            )}
           </div>
         </section>
         {session ? <UserMenu /> : null}
