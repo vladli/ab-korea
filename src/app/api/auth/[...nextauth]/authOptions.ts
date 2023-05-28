@@ -1,6 +1,7 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import MailRuProvider from "next-auth/providers/mailru";
 import VkProvider from "next-auth/providers/vk";
 import YandexProvider from "next-auth/providers/yandex";
 
@@ -31,6 +32,10 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
+    MailRuProvider({
+      clientId: process.env.MAILRU_CLIENT_ID as string,
+      clientSecret: process.env.MAILRU_CLIENT_SECRET as string,
     }),
     VkProvider({
       clientId: process.env.VK_CLIENT_ID as string,
