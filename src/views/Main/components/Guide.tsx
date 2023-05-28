@@ -60,6 +60,7 @@ const Stepper = ({ item }: Props) => {
           <Image
             alt=""
             height={30}
+            priority
             src={`/icons/${item.icon}.png`}
             width={30}
           />
