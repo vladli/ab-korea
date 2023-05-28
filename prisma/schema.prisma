@@ -13,7 +13,7 @@ datasource db {
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
-  user_id           String? @db.ObjectId
+  user_id           Int?    @unique
   email             String? @unique
   type              String
   provider          String
