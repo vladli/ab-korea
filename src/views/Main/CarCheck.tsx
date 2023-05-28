@@ -79,6 +79,7 @@ const Block = ({
           alt=""
           className="mask mask-hexagon my-1 bg-black/10 p-3"
           height={64}
+          priority
           src={`/carParts/${icon}.png`}
           width={64}
         />
