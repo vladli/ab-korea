@@ -6,6 +6,7 @@
 import React from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FaYandex } from "react-icons/fa";
+import { SlSocialVkontakte } from "react-icons/sl";
 import clsx from "clsx";
 import { signIn } from "next-auth/react";
 
@@ -19,6 +20,11 @@ const socials = [
     name: "Yandex",
     provider: "yandex",
     icon: FaYandex,
+  },
+  {
+    name: "ВКонтакте",
+    provider: "vk",
+    icon: SlSocialVkontakte,
   },
 ];
 
@@ -36,6 +42,7 @@ function SocialButtons() {
               {
                 "bg-[#4285F4] hover:bg-[#4285F4]/90": provider === "google",
                 "bg-[#FC3F1D] hover:bg-[#FC3F1D]/90": provider === "yandex",
+                "bg-[#4C75A3] hover:bg-[#4C75A3]/90": provider === "vk",
               }
             )}
             onClick={() => signIn(provider)}
