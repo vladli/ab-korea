@@ -6,7 +6,6 @@
 import React from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FaYandex } from "react-icons/fa";
-import { SiMaildotru } from "react-icons/si";
 import { SlSocialVkontakte } from "react-icons/sl";
 import clsx from "clsx";
 import { signIn } from "next-auth/react";
@@ -27,11 +26,6 @@ const socials = [
     provider: "vk",
     icon: SlSocialVkontakte,
   },
-  {
-    name: "Mail.ru",
-    provider: "mailru",
-    icon: SiMaildotru,
-  },
 ];
 
 function SocialButtons() {
@@ -49,13 +43,12 @@ function SocialButtons() {
                 "bg-[#4285F4] hover:bg-[#4285F4]/90": provider === "google",
                 "bg-[#FC3F1D] hover:bg-[#FC3F1D]/90": provider === "yandex",
                 "bg-[#4C75A3] hover:bg-[#4C75A3]/90": provider === "vk",
-                "bg-[#168DE2] hover:bg-[#168DE2]/90": provider === "mailru",
               }
             )}
             onClick={() => signIn(provider)}
             type="button"
           >
-            <Icon color={provider === "mailru" ? "#ffa930" : undefined} />
+            <Icon />
             Войти с помощью {name}
           </button>
         </div>
