@@ -3,6 +3,7 @@ import type { Metadata } from "next/types";
 
 import Header from "@/components/Layout/Header";
 import { titles } from "@/config/config";
+import Main from "@/views/car-order";
 
 export const metadata: Metadata = {
   title: titles.carOrder,
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
 
 function Page() {
   return (
-    <main className="hero min-h-screen">
+    <main className=" min-h-screen">
       <Header />
+      <Main />
     </main>
   );
 }
