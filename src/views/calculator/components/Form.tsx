@@ -8,7 +8,7 @@ function Form() {
     KZT: 445,
     KRW: 1323,
   });
-  const [selectedCurrency, setSelectedCurrency] = useState("KRW");
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
 
   const [carPrice, setCarPrice] = useState(0);
   const [carCurrency, setCarCurrency] = useState("KRW");
@@ -44,7 +44,6 @@ function Form() {
     if (!amount) return 0;
     const exchangeRate = currency[toCurrency] / currency[fromCurrency];
     const convertedAmount = exchangeRate * amount;
-    console.log(amount, exchangeRate);
     return convertedAmount;
   }
 
