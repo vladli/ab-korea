@@ -27,8 +27,8 @@ export const menu: MenuItem = [
   },
   {
     icon: MdOutlineRateReview,
-    url: "/reviews",
-    title: "Отзывы",
+    url: "/calculator",
+    title: "Калькулятор",
   },
   {
     icon: TbBrandPagekit,
