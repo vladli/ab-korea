@@ -3,14 +3,30 @@ import React, { useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 
 function Form() {
-  const [currency, setCurrency] = useState("KRW");
+  const [currency, setCurrency] = useState<any>({
+    USD: 1,
+    KZT: 445,
+    KRW: 1323,
+  });
+  const [selectedCurrency, setSelectedCurrency] = useState("KRW");
   const [carPrice, setCarPrice] = useState(0);
   const [carCurrency, setCarCurrency] = useState("KRW");
-  const USDollar = new Intl.NumberFormat("en-US", {
+
+  const Currency = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: currency,
+    currency: selectedCurrency,
   });
-  console.log(currency);
+
+  function convertCurrency(
+    amount: number,
+    fromCurrency: string,
+    toCurrency: string
+  ) {
+    const exchangeRate = currency[toCurrency] / currency[fromCurrency];
+    const convertedAmount = exchangeRate * amount;
+    return Currency.format(convertedAmount);
+  }
+
   return (
     <div className="my-10 flex flex-col items-center gap-2">
       <div className="flex flex-col items-center gap-2">
@@ -41,8 +57,8 @@ function Form() {
           </label>
           <select
             className="select-bordered select focus:outline-none"
-            onChange={(e) => setCurrency(e.target.value)}
-            value={currency}
+            onChange={(e) => setSelectedCurrency(e.target.value)}
+            value={selectedCurrency}
           >
             <option value="KRW">KRW</option>
             <option value="KZT">KZT</option>
@@ -61,7 +77,9 @@ function Form() {
           <tbody>
             <tr>
               <td>Автомобиль</td>
-              <td>{USDollar.format(carPrice)}</td>
+              <td>
+                {convertCurrency(carPrice, carCurrency, selectedCurrency)}
+              </td>
             </tr>
           </tbody>
         </table>
