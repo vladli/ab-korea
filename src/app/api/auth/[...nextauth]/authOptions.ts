@@ -13,7 +13,19 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({ user, account, profile, email, credentials }) {
+      if (account?.provider === "google") {
+        //@ts-ignore
+        if (user.image !== profile?.picture) {
+          await prisma.user.update({
+            where: { id: user.id }, //@ts-ignore
+            data: { image: profile?.picture },
+          });
+        }
+      }
+      return true;
+    },
+    async jwt({ token, user, profile }) {
       if (user) {
         token.id = user.id;
       }

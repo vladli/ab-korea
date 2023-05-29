@@ -19,7 +19,10 @@ const comps = [
   <WhyWe key={0} />,
   <CarCheck key={1} />,
   <BuyingGuide key={2} />,
-  <Footer key={3} />,
+  <Footer
+    className="absolute bottom-0"
+    key={3}
+  />,
 ];
 
 function Main() {

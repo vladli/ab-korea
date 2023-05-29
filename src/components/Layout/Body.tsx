@@ -12,15 +12,12 @@ function Body({ children, className }: Props) {
   const { data: session, status } = useSession();
   return (
     <main
-      className={clsx(
-        {
-          "pt-16": !session,
-          "pt-28": session,
-        },
-        className
-      )}
+      className={clsx({
+        "pt-16": !session,
+        "pt-28": session,
+      })}
     >
-      {children}
+      <div className={className}>{children}</div>
     </main>
   );
 }
