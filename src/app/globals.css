@@ -39,3 +39,7 @@
 .tooltip:before {
   color: white;
 }
+
+.input-group :where(span) {
+  background-color: rgb(245, 245, 245);
+}
