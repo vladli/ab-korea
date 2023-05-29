@@ -77,7 +77,7 @@ function Form() {
 
   return (
     <div className="my-10 flex w-full flex-col items-center gap-2">
-      <div className="flex w-[85vw] max-w-lg flex-col items-center gap-2">
+      <div className="flex w-[85vw] max-w-xl flex-col items-center gap-2">
         <div className="form-control w-full">
           <label className="input-group">
             <span>Цена</span>
