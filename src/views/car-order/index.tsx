@@ -1,11 +1,12 @@
 import Link from "next/link";
 
+import Container from "@/components/Container";
 import Body from "@/components/Layout/Body";
 
 function Main() {
   return (
     <Body>
-      <article className="prose mx-auto my-10 max-w-[90vw] bg-white p-4 shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5 lg:prose-xl hover:prose-a:text-blue-700">
+      <Container className="prose lg:prose-xl hover:prose-a:text-blue-700">
         <h2 className="text-center">Заказ автомобиля из Южной Кореи</h2>
         <p>
           Заказ автомобиля из Кореи – это оптимальный вариант для тех, кто не
@@ -27,7 +28,7 @@ function Main() {
           </Link>
           .
         </p>
-        <ul>
+        <ul className="marker:text-red-500">
           <li>
             Услуги компании <strong>“AB Korea”</strong> позволяют сократить
             временные затраты на выбор нужного автомобиля из Кореи. Специалисты
@@ -96,7 +97,7 @@ function Main() {
           </li>
         </ol>
         <h3 className="text-center">Этапы покупки авто из Южной Кореи</h3>
-        <ul>
+        <ul className="marker:text-red-500">
           <li>
             Первый шаг — оставить заявку на сайте компании либо написать в
             мессенджер. После этого с вами свяжется менеджер, который уточнит
@@ -128,7 +129,7 @@ function Main() {
           </li>
         </ul>
         <h3 className="text-center">Гарантии компании “AB Korea”</h3>
-        <ul>
+        <ul className="marker:text-red-500">
           <li>
             <strong>Безопасное приобретение.</strong>
             <strong>“AB Korea”</strong> гарантирует юридическую чистоту
@@ -157,7 +158,7 @@ function Main() {
             автомобиля в соответствии с вашим договором.
           </li>
         </ul>
-      </article>
+      </Container>
     </Body>
   );
 }
