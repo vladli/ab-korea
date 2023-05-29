@@ -29,28 +29,25 @@ function Form() {
   }
 
   return (
-    <div className="my-10 flex flex-col items-center gap-2">
-      <div className="flex flex-col items-center gap-2">
-        <div className="form-control">
-          <label className="input-group">
-            <span>Цена автомобиля</span>
-            <CurrencyInput
-              className="input-bordered input focus:outline-none"
-              decimalsLimit={0}
-              onValueChange={(value) => setCarPrice(Number(value))}
-              placeholder="Please enter a number"
-            />
+    <div className="my-10 flex w-full flex-col items-center gap-2">
+      <div className="flex min-w-[60vw] flex-col items-center gap-2">
+        <div className="form-control w-full">
+          <CurrencyInput
+            className="input-bordered input focus:outline-none"
+            decimalsLimit={0}
+            onValueChange={(value) => setCarPrice(Number(value))}
+            placeholder="Введите цену автомобиля"
+          />
 
-            <select
-              className="select-bordered select focus:outline-none"
-              onChange={(e) => setCarCurrency(e.target.value)}
-              value={carCurrency}
-            >
-              <option value="KRW">KRW</option>
-              <option value="KZT">KZT</option>
-              <option value="USD">USD</option>
-            </select>
-          </label>
+          <select
+            className="select-bordered select focus:outline-none"
+            onChange={(e) => setCarCurrency(e.target.value)}
+            value={carCurrency}
+          >
+            <option value="KRW">KRW</option>
+            <option value="KZT">KZT</option>
+            <option value="USD">USD</option>
+          </select>
         </div>
         <div className="form-control w-full">
           <label className="label">
