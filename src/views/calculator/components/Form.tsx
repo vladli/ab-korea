@@ -32,22 +32,25 @@ function Form() {
     <div className="my-10 flex w-full flex-col items-center gap-2">
       <div className="flex min-w-[60vw] flex-col items-center gap-2">
         <div className="form-control w-full">
-          <CurrencyInput
-            className="input-bordered input focus:outline-none"
-            decimalsLimit={0}
-            onValueChange={(value) => setCarPrice(Number(value))}
-            placeholder="Введите цену автомобиля"
-          />
+          <label className="input-group">
+            <span>Цена</span>
+            <CurrencyInput
+              className="input-bordered input w-full focus:outline-none"
+              decimalsLimit={0}
+              onValueChange={(value) => setCarPrice(Number(value))}
+              placeholder="Цена авто"
+            />
 
-          <select
-            className="select-bordered select focus:outline-none"
-            onChange={(e) => setCarCurrency(e.target.value)}
-            value={carCurrency}
-          >
-            <option value="KRW">KRW</option>
-            <option value="KZT">KZT</option>
-            <option value="USD">USD</option>
-          </select>
+            <select
+              className="select-bordered select focus:outline-none"
+              onChange={(e) => setCarCurrency(e.target.value)}
+              value={carCurrency}
+            >
+              <option value="KRW">KRW</option>
+              <option value="KZT">KZT</option>
+              <option value="USD">USD</option>
+            </select>
+          </label>
         </div>
         <div className="form-control w-full">
           <label className="label">
