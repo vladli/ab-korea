@@ -3,10 +3,10 @@ import type { Metadata } from "next/types";
 
 import Header from "@/components/Layout/Header";
 import { titles } from "@/config/config";
-import Main from "@/views/car-order";
+import Main from "@/views/calculator";
 
 export const metadata: Metadata = {
-  title: titles.carOrder,
+  title: titles.calculator,
 };
 
 function Page() {

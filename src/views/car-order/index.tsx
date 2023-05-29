@@ -6,7 +6,7 @@ import Body from "@/components/Layout/Body";
 function Main() {
   return (
     <Body>
-      <Container className="prose lg:prose-xl hover:prose-a:text-blue-700">
+      <Container className="prose lg:prose-xl prose-h2:font-normal hover:prose-a:text-blue-700">
         <h2 className="text-center">Заказ автомобиля из Южной Кореи</h2>
         <p>
           Заказ автомобиля из Кореи – это оптимальный вариант для тех, кто не

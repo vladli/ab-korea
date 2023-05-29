@@ -20,7 +20,7 @@ function Footer({ className }: { className?: string }) {
   return (
     <div
       className={twMerge(
-        "relative bottom-0 min-h-fit w-full select-none divide-y divide-gray-700 bg-slate-900",
+        "relative bottom-0 min-h-fit w-full select-none divide-y divide-slate-800 bg-slate-900",
         className
       )}
     >

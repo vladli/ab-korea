@@ -26,9 +26,8 @@ const comps = [
 ];
 
 function Main() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
-  if (status === "loading") return null;
   const items = comps.map((item, i) => {
     return (
       <section

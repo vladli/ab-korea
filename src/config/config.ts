@@ -5,6 +5,7 @@ export const titles = {
   main: mainTitle,
   carOrder: "Заказ авто | " + mainTitle,
   catalog: "Каталог | " + mainTitle,
+  calculator: "Калькулятор | " + mainTitle,
   faq: "FAQ | " + mainTitle,
 
   login: "Авторизация | " + mainTitle,

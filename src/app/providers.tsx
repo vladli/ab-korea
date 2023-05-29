@@ -5,9 +5,10 @@ import { SWRConfig } from "swr";
 
 type Props = {
   children: React.ReactNode;
+  session: any;
 };
 
-function Providers({ children }: Props) {
+function Providers({ children, session }: Props) {
   return (
     <SWRConfig
       value={{
@@ -15,7 +16,7 @@ function Providers({ children }: Props) {
           fetch(resource, init).then((res) => res.json()),
       }}
     >
-      <SessionProvider>{children}</SessionProvider>
+      <SessionProvider session={session}>{children}</SessionProvider>
     </SWRConfig>
   );
 }

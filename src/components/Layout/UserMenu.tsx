@@ -18,7 +18,7 @@ const buttons = [
 function UserMenu() {
   const { data: session } = useSession();
   return (
-    <section className="flex h-12 w-full justify-between border-t border-t-gray-700 bg-slate-900 p-1">
+    <section className="flex h-12 w-full justify-between border-t border-t-slate-800 bg-slate-900 p-1">
       <div className="flex items-center gap-4 pl-5">
         {buttons.map(({ icon: Icon, title }) => (
           <motion.button

@@ -1,5 +1,7 @@
 import Script from "next/script";
+import { getServerSession } from "next-auth";
 
+import { authOptions } from "./api/auth/[...nextauth]/authOptions";
 import Providers from "./providers";
 
 import "./globals.css";
@@ -13,6 +15,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
   return (
     <html
       data-theme="light"
@@ -22,7 +25,7 @@ export default async function RootLayout({
         <Script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js" />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers session={session}>{children}</Providers>
       </body>
     </html>
   );
