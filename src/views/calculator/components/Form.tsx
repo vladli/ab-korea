@@ -22,6 +22,7 @@ function Form() {
     fromCurrency: string,
     toCurrency: string
   ) {
+    if (!amount) return 0;
     const exchangeRate = currency[toCurrency] / currency[fromCurrency];
     const convertedAmount = exchangeRate * amount;
     return Currency.format(convertedAmount);
@@ -65,24 +66,44 @@ function Form() {
             <option value="USD">USD</option>
           </select>
         </div>
-      </div>
-      <div className="mt-5 w-1/2 overflow-x-auto">
-        <table className="table-zebra table w-full">
-          <thead>
-            <tr>
-              <th>Наименование</th>
-              <th>Цена</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Автомобиль</td>
-              <td>
-                {convertCurrency(carPrice, carCurrency, selectedCurrency)}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="mt-5 w-full overflow-x-auto">
+          <table className="table-zebra table w-full">
+            <thead>
+              <tr>
+                <th>Наименование</th>
+                <th>Цена</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Автомобиль</td>
+                <td>
+                  {convertCurrency(carPrice, carCurrency, selectedCurrency)}
+                </td>
+              </tr>
+              <tr>
+                <td>Налог</td>
+                <td>
+                  {convertCurrency(
+                    carPrice * 0.15,
+                    carCurrency,
+                    selectedCurrency
+                  )}
+                </td>
+              </tr>
+              <tr>
+                <td>Общая стоимость</td>
+                <td>
+                  {convertCurrency(
+                    carPrice + carPrice * 0.15,
+                    carCurrency,
+                    selectedCurrency
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
