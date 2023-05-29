@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 
 function Form() {
@@ -9,12 +9,31 @@ function Form() {
     KRW: 1323,
   });
   const [selectedCurrency, setSelectedCurrency] = useState("KRW");
+
   const [carPrice, setCarPrice] = useState(0);
   const [carCurrency, setCarCurrency] = useState("KRW");
+
+  const [total, setTotal] = useState(0);
+
+  const car = convertCurrency(carPrice, carCurrency, selectedCurrency);
+  const carTax = convertCurrency(
+    carPrice * 0.15,
+    carCurrency,
+    selectedCurrency
+  );
+  const abFee = convertCurrency(300, "USD", selectedCurrency);
+  const auctionFee = convertCurrency(400, "USD", selectedCurrency);
+  const skDelivery = convertCurrency(190, "USD", selectedCurrency);
+
+  useEffect(() => {
+    setTotal(car + carTax + abFee + auctionFee + skDelivery);
+  }, [carPrice, carCurrency, selectedCurrency]);
 
   const Currency = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: selectedCurrency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   });
 
   function convertCurrency(
@@ -25,12 +44,40 @@ function Form() {
     if (!amount) return 0;
     const exchangeRate = currency[toCurrency] / currency[fromCurrency];
     const convertedAmount = exchangeRate * amount;
-    return Currency.format(convertedAmount);
+    console.log(amount, exchangeRate);
+    return convertedAmount;
   }
+
+  const prices = [
+    {
+      title: "Автомобиль",
+      price: Currency.format(car),
+    },
+    {
+      title: "Налог",
+      price: Currency.format(carTax),
+    },
+    {
+      title: "Услуги AB Korea",
+      price: Currency.format(abFee),
+    },
+    {
+      title: "Комиссия аукциона",
+      price: Currency.format(auctionFee),
+    },
+    {
+      title: "Логистика по Корее",
+      price: Currency.format(skDelivery),
+    },
+    {
+      title: "Общая стоимость",
+      price: Currency.format(total),
+    },
+  ];
 
   return (
     <div className="my-10 flex w-full flex-col items-center gap-2">
-      <div className="flex min-w-[60vw] flex-col items-center gap-2">
+      <div className="flex w-[85vw] max-w-lg flex-col items-center gap-2">
         <div className="form-control w-full">
           <label className="input-group">
             <span>Цена</span>
@@ -52,6 +99,7 @@ function Form() {
             </select>
           </label>
         </div>
+
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text">Выберите расчетную валюту</span>
@@ -66,7 +114,20 @@ function Form() {
             <option value="USD">USD</option>
           </select>
         </div>
-        <div className="mt-5 w-full overflow-x-auto">
+
+        <div className="flex w-full justify-between">
+          <span>
+            KRW: <strong>{currency.KRW}</strong>
+          </span>
+          <span>
+            KZT: <strong>{currency.KZT}</strong>
+          </span>
+          <span>
+            USD: <strong>{currency.USD}</strong>
+          </span>
+        </div>
+
+        <div className="mt-2 w-full overflow-x-auto">
           <table className="table-zebra table w-full">
             <thead>
               <tr>
@@ -75,34 +136,17 @@ function Form() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Автомобиль</td>
-                <td>
-                  {convertCurrency(carPrice, carCurrency, selectedCurrency)}
-                </td>
-              </tr>
-              <tr>
-                <td>Налог</td>
-                <td>
-                  {convertCurrency(
-                    carPrice * 0.15,
-                    carCurrency,
-                    selectedCurrency
-                  )}
-                </td>
-              </tr>
-              <tr>
-                <td>Общая стоимость</td>
-                <td>
-                  {convertCurrency(
-                    carPrice + carPrice * 0.15,
-                    carCurrency,
-                    selectedCurrency
-                  )}
-                </td>
-              </tr>
+              {prices.map(({ title, price }) => (
+                <tr key={title}>
+                  <td>{title}</td>
+                  <td>{price}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
+        </div>
+        <div>
+          *Все цены указаны - приблизительно, конечная цена может отличаться.
         </div>
       </div>
     </div>
