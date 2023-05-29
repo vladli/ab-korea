@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import fs from "fs";
 import path from "path";
 type Props = {
   title: string;
-  text: any;
+  mdLink: any;
 };
 
-function Collapse({ title, text }: Props) {
+function Collapse({ title, mdLink }: Props) {
   const markdownFolder = path.resolve(process.cwd(), "public/markdown/faq");
   const item = fs
-    .readFileSync(path.join(markdownFolder, "faq_1.md"))
+    .readFileSync(path.join(markdownFolder, `${mdLink}.md`))
     .toString();
   return (
-    <div className="collapse-arrow rounded-box collapse border border-base-300 bg-white">
+    <div className="collapse-arrow rounded-box collapse m-2 border border-base-300 bg-white">
       <input type="checkbox" />
-      <div className="collapse-title text-xl font-medium">{title}</div>
+      <div className="collapse-title text-lg font-medium">{title}</div>
       <div className="collapse-content collapse-open">
         <div>
           <ReactMarkdown>{item}</ReactMarkdown>
