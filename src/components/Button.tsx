@@ -1,6 +1,7 @@
-import clsx from "clsx";
 import { forwardRef } from "react";
+import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
+
 import { ComponentColor, ComponentShape, ComponentSize } from "./@types";
 
 type ButtonProps = Omit<
@@ -59,10 +60,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   );
   return (
     <button
+      className={classes}
+      disabled={disabled}
       ref={ref}
       type={type}
-      disabled={disabled}
-      className={classes}
       {...rest}
     >
       {leftIcon && leftIcon}
