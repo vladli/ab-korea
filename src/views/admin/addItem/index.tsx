@@ -16,16 +16,40 @@ function Main() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    console.log(inputFields);
+    console.log(data);
+  };
 
   const [maker, setMaker] = useState("Audi");
   const [model, setModel] = useState(Maker[maker as keyof typeof Maker][0]);
   const [images, setImages] = useState<any>([]);
+  const [inputFields, setInputFields] = useState<any>([
+    {
+      url: "",
+    },
+  ]);
 
-  const imageHandler = (e: any) => {
-    setImages([...images, e.target.value]);
+  const handleFormChange = (event: any, index: any) => {
+    const data = [...inputFields];
+    data[index][event.target.name] = event.target.value;
+    setInputFields(data);
   };
-  console.log(images);
+
+  const addFields = () => {
+    const object = {
+      url: "",
+    };
+
+    setInputFields([...inputFields, object]);
+  };
+
+  const removeFields = (index: any) => {
+    const data = [...inputFields];
+    data.splice(index, 1);
+    setInputFields(data);
+  };
+
   useEffect(() => {
     setModel(Maker[maker as keyof typeof Maker][0]);
   }, [maker]);
@@ -180,15 +204,39 @@ function Main() {
             <label className="label">
               <span className="label-text">Кузов и салон</span>
             </label>
-            <label className="input-group">
-              <input
-                className="input-bordered input w-full focus:outline-offset-0"
-                placeholder="https//:ab-korea.kz/car/car.png"
-                type="text"
-              />
-              <Button>+</Button>
-            </label>
+            {inputFields.map(({ url }: any, index: any) => {
+              return (
+                <label
+                  className="input-group mb-1"
+                  key={index}
+                >
+                  <input
+                    className="input-bordered input w-full focus:outline-offset-0"
+                    name="url"
+                    onChange={(event) => handleFormChange(event, index)}
+                    placeholder="https//:ab-korea.kz/car/car.png"
+                    type="text"
+                    value={url}
+                  />
+                  {index !== 0 ? (
+                    <Button
+                      onClick={() => removeFields(index)}
+                      type="button"
+                    >
+                      X
+                    </Button>
+                  ) : null}
+                </label>
+              );
+            })}
           </div>
+          <Button
+            fullWidth
+            onClick={addFields}
+            type="button"
+          >
+            +
+          </Button>
           <Button
             className="mt-2"
             fullWidth
