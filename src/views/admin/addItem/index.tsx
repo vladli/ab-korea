@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Button from "@/components/Button";
+import Divider from "@/components/Divider";
 import Input from "@/components/Form/Input";
+import InputGroup from "@/components/Form/InputGroup";
 import Select from "@/components/Form/Select";
 import Body from "@/components/Layout/Body";
-import { Maker } from "@/config/cars";
+import { AuctionMark, Maker } from "@/config/cars";
 
 function Main() {
   const {
@@ -18,7 +20,12 @@ function Main() {
 
   const [maker, setMaker] = useState("Audi");
   const [model, setModel] = useState(Maker[maker as keyof typeof Maker][0]);
+  const [images, setImages] = useState<any>([]);
 
+  const imageHandler = (e: any) => {
+    setImages([...images, e.target.value]);
+  };
+  console.log(images);
   useEffect(() => {
     setModel(Maker[maker as keyof typeof Maker][0]);
   }, [maker]);
@@ -41,39 +48,41 @@ function Main() {
           className="mx-auto flex w-[80vw] max-w-md flex-col items-center"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Select
-            formControl
-            label="Марка автомобиля"
-            required
-            {...register("Maker")}
-            onChange={(e) => setMaker(e.target.value)}
-          >
-            {Object.keys(Maker).map((key) => (
-              <Select.Option key={key}>{key}</Select.Option>
-            ))}
-          </Select>
-          <Select
-            formControl
-            label="Модель"
-            required
-            {...register("Model")}
-            onChange={(e) => setModel(e.target.value)}
-            value={model}
-          >
-            {Maker[maker as keyof typeof Maker].map((key) => (
-              <Select.Option key={key}>{key}</Select.Option>
-            ))}
-          </Select>
-          <Select
-            formControl
-            label="Год выпуска"
-            required
-            {...register("Year")}
-          >
-            {generateArrayOfYears().map((key) => (
-              <Select.Option key={key}>{key}</Select.Option>
-            ))}
-          </Select>
+          <div className="flex w-full gap-2">
+            <Select
+              formControl
+              label="Марка"
+              required
+              {...register("Maker")}
+              onChange={(e) => setMaker(e.target.value)}
+            >
+              {Object.keys(Maker).map((key) => (
+                <Select.Option key={key}>{key}</Select.Option>
+              ))}
+            </Select>
+            <Select
+              formControl
+              label="Модель"
+              required
+              {...register("Model")}
+              onChange={(e) => setModel(e.target.value)}
+              value={model}
+            >
+              {Maker[maker as keyof typeof Maker].map((key) => (
+                <Select.Option key={key}>{key}</Select.Option>
+              ))}
+            </Select>
+            <Select
+              formControl
+              label="Год выпуска"
+              required
+              {...register("Year")}
+            >
+              {generateArrayOfYears().map((key) => (
+                <Select.Option key={key}>{key}</Select.Option>
+              ))}
+            </Select>
+          </div>
           <Input
             label="VIN номер"
             name="VIN"
@@ -152,12 +161,34 @@ function Main() {
             formControl
             label="Оценка аукциона"
             required
-            {...register("Transmission")}
+            {...register("AuctionMark")}
           >
-            {["Автомат", "Механика"].map((key) => (
+            {AuctionMark.map((key) => (
               <Select.Option key={key}>{key}</Select.Option>
             ))}
           </Select>
+          <Divider />
+          <h3>Картинки</h3>
+          <Input
+            label="Состояние кузова"
+            name="bodyImg"
+            placeholder="https//:ab-korea.kz/car/car.png"
+            register={register}
+            type="url"
+          />
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Кузов и салон</span>
+            </label>
+            <label className="input-group">
+              <input
+                className="input-bordered input w-full focus:outline-offset-0"
+                placeholder="https//:ab-korea.kz/car/car.png"
+                type="text"
+              />
+              <Button>+</Button>
+            </label>
+          </div>
           <Button
             className="mt-2"
             fullWidth
