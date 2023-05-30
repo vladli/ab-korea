@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import useSWR from "swr";
 
+import InputGroup from "@/components/Form/InputGroup";
+import Select from "@/components/Form/Select";
+import Table from "@/components/Table/Table";
+
 function Form() {
   const { data } = useSWR("/api/exchangeRate");
 
@@ -97,10 +101,10 @@ function Form() {
   ];
 
   return (
-    <div className="my-10 flex w-full flex-col items-center gap-2">
+    <section className="my-10 flex w-full flex-col items-center gap-2">
       <div className="flex w-[85vw] max-w-xl flex-col items-center gap-2">
         <div className="form-control w-full">
-          <label className="input-group">
+          <InputGroup>
             <span>Цена</span>
             <CurrencyInput
               className="input-bordered input w-full focus:outline-none"
@@ -108,32 +112,29 @@ function Form() {
               onValueChange={(value) => setCarPrice(Number(value))}
               placeholder="Цена авто"
             />
-
-            <select
-              className="select-bordered select focus:outline-none"
+            <Select
               onChange={(e) => setCarCurrency(e.target.value)}
               value={carCurrency}
             >
-              <option value="KRW">KRW</option>
-              <option value="KZT">KZT</option>
-              <option value="USD">USD</option>
-            </select>
-          </label>
+              <Select.Option value="KRW">KRW</Select.Option>
+              <Select.Option value="KZT">KZT</Select.Option>
+              <Select.Option value="USD">USD</Select.Option>
+            </Select>
+          </InputGroup>
         </div>
 
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text">Выберите расчетную валюту</span>
           </label>
-          <select
-            className="select-bordered select focus:outline-none"
+          <Select
             onChange={(e) => setSelectedCurrency(e.target.value)}
             value={selectedCurrency}
           >
-            <option value="KRW">KRW</option>
-            <option value="KZT">KZT</option>
-            <option value="USD">USD</option>
-          </select>
+            <Select.Option value="KRW">KRW</Select.Option>
+            <Select.Option value="KZT">KZT</Select.Option>
+            <Select.Option value="USD">USD</Select.Option>
+          </Select>
         </div>
         {currency ? (
           <div className="flex w-full flex-col items-center">
@@ -153,28 +154,29 @@ function Form() {
         ) : null}
 
         <div className="mt-2 w-full overflow-x-auto">
-          <table className="table-zebra table w-full">
-            <thead>
-              <tr>
-                <th>Наименование</th>
-                <th>Цена</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table
+            className="w-full"
+            zebra
+          >
+            <Table.Head>
+              <div>Наименование</div>
+              <div>Цена</div>
+            </Table.Head>
+            <Table.Body>
               {prices.map(({ title, price }) => (
                 <tr key={title}>
                   <td>{title}</td>
                   <td>{price}</td>
                 </tr>
               ))}
-            </tbody>
-          </table>
+            </Table.Body>
+          </Table>
         </div>
         <div>
           *Все цены указаны - приблизительно, конечная цена может отличаться.
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

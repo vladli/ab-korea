@@ -23,6 +23,11 @@ const adminButtons = [
     title: "Пользователи",
     link: "/admin/users",
   },
+  {
+    icon: FaUsers,
+    title: "Добавить авто в каталог",
+    link: "/admin/catalog/addItem",
+  },
 ];
 
 function UserMenu() {
