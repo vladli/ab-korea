@@ -43,7 +43,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     ...rest
   } = props;
   const classes = twMerge(
-    "btn gap-1",
+    "btn gap-1 text-white",
     className,
     clsx({
       [`btn-${size}`]: size,

@@ -13,6 +13,9 @@ export type SelectProps = Omit<
   color?: ComponentColor;
   bordered?: boolean;
   borderOffset?: boolean;
+  label?: string;
+  required?: boolean;
+  formControl?: boolean;
 };
 
 const SelectInner = (
@@ -26,6 +29,9 @@ const SelectInner = (
     bordered = true,
     borderOffset,
     className,
+    label,
+    required,
+    formControl = false,
     ...rest
   } = props;
 
@@ -39,7 +45,24 @@ const SelectInner = (
       "select-bordered": bordered,
     })
   );
-
+  if (formControl) {
+    return (
+      <div className="form-control w-full">
+        <label className="label">
+          <span className="label-text">
+            {label} {required ? <span className="text-red-500">*</span> : null}
+          </span>
+        </label>
+        <select
+          {...rest}
+          className={classes}
+          ref={ref}
+        >
+          {children}
+        </select>
+      </div>
+    );
+  }
   return (
     <select
       {...rest}

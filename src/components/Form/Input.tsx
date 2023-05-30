@@ -1,7 +1,8 @@
-import clsx from "clsx";
-import { ComponentColor, ComponentSize } from "components/@types";
 import { forwardRef } from "react";
+import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
+
+import { ComponentColor, ComponentSize } from "@/components/@types";
 
 export type Props = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -46,19 +47,16 @@ const Input = forwardRef<HTMLInputElement, Props>(
       })
     );
     return (
-      <div className="form-control w-full max-w-xs">
-        {labeled && (
-          <label className="label">
-            <span className="label-text font-semibold">
-              {label}
-              {required && <span className="ml-1 text-red-500">{"*"}</span>}
-            </span>
-          </label>
-        )}
+      <div className="form-control w-full">
+        <label className="label">
+          <span className="label-text">
+            {label} {required ? <span className="text-red-500">*</span> : null}
+          </span>
+        </label>
         <input
-          ref={ref}
           className={classes}
           id={name}
+          ref={ref}
           {...(register && register(name, { required }))}
           {...rest}
         />

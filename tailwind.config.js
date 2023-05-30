@@ -1,16 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-
-  theme: {},
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "node_modules/daisyui/dist/**/*.js",
+  ],
+  safelist: [
+    {
+      pattern: /(bg|ring)-/,
+    },
+  ],
   plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
     logs: false,
     themes: [
       {
         light: {
-          primary: "#ef4444",
-          secondary: "#f6d860",
+          primary: "#0F172A", //bg-slate-900
+          secondary: "#ef4444",
           accent: "#37cdbe",
           neutral: "#3d4451",
           "base-100": "#ffffff",
