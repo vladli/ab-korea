@@ -17,6 +17,7 @@ function Main() {
     reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = async (data: any) => {
     console.log(data);
     data.Images = inputFields;
@@ -27,16 +28,12 @@ function Main() {
     if (res.status === 200) {
       alert("Success");
       reset();
+      setInputFields([{ url: "" }]);
     }
   };
 
   const [maker, setMaker] = useState("Audi");
-
-  const [inputFields, setInputFields] = useState<any>([
-    {
-      url: "",
-    },
-  ]);
+  const [inputFields, setInputFields] = useState<any>([{ url: "" }]);
 
   const handleFormChange = (event: any, index: any) => {
     const data = [...inputFields];
@@ -187,6 +184,7 @@ function Main() {
               max={today}
               name="RegDate"
               register={register}
+              required
               type="date"
             />
             <Input
@@ -194,6 +192,7 @@ function Main() {
               max={today}
               name="AuctionDate"
               register={register}
+              required
               type="date"
             />
           </div>
@@ -214,6 +213,7 @@ function Main() {
             name="bodyImg"
             placeholder="https//:ab-korea.kz/car/car.png"
             register={register}
+            required
             type="url"
           />
           <div className="form-control w-full">
@@ -231,6 +231,7 @@ function Main() {
                     name="url"
                     onChange={(event) => handleFormChange(event, index)}
                     placeholder="https//:ab-korea.kz/car/car.png"
+                    required
                     type="url"
                     value={url}
                   />
