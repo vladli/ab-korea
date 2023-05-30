@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fullpage/react-fullpage": "^0.1.39",
+    "@fullpage/react-fullpage": "^0.1.40",
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@next-auth/prisma-adapter": "^1.0.6",
     "@prisma/client": "^4.14.1",

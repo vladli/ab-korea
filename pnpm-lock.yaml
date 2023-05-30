@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@fullpage/react-fullpage':
-    specifier: ^0.1.39
-    version: 0.1.39
+    specifier: ^0.1.40
+    version: 0.1.40
   '@lottiefiles/react-lottie-player':
     specifier: ^3.5.3
     version: 3.5.3(react@18.2.0)
@@ -167,11 +167,11 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fullpage/react-fullpage@0.1.39:
-    resolution: {integrity: sha512-JK0YTtOEy6icI8oJ/4Um+rRu3nZEFnh0rmOOMkBN9CGqXzveVIrTOmD/GBIegcXJo6y8Sk6a6EkYjj2ngNuf1Q==}
+  /@fullpage/react-fullpage@0.1.40:
+    resolution: {integrity: sha512-wmId7EXRx07iTDqXVRkYyv9WAkHN2Sropke89S7sv13/gMAV2KtaBoWVXMIDnsLIHPx05w9n3TOrHk572plGRQ==}
     dependencies:
       '@babel/polyfill': 7.12.1
-      fullpage.js: 4.0.19
+      fullpage.js: 4.0.20
     dev: false
 
   /@humanwhocodes/config-array@0.11.8:
@@ -1535,8 +1535,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /fullpage.js@4.0.19:
-    resolution: {integrity: sha512-iDbxKEU4mpeoYJzsW+P0B+EK7586mNpBjES01U/QWh5FbDY8r1EqZPrGPciZVZHdJoz6zUze5q/PGOc4SQoqow==}
+  /fullpage.js@4.0.20:
+    resolution: {integrity: sha512-y72V3oV/pFccPYaxnUosEltQP9tXH340x479oQSS9Yab0L0YpIPNE0PFA68l6XEq5Lhw7IRqyCgVwL+WdjtQdA==}
     dev: false
 
   /function-bind@1.1.1:
