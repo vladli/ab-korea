@@ -14,16 +14,24 @@ function Main() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    console.log(inputFields);
+  const onSubmit = async (data: any) => {
     console.log(data);
+    data.Images = inputFields;
+    const res = await fetch("/api/catalog/item", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    if (res.status === 200) {
+      alert("Success");
+      reset();
+    }
   };
 
   const [maker, setMaker] = useState("Audi");
-  const [model, setModel] = useState(Maker[maker as keyof typeof Maker][0]);
-  const [images, setImages] = useState<any>([]);
+
   const [inputFields, setInputFields] = useState<any>([
     {
       url: "",
@@ -50,10 +58,6 @@ function Main() {
     setInputFields(data);
   };
 
-  useEffect(() => {
-    setModel(Maker[maker as keyof typeof Maker][0]);
-  }, [maker]);
-
   function generateArrayOfYears() {
     var max = new Date().getFullYear();
     var min = max - 15;
@@ -64,7 +68,7 @@ function Main() {
     }
     return years;
   }
-
+  const today = new Date().toISOString().split("T")[0];
   return (
     <Body>
       <section className="my-10 w-full">
@@ -84,21 +88,31 @@ function Main() {
                 <Select.Option key={key}>{key}</Select.Option>
               ))}
             </Select>
+
             <Select
               formControl
               label="Модель"
               required
-              {...register("Model")}
-              onChange={(e) => setModel(e.target.value)}
-              value={model}
+              {...register("Model", { required: true })}
+              defaultValue=""
             >
+              <Select.Option
+                disabled
+                value=""
+              ></Select.Option>
               {Maker[maker as keyof typeof Maker].map((key) => (
-                <Select.Option key={key}>{key}</Select.Option>
+                <Select.Option
+                  key={key}
+                  value={key}
+                >
+                  {key}
+                </Select.Option>
               ))}
             </Select>
+
             <Select
               formControl
-              label="Год выпуска"
+              label="Год"
               required
               {...register("Year")}
             >
@@ -133,7 +147,8 @@ function Main() {
             required
             type="number"
           />
-          <div className="flex w-full gap-2">
+
+          <div className="flex w-full flex-col gap-2 md:flex-row">
             <Select
               formControl
               label="Привод"
@@ -141,6 +156,17 @@ function Main() {
               {...register("WheelDrive")}
             >
               {["AWD", "FWD", "RWD"].map((key) => (
+                <Select.Option key={key}>{key}</Select.Option>
+              ))}
+            </Select>
+
+            <Select
+              formControl
+              label="Трансмиссия"
+              required
+              {...register("Transmission")}
+            >
+              {["Автомат", "Механика"].map((key) => (
                 <Select.Option key={key}>{key}</Select.Option>
               ))}
             </Select>
@@ -154,30 +180,20 @@ function Main() {
                 <Select.Option key={key}>{key}</Select.Option>
               ))}
             </Select>
-            <Select
-              formControl
-              label="Трансмиссия"
-              required
-              {...register("Transmission")}
-            >
-              {["Автомат", "Механика"].map((key) => (
-                <Select.Option key={key}>{key}</Select.Option>
-              ))}
-            </Select>
           </div>
-          <div className="flex w-full gap-2">
+          <div className="flex w-full flex-col gap-2 md:flex-row">
             <Input
               label="Дата первой регистрации"
+              max={today}
               name="RegDate"
               register={register}
-              required
               type="date"
             />
             <Input
               label="Дата аукциона"
+              max={today}
               name="AuctionDate"
               register={register}
-              required
               type="date"
             />
           </div>
@@ -215,11 +231,12 @@ function Main() {
                     name="url"
                     onChange={(event) => handleFormChange(event, index)}
                     placeholder="https//:ab-korea.kz/car/car.png"
-                    type="text"
+                    type="url"
                     value={url}
                   />
                   {index !== 0 ? (
                     <Button
+                      color="error"
                       onClick={() => removeFields(index)}
                       type="button"
                     >
@@ -234,6 +251,7 @@ function Main() {
             fullWidth
             onClick={addFields}
             type="button"
+            variant="outline"
           >
             +
           </Button>

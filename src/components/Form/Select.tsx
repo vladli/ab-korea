@@ -8,7 +8,7 @@ export type SelectProps = Omit<
   React.SelectHTMLAttributes<HTMLSelectElement>,
   "size" | "color"
 > & {
-  children: ReactElement<SelectOptionProps>[];
+  children: any;
   size?: ComponentSize;
   color?: ComponentColor;
   bordered?: boolean;
