@@ -11,7 +11,7 @@ type Props = {
 };
 
 function Body({ children, className }: Props) {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   return (
     <main
       className={clsx("flex min-h-screen flex-col", {
