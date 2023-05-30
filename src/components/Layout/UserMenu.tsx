@@ -1,11 +1,11 @@
 import React from "react";
+import { BiAddToQueue } from "react-icons/bi";
 import { FaUsers } from "react-icons/fa";
 import { MdOutlineBookmarkBorder, MdOutlineChat } from "react-icons/md";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-
 const buttons = [
   {
     icon: MdOutlineChat,
@@ -24,7 +24,7 @@ const adminButtons = [
     link: "/admin/users",
   },
   {
-    icon: FaUsers,
+    icon: BiAddToQueue,
     title: "Добавить авто в каталог",
     link: "/admin/catalog/addItem",
   },
