@@ -65,6 +65,7 @@ model Catalog {
   id           String    @id @default(auto()) @map("_id") @db.ObjectId
   Maker        String
   Model        String
+  Price        Int
   AuctionDate  String
   AuctionMark  String
   Engine       Int

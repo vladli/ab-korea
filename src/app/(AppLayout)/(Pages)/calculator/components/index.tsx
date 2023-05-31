@@ -7,7 +7,7 @@ import InputGroup from "@/components/Form/InputGroup";
 import Select from "@/components/Form/Select";
 import Table from "@/components/Table/Table";
 
-function Form() {
+function Main() {
   const { data } = useSWR("/api/exchangeRate");
 
   const [currency, setCurrency] = useState<any>(null);
@@ -110,7 +110,7 @@ function Form() {
               className="input-bordered input w-full focus:outline-none"
               decimalsLimit={0}
               onValueChange={(value) => setCarPrice(Number(value))}
-              placeholder="Цена авто"
+              placeholder="Цена автомобиля"
             />
             <Select
               onChange={(e) => setCarCurrency(e.target.value)}
@@ -180,4 +180,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default Main;

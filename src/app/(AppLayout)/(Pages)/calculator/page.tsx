@@ -4,7 +4,7 @@ import type { Metadata } from "next/types";
 import Container from "@/components/Container";
 import { titles } from "@/config/config";
 
-import Form from "./components/Form";
+import Form from "./components";
 
 export const metadata: Metadata = {
   title: titles.calculator,

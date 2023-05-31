@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from "react";
+import CurrencyInput from "react-currency-input-field";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
 import Button from "@/components/Button";
 import Divider from "@/components/Divider";
 import Input from "@/components/Form/Input";
+import InputGroup from "@/components/Form/InputGroup";
 import Select from "@/components/Form/Select";
 import { AuctionMark, Maker } from "@/config/cars";
 
@@ -18,14 +20,12 @@ function Main() {
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     data.Images = inputFields;
-
+    data.Price = carPrice;
     const res = fetch("/api/catalog/item", {
       method: "POST",
       body: JSON.stringify(data),
     });
-
     toast.promise(res, {
       loading: "Добавление в каталог",
       success: () => {
@@ -39,7 +39,7 @@ function Main() {
 
   const [maker, setMaker] = useState("Audi");
   const [inputFields, setInputFields] = useState<any>([{ url: "" }]);
-
+  const [carPrice, setCarPrice] = useState(0);
   const handleFormChange = (event: any, index: any) => {
     const data = [...inputFields];
     data[index][event.target.name] = event.target.value;
@@ -128,6 +128,20 @@ function Main() {
           placeholder="KMTFA41DDNU004865"
           register={register}
         />
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text">
+              Цена (KRW)<span className="text-red-500">*</span>
+            </span>
+          </label>
+          <CurrencyInput
+            className="input-bordered input w-full focus:outline-none"
+            decimalsLimit={0}
+            onValueChange={(value) => setCarPrice(Number(value))}
+            placeholder="Цена автомобиля"
+            required
+          />
+        </div>
         <Input
           label="Пробег (км.)"
           min={0}
@@ -148,7 +162,6 @@ function Main() {
           required
           type="number"
         />
-
         <div className="flex w-full flex-col gap-2 md:flex-row">
           <Select
             formControl

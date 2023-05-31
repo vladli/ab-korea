@@ -10,13 +10,14 @@ const CardImage = ({
   ...rest
 }: Props) => {
   return (
-    <figure className="h-[220px] max-w-sm select-none">
+    <figure className="select-none">
       <Image
         alt=""
-        className="h-full w-full rounded-t-lg"
-        fill
+        className="h-auto w-full rounded-t-lg"
         src={image}
         {...rest}
+        height={0}
+        width={0}
       />
     </figure>
   );

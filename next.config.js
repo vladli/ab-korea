@@ -7,6 +7,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "**.googleusercontent.com" },
       { protocol: "https", hostname: "avatars.yandex.net" },
+      { protocol: "https", hostname: "imgmk.lotteautoauction.net" },
     ],
   },
 };
