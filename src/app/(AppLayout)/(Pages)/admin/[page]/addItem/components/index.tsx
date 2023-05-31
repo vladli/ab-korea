@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import Button from "@/components/Button";
 import Divider from "@/components/Divider";
@@ -19,15 +20,21 @@ function Main() {
   const onSubmit = async (data: any) => {
     console.log(data);
     data.Images = inputFields;
-    const res = await fetch("/api/catalog/item", {
+
+    const res = fetch("/api/catalog/item", {
       method: "POST",
       body: JSON.stringify(data),
     });
-    if (res.status === 200) {
-      alert("Success");
-      reset();
-      setInputFields([{ url: "" }]);
-    }
+
+    toast.promise(res, {
+      loading: "Добавление в каталог",
+      success: () => {
+        reset();
+        setInputFields([{ url: "" }]);
+        return "Автомобиль - добавлен";
+      },
+      error: "Произошла - ошибка",
+    });
   };
 
   const [maker, setMaker] = useState("Audi");
