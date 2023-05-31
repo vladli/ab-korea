@@ -35,7 +35,11 @@ async function Page() {
 
   return (
     <Box className="m-5">
-      <div className="grid grid-cols-1 justify-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <h3 className="rounded-full bg-white text-center">
+        В каталоге предоставлены автомобили с аукциона Lotte. Информация
+        обновляется еженедельно по пятницам.
+      </h3>
+      <div className="grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data?.map((item) => (
           <Item
             key={item.id}
