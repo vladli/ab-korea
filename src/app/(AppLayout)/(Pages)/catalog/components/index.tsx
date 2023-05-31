@@ -9,6 +9,7 @@ export type Data = {
   Maker: string;
   Model: string;
   Year: string;
+  Range: number;
   Price: number;
   Transmission: string;
   WheelDrive: string;
