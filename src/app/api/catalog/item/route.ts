@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     data: {
       Maker: data.Maker,
       Model: data.Model,
+      Price: data.Price,
       AuctionDate: data.AuctionDate,
       AuctionMark: data.AuctionMark,
       Engine: Number(data.Engine),
