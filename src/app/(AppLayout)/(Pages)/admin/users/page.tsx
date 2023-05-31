@@ -1,8 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { getServerSession } from "next-auth";
+import type { Metadata } from "next/types";
 
-import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
+import { titles } from "@/config/config";
+
+export const metadata: Metadata = {
+  title: titles.adminUsers,
+};
 
 async function getUsers() {
   const users = await fetch(`${process.env.WEBSITE}/api/admin/users`);
@@ -18,9 +22,8 @@ type Data = {
 }[];
 
 async function Page() {
-  const session = await getServerSession(authOptions);
   const data: Data = await getUsers();
-
+  if (!data) return null;
   return (
     <div className="mx-auto my-5 w-[90vw] overflow-x-auto">
       <table className="table-zebra table w-full">

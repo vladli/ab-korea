@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   const data = await request.json();
-  const response = await prisma.catalog.create({
+  await prisma.catalog.create({
     data: {
       Maker: data.Maker,
       Model: data.Model,
@@ -22,5 +22,5 @@ export async function POST(request: Request) {
       Images: data.Images,
     },
   });
-  return NextResponse.json(data);
+  return NextResponse.json("Complete");
 }

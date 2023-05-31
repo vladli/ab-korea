@@ -45,13 +45,7 @@ function Footer({ className }: { className?: string }) {
               <a
                 href={link}
                 target="_blank"
-              >
-                <dotlottie-player
-                  autoplay
-                  loop
-                  src={`/socials/${icon}.lottie`}
-                />
-              </a>
+              ></a>
             </div>
           ))}
         </div>

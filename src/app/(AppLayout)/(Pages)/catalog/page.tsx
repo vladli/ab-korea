@@ -1,9 +1,15 @@
 import React from "react";
+import type { Metadata } from "next/types";
 
-import Header from "@/app/Layout/Header";
+import Box from "@/components/Box";
+import { titles } from "@/config/config";
+
+export const metadata: Metadata = {
+  title: titles.catalog,
+};
 
 function Page() {
-  return <main className="bg-black">asd</main>;
+  return <Box>ASD</Box>;
 }
 
 export default Page;
