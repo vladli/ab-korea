@@ -16,8 +16,8 @@ const CardImage = ({
         className="h-auto w-full rounded-t-lg"
         src={image}
         {...rest}
-        height={0}
-        width={0}
+        height={600}
+        width={400}
       />
     </figure>
   );

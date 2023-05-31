@@ -69,10 +69,9 @@ function UserMenu() {
             <div className="h-10 rounded-full">
               <Image
                 alt=""
-                height={8}
+                height={32}
                 src={session.user.image}
-                unoptimized
-                width={8}
+                width={32}
               />
             </div>
           </div>
