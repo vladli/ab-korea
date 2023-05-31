@@ -1,8 +1,8 @@
-import clsx from "clsx";
 import { Children, cloneElement, forwardRef } from "react";
+import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentStatus } from "components/@types";
+import { ComponentStatus } from "@/components/@types";
 
 export type CodeMockupProps = React.HTMLAttributes<HTMLDivElement>;
 const CodeMockup = forwardRef<HTMLDivElement, CodeMockupProps>(
@@ -10,7 +10,12 @@ const CodeMockup = forwardRef<HTMLDivElement, CodeMockupProps>(
     const classes = twMerge("mockup-code", className);
 
     return (
-      <div aria-label="Code mockup" {...props} className={classes} ref={ref}>
+      <div
+        aria-label="Code mockup"
+        {...props}
+        className={classes}
+        ref={ref}
+      >
         {Children.map(children, (child, index) => {
           const childComponent =
             child as React.ReactElement<CodeMockupLineProps>;
@@ -50,8 +55,15 @@ export const CodeMockupLine = forwardRef<HTMLPreElement, CodeMockupLineProps>(
     } as Record<string, any>;
 
     return (
-      <pre {...allProps} className={classes} ref={ref}>
-        <code {...innerProps} ref={innerRef}>
+      <pre
+        {...allProps}
+        className={classes}
+        ref={ref}
+      >
+        <code
+          {...innerProps}
+          ref={innerRef}
+        >
           {children}
         </code>
       </pre>

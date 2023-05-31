@@ -10,11 +10,12 @@ import {
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import Button from "../Button";
+
 import CarouselItem, {
   CarouselItemProps,
   CarouselItemWidth,
 } from "./CarouselItem";
-import Button from "../Button";
 
 export type CarouselProps = React.HTMLAttributes<HTMLDivElement> & {
   children: ReactElement<CarouselItemProps>[];
@@ -72,11 +73,11 @@ const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     return (
       <>
         <div
-          role="listbox"
           aria-label="Image carousel"
+          role="listbox"
           {...props}
-          ref={ref}
           className={classes}
+          ref={ref}
         >
           {children.map((child, i) => {
             return cloneElement(child, {

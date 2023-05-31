@@ -2,7 +2,7 @@ import { forwardRef, useMemo } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentColor, ComponentSize } from "components/@types";
+import { ComponentColor, ComponentSize } from "@/components/@types";
 
 export type RangeProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -35,10 +35,10 @@ const Range = forwardRef<HTMLInputElement, RangeProps>(
       <>
         <input
           {...props}
-          ref={ref}
-          type="range"
-          step={step}
           className={classes}
+          ref={ref}
+          step={step}
+          type="range"
         />
         {isNumeric(step) && (
           <div className="flex w-full justify-between px-2 text-xs">

@@ -1,7 +1,8 @@
-import clsx from "clsx";
 import { forwardRef } from "react";
+import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
-import { ComponentColor, ComponentSize } from "components/@types";
+
+import { ComponentColor, ComponentSize } from "@/components/@types";
 
 export type FileInputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -23,7 +24,14 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         "file-input-bordered": bordered,
       })
     );
-    return <input {...props} ref={ref} type="file" className={classes} />;
+    return (
+      <input
+        {...props}
+        className={classes}
+        ref={ref}
+        type="file"
+      />
+    );
   }
 );
 

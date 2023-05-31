@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentColor, ComponentSize } from "components/@types";
+import { ComponentColor, ComponentSize } from "@/components/@types";
 
 export type ToggleProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -23,7 +23,14 @@ const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
       })
     );
 
-    return <input {...props} ref={ref} type="checkbox" className={classes} />;
+    return (
+      <input
+        {...props}
+        className={classes}
+        ref={ref}
+        type="checkbox"
+      />
+    );
   }
 );
 

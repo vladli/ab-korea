@@ -1,8 +1,8 @@
-import clsx from "clsx";
-
-import { twMerge } from "tailwind-merge";
-import { ComponentColor } from "components/@types";
 import { forwardRef } from "react";
+import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
+
+import { ComponentColor } from "@/components/@types";
 
 export type ChatBubbleMessageProps = React.HTMLAttributes<HTMLDivElement> & {
   color?: ComponentColor;
@@ -18,7 +18,13 @@ const ChatBubbleMessage = forwardRef<HTMLDivElement, ChatBubbleMessageProps>(
       className
     );
 
-    return <div {...props} className={classes} ref={ref} />;
+    return (
+      <div
+        {...props}
+        className={classes}
+        ref={ref}
+      />
+    );
   }
 );
 

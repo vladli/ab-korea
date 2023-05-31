@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentColor } from "components/@types";
+import { ComponentColor } from "@/components/@types";
 
 export type PhoneMockupProps = React.HTMLAttributes<HTMLDivElement> & {
   color?: Omit<ComponentColor, "ghost">;
@@ -24,7 +24,12 @@ const PhoneMockup = forwardRef<HTMLDivElement, PhoneMockupProps>(
     );
 
     return (
-      <div aria-label="Phone mockup" {...props} className={classes} ref={ref}>
+      <div
+        aria-label="Phone mockup"
+        {...props}
+        className={classes}
+        ref={ref}
+      >
         <div className="camera" />
         <div className="display">
           <div

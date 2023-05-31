@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { bgColors, brandColors, componentStatuses } from "components/@types";
+import { bgColors, brandColors, componentStatuses } from "@/components/@types";
 
 export const windowMockupColors = [
   ...bgColors,
@@ -51,7 +51,7 @@ const WindowMockup = forwardRef<HTMLDivElement, WindowMockupProps>(
 
     const innerClasses = clsx(
       backgroundColor && `bg-${backgroundColor}`,
-      border && `border-t border-${borderColorValue}`,
+      border && `border- border-t${borderColorValue}`,
       "p-4"
     );
 
@@ -65,7 +65,12 @@ const WindowMockup = forwardRef<HTMLDivElement, WindowMockupProps>(
       );
 
     return (
-      <div aria-label="Window mockup" {...props} className={classes} ref={ref}>
+      <div
+        aria-label="Window mockup"
+        {...props}
+        className={classes}
+        ref={ref}
+      >
         {innerEl}
       </div>
     );

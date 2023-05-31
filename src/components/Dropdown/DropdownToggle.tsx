@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ComponentColor, ComponentSize } from "components/@types";
+import { ComponentColor, ComponentSize } from "@/components/@types";
 
 import Button from "../Button";
 
@@ -24,9 +24,18 @@ const DropdownToggle = ({
   ...props
 }: DropdownToggleProps) => {
   return (
-    <label tabIndex={0} className={className} {...props}>
+    <label
+      className={className}
+      tabIndex={0}
+      {...props}
+    >
       {button ? (
-        <Button type="button" color={color} size={size} disabled={disabled}>
+        <Button
+          color={color}
+          disabled={disabled}
+          size={size}
+          type="button"
+        >
           {children}
         </Button>
       ) : (

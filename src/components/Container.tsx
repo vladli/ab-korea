@@ -9,7 +9,7 @@ function Container({ children, className }: Props) {
   return (
     <div
       className={twMerge(
-        "mx-auto my-10 max-w-[90vw] bg-white p-4 shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5",
+        "m-auto my-10 max-w-[90vw] bg-white p-4 shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5",
         className
       )}
     >

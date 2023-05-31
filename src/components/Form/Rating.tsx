@@ -2,7 +2,7 @@ import { Children, cloneElement, forwardRef, ReactElement } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentSize } from "components/@types";
+import { ComponentSize } from "@/components/@types";
 
 export type RatingProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -31,9 +31,18 @@ const Rating = forwardRef<HTMLDivElement, RatingProps>(
     );
 
     return (
-      <div aria-label="Rating" {...props} ref={ref} className={classes}>
+      <div
+        aria-label="Rating"
+        {...props}
+        className={classes}
+        ref={ref}
+      >
         {value === 0 && (
-          <RatingItem className={clsx(classes, "hidden")} checked readOnly />
+          <RatingItem
+            checked
+            className={clsx(classes, "hidden")}
+            readOnly
+          />
         )}
         {Children.map(children, (child, index) => {
           const childComponent = child as ReactElement<RatingItemProps>;
@@ -54,7 +63,12 @@ const Rating = forwardRef<HTMLDivElement, RatingProps>(
 export type RatingItemProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 const RatingItem = ({ ...props }: RatingItemProps): JSX.Element => {
-  return <input {...props} type="checkbox" />;
+  return (
+    <input
+      {...props}
+      type="checkbox"
+    />
+  );
 };
 
 export default Object.assign(Rating, { Item: RatingItem });

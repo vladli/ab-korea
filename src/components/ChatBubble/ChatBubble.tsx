@@ -2,10 +2,10 @@ import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 import ChatBubbleAvatar from "./ChatBubbleAvatar";
-import ChatBubbleMessage from "./ChatBubbleMessage";
-import ChatBubbleHeader from "./ChatBubbleHeader";
-import ChatBubbleTime from "./ChatBubbleTime";
 import ChatBubbleFooter from "./ChatBubbleFooter";
+import ChatBubbleHeader from "./ChatBubbleHeader";
+import ChatBubbleMessage from "./ChatBubbleMessage";
+import ChatBubbleTime from "./ChatBubbleTime";
 
 export type ChatBubbleProps = React.HTMLAttributes<HTMLDivElement> & {
   end?: boolean;

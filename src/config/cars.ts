@@ -1,6 +1,6 @@
 export const Maker = {
   Audi: ["A6", "A4"],
-  BMW: ["3", "5"],
+  BMW: ["320i", "330i", "m340i", "520i", "530i"],
 };
 
 export const AuctionMark = [

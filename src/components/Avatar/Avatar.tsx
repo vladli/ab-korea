@@ -1,11 +1,12 @@
+import { Children, cloneElement, forwardRef } from "react";
 import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
+
 import {
   ComponentColor,
   ComponentShape,
   ComponentSize,
-} from "components/@types";
-import { Children, cloneElement, forwardRef } from "react";
-import { twMerge } from "tailwind-merge";
+} from "@/components/@types";
 
 export type AvatarProps = React.HTMLAttributes<HTMLDivElement> & {
   src?: string;
@@ -79,13 +80,19 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     const renderAvatarContents = () => {
       if (src) {
         return (
-          <div className={imgClasses} style={customImgDimension}>
+          <div
+            className={imgClasses}
+            style={customImgDimension}
+          >
             <img src={src} />
           </div>
         );
       } else if (letters) {
         return (
-          <div className={placeholderClasses} style={customImgDimension}>
+          <div
+            className={placeholderClasses}
+            style={customImgDimension}
+          >
             <span>{letters ? letters : children}</span>
           </div>
         );
@@ -95,16 +102,22 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           className: twMerge(imgClasses, firstChild.props.className),
           style: { ...customImgDimension, ...firstChild.props.style },
         });
-      } else {
-        return (
-          <div className={imgClasses} style={customImgDimension}>
-            {children}
-          </div>
-        );
       }
+      return (
+        <div
+          className={imgClasses}
+          style={customImgDimension}
+        >
+          {children}
+        </div>
+      );
     };
     return (
-      <div className={containerClass} ref={ref} {...rest}>
+      <div
+        className={containerClass}
+        ref={ref}
+        {...rest}
+      >
         {renderAvatarContents()}
       </div>
     );

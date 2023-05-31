@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
-import { ComponentColor } from "components/@types";
+
+import { ComponentColor } from "@/components/@types";
 
 export type StepsProps = React.HTMLAttributes<HTMLUListElement> & {
   vertical?: boolean;
@@ -58,8 +59,8 @@ const Step = forwardRef<HTMLLIElement, StepProps>(
       <li
         aria-label="Step"
         {...props}
-        data-content={value}
         className={classes}
+        data-content={value}
         ref={ref}
       >
         {children}

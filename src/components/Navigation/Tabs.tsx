@@ -2,7 +2,7 @@ import React, { cloneElement, ReactElement } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentSize } from "components/@types";
+import { ComponentSize } from "@/components/@types";
 
 export type TabsProps<T> = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -104,8 +104,8 @@ const TabInner = <T extends string | number | undefined>(
       role="tab"
       {...props}
       className={classes}
-      style={style}
       onClick={() => onClick && onClick(value)}
+      style={style}
     >
       {children}
     </a>

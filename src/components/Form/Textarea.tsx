@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentColor, ComponentSize } from "components/@types";
+import { ComponentColor, ComponentSize } from "@/components/@types";
 
 export type TextareaProps = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -30,7 +30,13 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       })
     );
 
-    return <textarea {...props} className={classes} ref={ref} />;
+    return (
+      <textarea
+        {...props}
+        className={classes}
+        ref={ref}
+      />
+    );
   }
 );
 

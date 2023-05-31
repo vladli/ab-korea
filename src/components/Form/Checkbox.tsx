@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentColor, ComponentSize } from "components/@types";
+import { ComponentColor, ComponentSize } from "@/components/@types";
 
 export type CheckboxProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -50,7 +50,12 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     }, [indeterminate]);
 
     return (
-      <input {...props} ref={checkboxRef} type="checkbox" className={classes} />
+      <input
+        {...props}
+        className={classes}
+        ref={checkboxRef}
+        type="checkbox"
+      />
     );
   }
 );

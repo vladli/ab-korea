@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentColor, ComponentSize } from "components/@types";
+import { ComponentColor, ComponentSize } from "@/components/@types";
 
 export type RadioProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -26,10 +26,10 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
     return (
       <input
         {...props}
+        className={classes}
+        name={name}
         ref={ref}
         type="radio"
-        name={name}
-        className={classes}
       />
     );
   }
