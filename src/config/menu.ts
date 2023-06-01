@@ -22,7 +22,7 @@ export const menu: MenuItem = [
   },
   {
     icon: BsBook,
-    url: "/catalog",
+    url: "/catalog/list",
     title: "Каталог",
   },
   {

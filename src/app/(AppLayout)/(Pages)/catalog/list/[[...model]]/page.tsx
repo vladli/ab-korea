@@ -2,6 +2,13 @@ import React from "react";
 import type { Metadata } from "next/types";
 
 import Box from "@/components/Box";
+import type { CarData } from "@/config/@types";
+import {
+  findByMaker,
+  findByMakerAndModel,
+  isValidMaker,
+  isValidModel,
+} from "@/config/cars";
 import { titles } from "@/config/config";
 
 import Item from "./components/Card";
@@ -10,32 +17,12 @@ export const metadata: Metadata = {
   title: titles.catalog,
 };
 
-async function getItems({ model }: any): Promise<Data[]> {
-  console.log(model);
-  const params = {
-    model: model[0],
-  };
-  const result = await fetch(
-    `${process.env.WEBSITE}/api/catalog/item?` + new URLSearchParams(params)
-  );
+async function getItems(): Promise<CarData[]> {
+  const result = await fetch(`${process.env.WEBSITE}/api/catalog/item?`);
 
   const data = await result.json();
   return data;
 }
-
-export type Data = {
-  id: string;
-  Maker: string;
-  Model: string;
-  Year: string;
-  Range: number;
-  Price: number;
-  Transmission: string;
-  WheelDrive: string;
-  Images: {
-    url: string;
-  }[];
-};
 
 type Props = {
   params: {
@@ -44,8 +31,21 @@ type Props = {
 };
 
 async function Page({ params }: Props) {
-  const data = await getItems(params);
+  let maker: string | undefined;
+  let model: string | undefined;
+  if (params.model && Array.isArray(params.model)) {
+    maker = params.model[0];
+    model = params.model[1];
+  }
 
+  let data = await getItems();
+
+  if (maker && !model && isValidMaker(maker)) {
+    data = findByMaker(data, maker);
+  }
+  if (maker && model && isValidModel(maker, model)) {
+    data = findByMakerAndModel(data, maker, model);
+  }
   return (
     <Box className="m-5">
       <h3 className="rounded-full bg-white text-center">

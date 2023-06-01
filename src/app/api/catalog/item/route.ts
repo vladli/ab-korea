@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  console.log("Search", searchParams);
+export async function GET() {
   const data = await prisma.catalog.findMany();
   return NextResponse.json(data);
 }

@@ -1,7 +1,62 @@
+import type { CarData } from "./@types";
+
 export const Maker = {
-  Audi: ["A6", "A4"],
+  Audi: ["A4", "A5", "A6"],
   BMW: ["320i", "330i", "m340i", "520i", "530i"],
+  "Mercedes-Benz": ["C200", "E250", "E350"],
 };
+
+const lowerCaseMakerMap: Record<string, string[]> = {};
+for (const key in Maker) {
+  lowerCaseMakerMap[key.toLowerCase()] = Maker[key as keyof typeof Maker].map(
+    (model: string) => model.toLowerCase()
+  );
+}
+
+export const isValidMaker = (maker: string | null): boolean => {
+  if (maker) {
+    const lowerCaseMaker = maker.toLowerCase();
+    return lowerCaseMaker in lowerCaseMakerMap;
+  }
+  return false;
+};
+
+export function findByMaker(data: CarData[], maker: string): CarData[] {
+  const lowerCaseMaker = maker.toLowerCase();
+
+  return data.filter((item) => item.Maker.toLowerCase() === lowerCaseMaker);
+}
+
+export const isValidModel = (
+  maker: string | null,
+  model: string | null
+): boolean => {
+  if (maker && model) {
+    const lowerCaseMaker = maker.toLowerCase();
+    const lowerCaseModel = model.toLowerCase();
+    if (isValidMaker(lowerCaseMaker)) {
+      const validModels = lowerCaseMakerMap[lowerCaseMaker];
+      return validModels.includes(lowerCaseModel);
+    }
+  }
+  return false;
+};
+
+export function findByMakerAndModel(
+  data: CarData[],
+  maker: string,
+  model: string
+): CarData[] {
+  const lowerCaseMaker = maker.toLowerCase();
+  const lowerCaseModel = model.toLowerCase();
+
+  return data.filter((item) => {
+    const itemMaker = item.Maker.toLowerCase();
+    const itemModel = item.Model.toLowerCase();
+
+    return itemMaker === lowerCaseMaker && itemModel === lowerCaseModel;
+  });
+}
 
 export const AuctionMark = [
   "A/A",
