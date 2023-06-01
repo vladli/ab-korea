@@ -2,8 +2,8 @@ import { forwardRef, useRef, useState } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import CollapseTitle from "./CollapseTitle";
 import CollapseContent from "./CollapseContent";
+import CollapseTitle from "./CollapseTitle";
 
 export type CollapseProps = React.HTMLAttributes<HTMLDivElement> & {
   checkbox?: boolean;
@@ -74,19 +74,19 @@ const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       <div
         aria-expanded={open}
         {...props}
-        ref={ref}
-        tabIndex={isChecked === true ? undefined : 0}
         className={classes}
         onBlur={handleBlur}
         onFocus={handleFocus}
+        ref={ref}
+        tabIndex={isChecked === true ? undefined : 0}
       >
         {checkbox && (
           <input
-            type="checkbox"
-            tabIndex={isChecked === true ? 0 : undefined}
             className="peer"
-            ref={checkboxRef}
             onChange={handleCheckboxChange}
+            ref={checkboxRef}
+            tabIndex={isChecked === true ? 0 : undefined}
+            type="checkbox"
           />
         )}
         {children}

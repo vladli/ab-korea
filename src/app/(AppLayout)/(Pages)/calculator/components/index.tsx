@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import useSWR from "swr";
 
-import InputGroup from "@/components/Form/InputGroup";
 import Select from "@/components/Form/Select";
+import Join from "@/components/Join";
 import Table from "@/components/Table/Table";
 
 function Main() {
@@ -104,8 +104,10 @@ function Main() {
     <section className="my-10 flex w-full flex-col items-center gap-2">
       <div className="flex w-[85vw] max-w-2xl flex-col items-center gap-2">
         <div className="form-control w-full">
-          <InputGroup>
+          <label className="label">
             <span>Цена</span>
+          </label>
+          <Join>
             <CurrencyInput
               className="input-bordered input w-full focus:outline-none"
               decimalsLimit={0}
@@ -113,6 +115,7 @@ function Main() {
               placeholder="Цена автомобиля"
             />
             <Select
+              className="join-item"
               onChange={(e) => setCarCurrency(e.target.value)}
               value={carCurrency}
             >
@@ -120,7 +123,7 @@ function Main() {
               <Select.Option value="KZT">KZT</Select.Option>
               <Select.Option value="USD">USD</Select.Option>
             </Select>
-          </InputGroup>
+          </Join>
         </div>
 
         <div className="form-control w-full">

@@ -40,10 +40,6 @@
   color: white;
 }
 
-.input-group :where(span) {
-  background-color: rgb(245, 245, 245);
-}
-
 .table-zebra tbody tr:nth-child(even) th,
 .table-zebra tbody tr:nth-child(even) td {
   background-color: rgb(245, 245, 245);

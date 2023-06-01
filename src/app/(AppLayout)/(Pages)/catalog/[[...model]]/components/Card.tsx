@@ -11,19 +11,7 @@ import Badge from "@/components/Badge";
 import Card from "@/components/Cards/Card";
 import Divider from "@/components/Divider";
 
-export type Data = {
-  id: string;
-  Maker: string;
-  Model: string;
-  Year: string;
-  Range: number;
-  Price: number;
-  Transmission: string;
-  WheelDrive: string;
-  Images: {
-    url: string;
-  }[];
-};
+import type { Data } from "../page";
 
 function Item(props: Data) {
   const { Maker, Model, Year, Range, Price, Transmission, WheelDrive, Images } =

@@ -1,6 +1,7 @@
-import clsx from "clsx";
 import { forwardRef } from "react";
+import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
+
 import { ComponentColor, ComponentSize } from "./@types";
 
 type Props = Omit<React.HtmlHTMLAttributes<HTMLDivElement>, "color"> & {
@@ -23,7 +24,10 @@ const Badge = forwardRef<HTMLDivElement, Props>(
       })
     );
     return (
-      <div className={classes} ref={ref}>
+      <div
+        className={classes}
+        ref={ref}
+      >
         {children}
       </div>
     );

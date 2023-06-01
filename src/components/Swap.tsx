@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { forwardRef } from "react";
+import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
 type Props = React.LabelHTMLAttributes<HTMLLabelElement> & {
@@ -35,7 +35,12 @@ const Swap = forwardRef<HTMLLabelElement, Props>(
       })
     );
     return (
-      <label {...props} className={classes} ref={ref} onClick={action}>
+      <label
+        {...props}
+        className={classes}
+        onClick={action}
+        ref={ref}
+      >
         <div className="swap-on">{onElement}</div>
         <div className="swap-off">{offElement}</div>
       </label>

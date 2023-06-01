@@ -1,10 +1,11 @@
+"use client";
 import React from "react";
 import type { Metadata } from "next/types";
 
+import Collapse from "@/components/Collapse/Collapse";
 import Container from "@/components/Container";
 import { titles } from "@/config/config";
 
-import Collapse from "./components/Collapse";
 import Faq_1 from "./faq/Faq_1";
 import Faq_2 from "./faq/Faq_2";
 import Faq_3 from "./faq/Faq_3";
@@ -55,10 +56,15 @@ function Page() {
       <div className="p-5">
         {faq.map(({ title, Component }) => (
           <Collapse
-            Component={Component}
+            className="rounded-box m-2 border border-base-300 bg-white"
+            icon="arrow"
             key={title}
-            title={title}
-          />
+          >
+            <Collapse.Title>{title}</Collapse.Title>
+            <Collapse.Content>
+              <Component />
+            </Collapse.Content>
+          </Collapse>
         ))}
       </div>
     </Container>

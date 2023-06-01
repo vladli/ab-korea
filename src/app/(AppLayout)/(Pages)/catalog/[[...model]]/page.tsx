@@ -5,15 +5,22 @@ import Box from "@/components/Box";
 import { titles } from "@/config/config";
 
 import Item from "./components/Card";
-import Main from "./components";
 
 export const metadata: Metadata = {
   title: titles.catalog,
 };
 
-async function getItems() {
-  const result = await fetch(`${process.env.WEBSITE}/api/catalog/item`);
-  return result.json();
+async function getItems({ model }: any): Promise<Data[]> {
+  console.log(model);
+  const params = {
+    model: model[0],
+  };
+  const result = await fetch(
+    `${process.env.WEBSITE}/api/catalog/item?` + new URLSearchParams(params)
+  );
+
+  const data = await result.json();
+  return data;
 }
 
 export type Data = {
@@ -28,10 +35,16 @@ export type Data = {
   Images: {
     url: string;
   }[];
-}[];
+};
 
-async function Page() {
-  const data: Data = await getItems();
+type Props = {
+  params: {
+    model: string[];
+  };
+};
+
+async function Page({ params }: Props) {
+  const data = await getItems(params);
 
   return (
     <Box className="m-5">

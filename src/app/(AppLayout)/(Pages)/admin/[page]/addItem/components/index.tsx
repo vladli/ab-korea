@@ -7,8 +7,8 @@ import { toast } from "react-hot-toast";
 import Button from "@/components/Button";
 import Divider from "@/components/Divider";
 import Input from "@/components/Form/Input";
-import InputGroup from "@/components/Form/InputGroup";
 import Select from "@/components/Form/Select";
+import Join from "@/components/Join";
 import { AuctionMark, Maker } from "@/config/cars";
 
 function Main() {
@@ -239,12 +239,12 @@ function Main() {
           </label>
           {inputFields.map(({ url }: any, index: any) => {
             return (
-              <label
-                className="input-group mb-1"
+              <Join
+                className="mb-1"
                 key={index}
               >
                 <input
-                  className="input-bordered input w-full focus:outline-offset-0"
+                  className="join-item input-bordered input w-full focus:outline-offset-0"
                   name="url"
                   onChange={(event) => handleFormChange(event, index)}
                   placeholder="https//:ab-korea.kz/car/car.png"
@@ -254,6 +254,7 @@ function Main() {
                 />
                 {index !== 0 ? (
                   <Button
+                    className="join-item"
                     color="error"
                     onClick={() => removeFields(index)}
                     type="button"
@@ -261,7 +262,7 @@ function Main() {
                     X
                   </Button>
                 ) : null}
-              </label>
+              </Join>
             );
           })}
         </div>
