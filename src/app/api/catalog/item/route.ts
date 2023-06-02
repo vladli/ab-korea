@@ -2,8 +2,15 @@ import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
-  const data = await prisma.catalog.findMany();
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+  var data;
+  if (!id) {
+    data = await prisma.catalog.findMany();
+  } else {
+    data = await prisma.catalog.findUnique({ where: { id: id } });
+  }
   return NextResponse.json(data);
 }
 
