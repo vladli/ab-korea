@@ -4,11 +4,13 @@ import { Metadata } from "next";
 
 import Badge from "@/components/Badge";
 import Box from "@/components/Box";
-import Divider from "@/components/Divider";
 import { titles } from "@/config/config";
 import { getCar } from "@/lib/cars";
 
+import CarGrade from "./components/CarGrade";
+import FrameImage from "./components/FrameImage";
 import ImageContainer from "./components/ImageContainer";
+import PriceTable from "./components/PriceTable";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getCar(params.id);
@@ -26,6 +28,7 @@ async function Page({ params }: Props) {
   if (!data) return null;
   const {
     Maker,
+    Price,
     Model,
     Year,
     VIN,
@@ -38,6 +41,7 @@ async function Page({ params }: Props) {
     Transmission,
     Engine,
     Images,
+    bodyImg,
   } = data;
   const list = [
     { title: "Марка", value: Maker },
@@ -58,8 +62,8 @@ async function Page({ params }: Props) {
   ];
 
   return (
-    <Box className="mx-auto my-10 max-w-7xl p-4">
-      <div className="flex flex-col items-center">
+    <Box className="mx-auto my-10 p-4">
+      <section className="flex flex-col items-center">
         <div className="flex items-center gap-2">
           <span className="text-4xl">
             {Maker} {Model}
@@ -73,25 +77,28 @@ async function Page({ params }: Props) {
           </Badge>
         </div>
         <div className="w-fit rounded-full bg-gray-100 p-1 text-sm">{VIN}</div>
-      </div>
-      <div className="mt-5 flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-center">
-        <div className="max-w-xl ">
+      </section>
+      <section className="mx-auto mt-5 flex max-w-xl flex-col items-center lg:max-w-6xl lg:flex-row lg:items-stretch lg:justify-center">
+        <div>
           <ImageContainer {...{ Images }} />
         </div>
-        <div className="rounded-b-box flex w-full max-w-xl  flex-col gap-1 bg-slate-100 p-5 font-medium lg:rounded-r-box lg:rounded-l-none">
-          <div className="my-auto grid h-full grid-cols-3 ">
+        <div className="rounded-b-box flex w-full flex-col gap-1 bg-[#f5f5f5] p-5 font-medium lg:rounded-r-box lg:rounded-l-none">
+          <div className="grid h-full grid-cols-3">
             {list.map(({ title, value, helper }: any, i: number) => (
               <React.Fragment key={title}>
                 <div
-                  className={clsx("col-span-2", {
-                    "bg-slate-200": i % 2 === 0,
-                  })}
+                  className={clsx(
+                    "col-span-2 flex items-center rounded-l-md pl-1",
+                    {
+                      "bg-white": i % 2 === 0,
+                    }
+                  )}
                 >
                   {title}
                 </div>
                 <div
-                  className={clsx({
-                    "bg-slate-200": i % 2 === 0,
+                  className={clsx("flex items-center rounded-r-md", {
+                    "bg-white": i % 2 === 0,
                   })}
                 >
                   {value}
@@ -101,7 +108,27 @@ async function Page({ params }: Props) {
             ))}
           </div>
         </div>
-      </div>
+      </section>
+      <section>
+        <PriceTable {...{ Price }} />
+      </section>
+      <section className="mx-auto my-5 flex w-full max-w-xl flex-col lg:max-w-6xl">
+        <div className="mb-5 flex items-center justify-center gap-2">
+          <span className="text-3xl font-normal">Автомобиль имеет оценку</span>
+          <Badge
+            className="text-white"
+            color="secondary"
+            size="lg"
+          >
+            {AuctionMark}
+          </Badge>
+        </div>
+        <CarGrade {...{ AuctionMark }} />
+      </section>
+      <section className="mx-auto my-5 flex w-full max-w-xl flex-col items-center lg:max-w-6xl">
+        <span className="text-3xl font-normal">Состояние кузова</span>
+        <FrameImage {...{ bodyImg }} />
+      </section>
     </Box>
   );
 }

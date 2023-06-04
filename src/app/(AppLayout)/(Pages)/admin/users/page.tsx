@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import type { Metadata } from "next/types";
 
+import Table from "@/components/Table";
 import { titles } from "@/config/config";
 import { getUsers } from "@/lib/users";
 
@@ -14,21 +15,23 @@ async function Page() {
   if (!data) return null;
   return (
     <div className="mx-auto my-5 w-[90vw] overflow-x-auto">
-      <table className="table-zebra table w-full">
+      <Table
+        className="w-full"
+        zebra
+      >
         {/* head */}
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Имя</th>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
+        <Table.Head>
+          <span>ID</span>
+          <span>Имя</span>
+          <span>Email</span>
+          <span></span>
+        </Table.Head>
+
+        <Table.Body>
           {data.map(({ id, name, email, image, role }, i) => (
-            <tr key={id}>
-              <td>{i + 1}</td>
-              <td>
+            <Table.Row key={id}>
+              <span>{i + 1}</span>
+              <span>
                 <div className="flex items-center space-x-3">
                   {image ? (
                     <div className="avatar">
@@ -46,8 +49,8 @@ async function Page() {
                     <div className="font-bold">{name}</div>
                   </div>
                 </div>
-              </td>
-              <td>
+              </span>
+              <span>
                 {email}
                 <br />
                 {role ? (
@@ -55,14 +58,14 @@ async function Page() {
                     {role}
                   </span>
                 ) : null}
-              </td>
-              <th>
+              </span>
+              <span>
                 <button className="btn-ghost btn-xs btn">details</button>
-              </th>
-            </tr>
+              </span>
+            </Table.Row>
           ))}
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table>
     </div>
   );
 }

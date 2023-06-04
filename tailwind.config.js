@@ -21,6 +21,7 @@ module.exports = {
           accent: "#1dcdbc",
           neutral: "#2b3440",
           "base-100": "#fff",
+          "bg-base-200": "#f5f5f5",
           info: "#3abff8",
 
           success: "#36d399",

@@ -5,7 +5,7 @@ import useSWR from "swr";
 
 import Select from "@/components/Form/Select";
 import Join from "@/components/Join";
-import Table from "@/components/Table/Table";
+import Table from "@/components/Table";
 
 function Main() {
   const { data } = useSWR("/api/exchangeRate");
@@ -162,15 +162,15 @@ function Main() {
             zebra
           >
             <Table.Head>
-              <div>Наименование</div>
-              <div>Цена</div>
+              <span>Наименование</span>
+              <span>Цена</span>
             </Table.Head>
             <Table.Body>
               {prices.map(({ title, price }) => (
-                <tr key={title}>
-                  <td>{title}</td>
-                  <td>{price}</td>
-                </tr>
+                <Table.Row key={title}>
+                  <span>{title}</span>
+                  <span>{price}</span>
+                </Table.Row>
               ))}
             </Table.Body>
           </Table>
