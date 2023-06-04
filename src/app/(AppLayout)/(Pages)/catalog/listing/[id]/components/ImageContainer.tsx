@@ -14,12 +14,13 @@ export default function ImageContainer({ Images }: any) {
   return (
     <>
       <motion.div
-        className="w-1/2 cursor-pointer select-none"
+        className="cursor-pointer select-none"
         onClick={() => setToggler(!toggler)}
         whileHover={{ opacity: 0.8 }}
       >
         <Image
           alt=""
+          className="rounded-t-box lg:rounded-l-box lg:rounded-r-none"
           height={1080}
           src={Images[0].url}
           width={1920}
