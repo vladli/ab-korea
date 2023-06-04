@@ -45,7 +45,7 @@ async function Page({ params }: Props) {
       <div className="flex flex-col items-center">
         <h2 className="text-center">Каталог автомобилей с аукциона Lotte</h2>
         <span className="text-sm opacity-70">
-          (Информация обновляется еженедельно по пятницам.)
+          (Информация обновляется еженедельно по пятницам)
         </span>
       </div>
       <div className="mt-5 grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

@@ -1,7 +1,7 @@
 //@ts-nocheck
 "use client";
-
 import React from "react";
+import { useContextMenu } from "react-contexify";
 import {
   GiCartwheel,
   GiGearStickPattern,
@@ -16,9 +16,9 @@ import Badge from "@/components/Badge";
 import Card from "@/components/Cards/Card";
 import Divider from "@/components/Divider";
 
-import AdminMenu from "./AdminMenu";
+import ContextMenu from "./ContextMenu";
 
-function Item(props: Catalog) {
+function Items(props: Catalog) {
   const { data: session } = useSession();
   const {
     id,
@@ -37,48 +37,57 @@ function Item(props: Catalog) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
+  const { show } = useContextMenu({
+    id: id,
+  });
+
+  function displayMenu(e) {
+    show({ event: e });
+  }
+
   return (
-    <Card className="max-w-md hover:cursor-pointer">
-      <Link href={`/catalog/listing/${id}`}>
-        <motion.div whileHover={{ opacity: 0.75 }}>
-          <Card.Image image={Images[0].url} />
-          <Card.Body>
-            <Card.Header>
-              {Maker} {Model}
-              <Badge
-                className="text-white"
-                color="secondary"
-                size="lg"
-              >
-                {Year}
-              </Badge>
-            </Card.Header>
-            <p className="text-xl font-semibold">{Currency.format(Price)}</p>
-            <Divider />
-            <div className="flex w-full justify-between">
-              <div className="flex items-center gap-1">
-                <GiSteeringWheel />
-                {Range} км.
+    <>
+      <Card className="max-w-md hover:cursor-pointer">
+        <Link href={`/catalog/listing/${id}`}>
+          <motion.div
+            onContextMenu={displayMenu}
+            whileHover={{ opacity: 0.75 }}
+          >
+            <Card.Image image={Images[0].url} />
+            <Card.Body>
+              <Card.Header>
+                {Maker} {Model}
+                <Badge
+                  className="text-white"
+                  color="secondary"
+                  size="lg"
+                >
+                  {Year}
+                </Badge>
+              </Card.Header>
+              <p className="text-xl font-semibold">{Currency.format(Price)}</p>
+              <Divider />
+              <div className="flex w-full justify-between">
+                <div className="flex items-center gap-1">
+                  <GiSteeringWheel />
+                  {Range} км.
+                </div>
+                <div className="flex items-center gap-1">
+                  <GiCartwheel />
+                  {WheelDrive}
+                </div>
+                <div className="flex items-center gap-1">
+                  <GiGearStickPattern />
+                  {Transmission}
+                </div>
               </div>
-              <div className="flex items-center gap-1">
-                <GiCartwheel />
-                {WheelDrive}
-              </div>
-              <div className="flex items-center gap-1">
-                <GiGearStickPattern />
-                {Transmission}
-              </div>
-            </div>
-            {session?.user?.role === "admin" ? (
-              <div className="flex justify-end">
-                <AdminMenu {...props} />
-              </div>
-            ) : null}
-          </Card.Body>
-        </motion.div>
-      </Link>
-    </Card>
+            </Card.Body>
+          </motion.div>
+        </Link>
+      </Card>
+      <ContextMenu {...props} />
+    </>
   );
 }
 
-export default Item;
+export default Items;

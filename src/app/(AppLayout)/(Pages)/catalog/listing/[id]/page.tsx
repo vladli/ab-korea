@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import BackButton from "@/components/BackButton";
 import Badge from "@/components/Badge";
 import Box from "@/components/Box";
+import Container from "@/components/Container";
 import { titles } from "@/config/config";
 import { getCar } from "@/lib/cars";
 
@@ -63,7 +64,7 @@ async function Page({ params }: Props) {
   ];
 
   return (
-    <Box className="mx-auto my-2 p-4">
+    <Container>
       <BackButton />
       <section className="flex flex-col items-center">
         <div className="flex items-center gap-2">
@@ -131,7 +132,7 @@ async function Page({ params }: Props) {
         <span className="text-3xl font-normal">Состояние кузова</span>
         <FrameImage {...{ bodyImg }} />
       </section>
-    </Box>
+    </Container>
   );
 }
 

@@ -12,8 +12,9 @@ import Textarea from "@/components/Form/Textarea";
 import Join from "@/components/Join";
 import Tabs from "@/components/Navigation/Tabs";
 import { AuctionMark, Maker } from "@/config/cars";
+import { createCar } from "@/lib/cars";
 
-function Main({ createCar }: any) {
+function Main() {
   const {
     register,
     handleSubmit,

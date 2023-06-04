@@ -1,22 +1,19 @@
-import clsx from "clsx";
+"use client";
 import { forwardRef } from "react";
+import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
 import ModalActions from "./ModalActions";
 import ModalBody from "./ModalBody";
 import ModalHeader from "./ModalHeader";
 
-type Props = React.HtmlHTMLAttributes<HTMLDivElement> & {
+type Props = React.HTMLAttributes<HTMLDialogElement> & {
   open?: boolean;
   responsive?: boolean;
-  onClickBackDrop?: () => void;
 };
 
-const Modal = forwardRef<HTMLDivElement, Props>(
-  (
-    { children, open, responsive, onClickBackDrop, className, ...props },
-    ref
-  ) => {
+const Modal = forwardRef<HTMLDialogElement, Props>(
+  ({ children, open, responsive, className, ...props }, ref) => {
     const classes = twMerge(
       "modal",
       clsx({
@@ -25,33 +22,31 @@ const Modal = forwardRef<HTMLDivElement, Props>(
       })
     );
     const bodyClasses = twMerge("modal-box", className);
-    const clickBackDrop = (e: any) => {
-      e.stopPropagation();
-      if (e.target === e.currentTarget) {
-        e.stopPropagation();
-        if (onClickBackDrop) {
-          onClickBackDrop();
-        }
-      }
-    };
+
     return (
-      <div
-        aria-label="Modal"
+      <dialog
         aria-hidden={!open}
+        aria-label="Modal"
         aria-modal={open}
         className={classes}
-        onClick={clickBackDrop}
+        ref={ref}
       >
-        <div {...props} className={bodyClasses} ref={ref}>
-          <label
-            onClick={clickBackDrop}
-            className="btn-sm btn-circle btn absolute right-2 top-2"
-          >
+        <form
+          className={bodyClasses}
+          method="dialog"
+        >
+          <button className="btn-sm btn-circle btn absolute right-2 top-2">
             ✕
-          </label>
+          </button>
           {children}
-        </div>
-      </div>
+        </form>
+        <form
+          className="modal-backdrop"
+          method="dialog"
+        >
+          <button>close</button>
+        </form>
+      </dialog>
     );
   }
 );
