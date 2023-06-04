@@ -1,4 +1,4 @@
-import type { CarData } from "./@types";
+import { Catalog } from "@prisma/client";
 
 export const Maker = {
   Audi: ["A4", "A5", "A6"],
@@ -21,7 +21,7 @@ export const isValidMaker = (maker: string | null): boolean => {
   return false;
 };
 
-export function findByMaker(data: CarData[], maker: string): CarData[] {
+export function findByMaker(data: Catalog[], maker: string): Catalog[] {
   const lowerCaseMaker = maker.toLowerCase();
 
   return data.filter((item) => item.Maker.toLowerCase() === lowerCaseMaker);
@@ -43,10 +43,10 @@ export const isValidModel = (
 };
 
 export function findByMakerAndModel(
-  data: CarData[],
+  data: Catalog[],
   maker: string,
   model: string
-): CarData[] {
+): Catalog[] {
   const lowerCaseMaker = maker.toLowerCase();
   const lowerCaseModel = model.toLowerCase();
 

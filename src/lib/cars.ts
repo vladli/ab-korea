@@ -14,11 +14,9 @@ export async function getCar(id: string): Promise<Catalog | null> {
 }
 
 export async function createCar(data: Catalog) {
-  const response = prisma.catalog.create({ data });
-  return response;
+  return prisma.catalog.create({ data });
 }
 
 export async function deleteCar(id: string) {
-  const response = prisma.catalog.delete({ where: { id } });
-  return response;
+  return prisma.catalog.delete({ where: { id } });
 }
