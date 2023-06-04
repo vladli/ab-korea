@@ -39,9 +39,16 @@ function Footer({ className }: { className?: string }) {
         <div className="flex gap-10 p-4">
           {socials.map(({ icon, link }) => (
             <div
-              className="h-14 cursor-pointer rounded hover:bg-slate-800"
+              className="h-14 w-14 cursor-pointer rounded hover:bg-slate-800"
               key={icon}
             >
+              <Image
+                alt=""
+                className="p-2"
+                height={512}
+                src={`/socials/${icon}.png`}
+                width={512}
+              />
               <a
                 href={link}
                 target="_blank"
