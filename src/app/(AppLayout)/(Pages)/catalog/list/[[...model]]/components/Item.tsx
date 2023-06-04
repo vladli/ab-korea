@@ -47,7 +47,7 @@ function Items(props: Catalog) {
 
   return (
     <>
-      <Card className="max-w-md hover:cursor-pointer">
+      <Card className="w-full max-w-md hover:cursor-pointer">
         <Link href={`/catalog/listing/${id}`}>
           <motion.div
             onContextMenu={displayMenu}
@@ -85,6 +85,7 @@ function Items(props: Catalog) {
           </motion.div>
         </Link>
       </Card>
+
       <ContextMenu {...props} />
     </>
   );

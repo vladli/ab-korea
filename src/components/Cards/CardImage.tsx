@@ -1,23 +1,25 @@
 import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   image: string;
+  className?: string;
 };
 
-const CardImage = ({
-  image,
-
-  ...rest
-}: Props) => {
+const CardImage = ({ image, className, ...rest }: Props) => {
   return (
-    <figure className="select-none">
+    <figure
+      className={twMerge(
+        "relative flex h-[15rem] w-full select-none",
+        className
+      )}
+    >
       <Image
         alt=""
-        className="h-auto w-full rounded-t-lg"
+        className="rounded-t-box w-full grow object-cover"
         src={image}
         {...rest}
-        height={600}
-        width={400}
+        fill
       />
     </figure>
   );
