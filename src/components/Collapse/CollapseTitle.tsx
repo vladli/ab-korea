@@ -10,7 +10,10 @@ const CollapseTitle = ({
   const classes = twMerge("collapse-title", className);
 
   return (
-    <div {...props} className={classes}>
+    <div
+      {...props}
+      className={classes}
+    >
       {children}
     </div>
   );

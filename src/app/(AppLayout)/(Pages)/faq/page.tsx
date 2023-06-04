@@ -1,8 +1,7 @@
-"use client";
 import React from "react";
 import type { Metadata } from "next/types";
 
-import Collapse from "@/components/Collapse/Collapse";
+import Collapse from "@/components/Collapse";
 import Container from "@/components/Container";
 import { titles } from "@/config/config";
 

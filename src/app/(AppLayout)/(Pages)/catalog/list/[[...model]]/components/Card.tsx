@@ -1,19 +1,21 @@
+//@ts-nocheck
 "use client";
+
 import React from "react";
 import {
   GiCartwheel,
   GiGearStickPattern,
   GiSteeringWheel,
 } from "react-icons/gi";
+import { Catalog } from "@prisma/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 import Badge from "@/components/Badge";
 import Card from "@/components/Cards/Card";
 import Divider from "@/components/Divider";
-import type { CarData } from "@/config/@types";
 
-function Item(props: CarData) {
+function Item(props: Catalog) {
   const {
     id,
     Maker,

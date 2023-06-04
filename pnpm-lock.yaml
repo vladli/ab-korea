@@ -26,6 +26,9 @@ dependencies:
   framer-motion:
     specifier: ^10.12.16
     version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
+  fslightbox-react:
+    specifier: file:src/lib/fslightbox-react-pro-1.7.7.tgz
+    version: file:src/lib/fslightbox-react-pro-1.7.7.tgz(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   next:
     specifier: 13.4.4
     version: 13.4.4(react-dom@18.2.0)(react@18.2.0)
@@ -70,6 +73,9 @@ devDependencies:
   '@tailwindcss/typography':
     specifier: ^0.5.9
     version: 0.5.9(tailwindcss@3.3.2)
+  '@types/fslightbox-react':
+    specifier: ^1.7.3
+    version: 1.7.3
   '@types/node':
     specifier: ^20.2.5
     version: 20.2.5
@@ -418,6 +424,12 @@ packages:
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
       tailwindcss: 3.3.2
+    dev: true
+
+  /@types/fslightbox-react@1.7.3:
+    resolution: {integrity: sha512-6q1n54suIR77dTkvXDNBsd3YNK9k71T7AHgKORybi76i+Un2xYaK27bhcWyH1W/4YK/RUDHLIse1Yl8VnzPVlg==}
+    dependencies:
+      '@types/react': 18.2.8
     dev: true
 
   /@types/json5@0.0.29:
@@ -2593,7 +2605,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /pump@3.0.0:
     resolution: {integrity: sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==}
@@ -2671,7 +2682,6 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -3274,4 +3284,19 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: false
+
+  file:src/lib/fslightbox-react-pro-1.7.7.tgz(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-p6JaY7rrkIg37Bpg2Zaa5En1XvgzFDhsblhGZ4LDj965leOFavL8bdHfLr/022tRqgRbKmQ/0i0t0AULma34CQ==, tarball: file:src/lib/fslightbox-react-pro-1.7.7.tgz}
+    id: file:src/lib/fslightbox-react-pro-1.7.7.tgz
+    name: fslightbox-react
+    version: 1.7.7
+    peerDependencies:
+      prop-types: '>=15.6.2'
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false

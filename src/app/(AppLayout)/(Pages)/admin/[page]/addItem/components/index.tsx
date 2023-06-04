@@ -12,9 +12,8 @@ import Textarea from "@/components/Form/Textarea";
 import Join from "@/components/Join";
 import Tabs from "@/components/Navigation/Tabs";
 import { AuctionMark, Maker } from "@/config/cars";
-import { prisma } from "@/lib/prisma";
 
-function Main() {
+function Main({ createCar }: any) {
   const {
     register,
     handleSubmit,
@@ -23,11 +22,12 @@ function Main() {
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    "use server";
     data.Images = inputFields;
     data.Price = carPrice;
-    const res = prisma.catalog.create({ data });
-
+    data.Year = Number(data.Year);
+    data.Range = Number(data.Range);
+    data.Engine = Number(data.Engine);
+    const res = createCar(data);
     toast.promise(res, {
       loading: "Добавление в каталог",
       success: () => {

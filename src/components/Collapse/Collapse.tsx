@@ -1,9 +1,7 @@
+"use client";
 import { forwardRef, useRef, useState } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
-
-import CollapseContent from "./CollapseContent";
-import CollapseTitle from "./CollapseTitle";
 
 export type CollapseProps = React.HTMLAttributes<HTMLDivElement> & {
   checkbox?: boolean;
@@ -95,7 +93,4 @@ const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
   }
 );
 
-export default Object.assign(Collapse, {
-  Title: CollapseTitle,
-  Content: CollapseContent,
-});
+export default Collapse;

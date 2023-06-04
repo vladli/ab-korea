@@ -10,7 +10,10 @@ const CollapseContent = ({
   const classes = twMerge("collapse-content", className);
 
   return (
-    <div {...props} className={classes}>
+    <div
+      {...props}
+      className={classes}
+    >
       {children}
     </div>
   );
