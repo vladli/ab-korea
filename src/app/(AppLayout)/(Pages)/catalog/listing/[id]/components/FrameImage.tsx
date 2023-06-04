@@ -26,16 +26,23 @@ export default function FrameImage({ bodyImg }: { bodyImg: string | null }) {
         src={bodyImg}
         width={1920}
       />
-      <div className="grid grid-cols-2">
-        {text.map((item) => (
-          <div
-            className="flex items-center"
-            key={item}
-          >
-            <span className="mr-2">{item.charAt(0)}</span>
-            <span>{item.substring(3)}</span>
-          </div>
-        ))}
+      <div className="flex items-center justify-center">
+        <div className="flex flex-col">
+          {text.map((item) => {
+            const [letter, description] = item.split(" – ");
+            return (
+              <div
+                className="flex items-center"
+                key={item}
+              >
+                <div className="w-12 border p-2 text-center font-semibold">
+                  {letter}
+                </div>
+                <div className="w-full border p-2">{description}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
