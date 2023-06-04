@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 function Box({
   children,
@@ -8,7 +8,7 @@ function Box({
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={clsx("w-full", className)}>{children}</div>;
+  return <div className={twMerge("w-full p-4", className)}>{children}</div>;
 }
 
 export default Box;

@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next/types";
 
 import Box from "@/components/Box";
+import Container from "@/components/Container";
 import {
   findByMaker,
   findByMakerAndModel,
@@ -40,12 +41,14 @@ async function Page({ params }: Props) {
     data = findByMakerAndModel(data, maker, model);
   }
   return (
-    <Box className="m-5">
-      <h3 className="rounded-full bg-white text-center">
-        В каталоге предоставлены автомобили с аукциона Lotte. Информация
-        обновляется еженедельно по пятницам.
-      </h3>
-      <div className="grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <Box>
+      <div className="flex flex-col items-center">
+        <h2 className="text-center">Каталог автомобилей с аукциона Lotte</h2>
+        <span className="text-sm opacity-70">
+          (Информация обновляется еженедельно по пятницам.)
+        </span>
+      </div>
+      <div className="mt-5 grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data?.map((item) => (
           <Item
             key={item.id}

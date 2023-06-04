@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
-import useSWR from "swr";
 
 import Select from "@/components/Form/Select";
 import Join from "@/components/Join";
 import Table from "@/components/Table";
+import useCurrency from "@/swr/useCurrency";
 
 function Main() {
-  const { data } = useSWR("/api/exchangeRate");
+  const [data] = useCurrency();
 
   const [currency, setCurrency] = useState<any>(null);
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
