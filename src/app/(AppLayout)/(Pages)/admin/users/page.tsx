@@ -3,26 +3,14 @@ import Image from "next/image";
 import type { Metadata } from "next/types";
 
 import { titles } from "@/config/config";
+import { getUsers } from "@/lib/users";
 
 export const metadata: Metadata = {
   title: titles.adminUsers,
 };
 
-async function getUsers() {
-  const users = await fetch(`${process.env.WEBSITE}/api/admin/users`);
-  return users.json();
-}
-
-type Data = {
-  id: string;
-  email: string;
-  name: string;
-  image: string;
-  role?: string;
-}[];
-
 async function Page() {
-  const data: Data = await getUsers();
+  const data = await getUsers();
   if (!data) return null;
   return (
     <div className="mx-auto my-5 w-[90vw] overflow-x-auto">
@@ -42,16 +30,18 @@ async function Page() {
               <td>{i + 1}</td>
               <td>
                 <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle h-12 w-12">
-                      <Image
-                        alt=""
-                        height={30}
-                        src={image}
-                        width={30}
-                      />
+                  {image ? (
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <Image
+                          alt=""
+                          height={30}
+                          src={image}
+                          width={30}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
                   <div>
                     <div className="font-bold">{name}</div>
                   </div>
@@ -61,7 +51,7 @@ async function Page() {
                 {email}
                 <br />
                 {role ? (
-                  <span className="badge-ghost badge badge-sm uppercase">
+                  <span className="badge badge-ghost badge-sm uppercase">
                     {role}
                   </span>
                 ) : null}

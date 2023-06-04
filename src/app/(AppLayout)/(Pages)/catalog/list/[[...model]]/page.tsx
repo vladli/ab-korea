@@ -2,7 +2,6 @@ import React from "react";
 import type { Metadata } from "next/types";
 
 import Box from "@/components/Box";
-import type { CarData } from "@/config/@types";
 import {
   findByMaker,
   findByMakerAndModel,
@@ -10,19 +9,13 @@ import {
   isValidModel,
 } from "@/config/cars";
 import { titles } from "@/config/config";
+import { getCars } from "@/lib/cars";
 
 import Item from "./components/Card";
 
 export const metadata: Metadata = {
   title: titles.catalog,
 };
-
-async function getItems(): Promise<CarData[]> {
-  const result = await fetch(`${process.env.WEBSITE}/api/catalog/item?`);
-
-  const data = await result.json();
-  return data;
-}
 
 type Props = {
   params: {
@@ -38,7 +31,7 @@ async function Page({ params }: Props) {
     model = params.model[1];
   }
 
-  let data = await getItems();
+  let data = await getCars();
 
   if (maker && !model && isValidMaker(maker)) {
     data = findByMaker(data, maker);

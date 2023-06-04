@@ -8,8 +8,11 @@ import Button from "@/components/Button";
 import Divider from "@/components/Divider";
 import Input from "@/components/Form/Input";
 import Select from "@/components/Form/Select";
+import Textarea from "@/components/Form/Textarea";
 import Join from "@/components/Join";
+import Tabs from "@/components/Navigation/Tabs";
 import { AuctionMark, Maker } from "@/config/cars";
+import { prisma } from "@/lib/prisma";
 
 function Main() {
   const {
@@ -20,12 +23,11 @@ function Main() {
   } = useForm();
 
   const onSubmit = async (data: any) => {
+    "use server";
     data.Images = inputFields;
     data.Price = carPrice;
-    const res = fetch("/api/catalog/item", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
+    const res = prisma.catalog.create({ data });
+
     toast.promise(res, {
       loading: "Добавление в каталог",
       success: () => {
@@ -36,7 +38,7 @@ function Main() {
       error: "Произошла - ошибка",
     });
   };
-
+  const [tabValue, setTabValue] = React.useState(0);
   const [maker, setMaker] = useState("Audi");
   const [inputFields, setInputFields] = useState<any>([{ url: "" }]);
   const [carPrice, setCarPrice] = useState(0);
@@ -46,11 +48,16 @@ function Main() {
     setInputFields(data);
   };
 
+  const handleInputChange = (event: any) => {
+    const inputValue = event.target.value;
+    const urls = inputValue.split("\n").map((url: any) => ({ url }));
+    setInputFields(urls);
+  };
+
   const addFields = () => {
     const object = {
       url: "",
     };
-
     setInputFields([...inputFields, object]);
   };
 
@@ -233,47 +240,70 @@ function Main() {
           required
           type="url"
         />
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">Кузов и салон</span>
-          </label>
-          {inputFields.map(({ url }: any, index: any) => {
-            return (
-              <Join
-                className="mb-1"
-                key={index}
-              >
-                <input
-                  className="join-item input-bordered input w-full focus:outline-offset-0"
-                  name="url"
-                  onChange={(event) => handleFormChange(event, index)}
-                  placeholder="https//:ab-korea.kz/car/car.png"
-                  required
-                  type="url"
-                  value={url}
-                />
-                {index !== 0 ? (
-                  <Button
-                    className="join-item"
-                    color="error"
-                    onClick={() => removeFields(index)}
-                    type="button"
-                  >
-                    X
-                  </Button>
-                ) : null}
-              </Join>
-            );
-          })}
-        </div>
-        <Button
-          fullWidth
-          onClick={addFields}
-          type="button"
-          variant="outline"
+        <Tabs
+          className="mt-2"
+          onChange={setTabValue}
+          value={tabValue}
+          variant="lifted"
         >
-          +
-        </Button>
+          <Tabs.Tab value={0}>По одной ссылке</Tabs.Tab>
+          <Tabs.Tab value={1}>Ссылки в новой строке</Tabs.Tab>
+        </Tabs>
+        {!tabValue ? (
+          <>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Кузов и салон</span>
+              </label>
+              {inputFields.map(({ url }: any, index: any) => {
+                return (
+                  <Join
+                    className="mb-1"
+                    key={index}
+                  >
+                    <input
+                      className="input-bordered input join-item w-full focus:outline-offset-0"
+                      name="url"
+                      onChange={(event) => handleFormChange(event, index)}
+                      placeholder="https//:ab-korea.kz/car/car.png"
+                      required
+                      type="url"
+                      value={url}
+                    />
+                    {index !== 0 ? (
+                      <Button
+                        className="join-item"
+                        color="error"
+                        onClick={() => removeFields(index)}
+                        type="button"
+                      >
+                        X
+                      </Button>
+                    ) : null}
+                  </Join>
+                );
+              })}
+            </div>
+            <Button
+              fullWidth
+              onClick={addFields}
+              type="button"
+              variant="outline"
+            >
+              +
+            </Button>
+          </>
+        ) : (
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Кузов и салон</span>
+            </label>
+            <Textarea
+              onChange={handleInputChange}
+              placeholder="Введите ссылку на картинку (новая картинка в новой строке)"
+            />
+          </div>
+        )}
         <Button
           className="mt-2"
           fullWidth
