@@ -79,7 +79,7 @@ function Main() {
       price: Currency.format(car),
     },
     {
-      title: "Налог",
+      title: "Налог (15%)",
       price: Currency.format(carTax),
     },
     {

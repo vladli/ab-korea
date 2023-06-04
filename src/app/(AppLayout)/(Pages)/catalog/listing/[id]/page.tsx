@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { Metadata } from "next";
 
+import BackButton from "@/components/BackButton";
 import Badge from "@/components/Badge";
 import Box from "@/components/Box";
 import { titles } from "@/config/config";
@@ -62,7 +63,8 @@ async function Page({ params }: Props) {
   ];
 
   return (
-    <Box className="mx-auto my-10 p-4">
+    <Box className="mx-auto my-2 p-4">
+      <BackButton />
       <section className="flex flex-col items-center">
         <div className="flex items-center gap-2">
           <span className="text-4xl">

@@ -72,6 +72,7 @@ export default function PriceTable({ Price }: { Price: number }) {
     },
     {
       title: "Налог",
+      helper: "(15%)",
       price: Currency.format(carTax),
     },
     {

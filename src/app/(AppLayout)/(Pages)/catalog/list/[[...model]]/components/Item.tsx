@@ -10,12 +10,16 @@ import {
 import { Catalog } from "@prisma/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import Badge from "@/components/Badge";
 import Card from "@/components/Cards/Card";
 import Divider from "@/components/Divider";
 
+import AdminMenu from "./AdminMenu";
+
 function Item(props: Catalog) {
+  const { data: session } = useSession();
   const {
     id,
     Maker,
@@ -34,8 +38,8 @@ function Item(props: Catalog) {
     maximumFractionDigits: 0,
   });
   return (
-    <Link href={`/catalog/listing/${id}`}>
-      <Card className="max-w-md hover:cursor-pointer">
+    <Card className="max-w-md hover:cursor-pointer">
+      <Link href={`/catalog/listing/${id}`}>
         <motion.div whileHover={{ opacity: 0.75 }}>
           <Card.Image image={Images[0].url} />
           <Card.Body>
@@ -65,10 +69,15 @@ function Item(props: Catalog) {
                 {Transmission}
               </div>
             </div>
+            {session?.user?.role === "admin" ? (
+              <div className="flex justify-end">
+                <AdminMenu {...props} />
+              </div>
+            ) : null}
           </Card.Body>
         </motion.div>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 }
 

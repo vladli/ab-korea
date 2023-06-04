@@ -11,7 +11,7 @@ import {
 import { titles } from "@/config/config";
 import { getCars } from "@/lib/cars";
 
-import Item from "./components/Card";
+import Item from "./components/Item";
 
 export const metadata: Metadata = {
   title: titles.catalog,
