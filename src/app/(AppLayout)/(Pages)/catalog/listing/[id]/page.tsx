@@ -4,7 +4,6 @@ import { Metadata } from "next";
 
 import BackButton from "@/components/BackButton";
 import Badge from "@/components/Badge";
-import Box from "@/components/Box";
 import Container from "@/components/Container";
 import { titles } from "@/config/config";
 import { getCar } from "@/lib/cars";
@@ -66,9 +65,10 @@ async function Page({ params }: Props) {
   return (
     <Container>
       <BackButton />
+
       <section className="flex flex-col items-center">
-        <div className="flex items-center gap-2">
-          <span className="text-4xl">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-center text-4xl">
             {Maker} {Model}
           </span>
           <Badge
@@ -78,8 +78,8 @@ async function Page({ params }: Props) {
           >
             {Year}
           </Badge>
+          <span className="rounded-full bg-gray-100 p-1 text-sm">{VIN}</span>
         </div>
-        <div className="w-fit rounded-full bg-gray-100 p-1 text-sm">{VIN}</div>
       </section>
       <section className="mx-auto mt-5 flex max-w-xl flex-col items-center lg:max-w-6xl lg:flex-row lg:items-stretch lg:justify-center">
         <div>
@@ -116,8 +116,10 @@ async function Page({ params }: Props) {
         <PriceTable {...{ Price }} />
       </section>
       <section className="mx-auto my-5 flex w-full max-w-xl flex-col lg:max-w-6xl">
-        <div className="mb-5 flex items-center justify-center gap-2">
-          <span className="text-3xl font-normal">Автомобиль имеет оценку</span>
+        <div className="mx-auto mb-5 flex flex-col items-center gap-2">
+          <span className="text-center text-3xl font-normal">
+            Автомобиль имеет оценку
+          </span>
           <Badge
             className="text-white"
             color="secondary"
