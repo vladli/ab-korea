@@ -1,5 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
+
+import "@johanaarstein/dotlottie-player";
 
 const data = [
   {
@@ -38,23 +39,21 @@ function WhyWe() {
         </div>
         <div className="flex flex-row flex-wrap justify-around gap-y-20">
           {data.map(({ icon, text, title }, i) => (
-            <motion.div
+            <div
               className="basis-1/3 px-4 text-center [&:nth-child(n+4)]:basis-1/2"
-              initial={{ opacity: 0 }}
               key={title}
-              viewport={{ once: true }}
-              whileInView={{ opacity: 1 }}
             >
               <div className="flex h-36 justify-center">
                 <dotlottie-player
                   autoplay
                   loop
                   src={`/icons/${icon}.lottie`}
+                  subframe
                 />
               </div>
               <h3 className="uppercase">{title}</h3>
               <p className="text-lg">{text}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

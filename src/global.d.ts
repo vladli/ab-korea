@@ -1,4 +1,4 @@
-declare namespace JSX {
+/* declare namespace JSX {
   interface IntrinsicElements {
     "dotlottie-player": {
       autoplay?: boolean;
@@ -21,3 +21,4 @@ declare namespace JSX {
     };
   }
 }
+ */
