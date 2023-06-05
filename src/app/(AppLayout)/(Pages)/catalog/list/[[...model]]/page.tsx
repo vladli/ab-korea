@@ -2,7 +2,6 @@ import React from "react";
 import type { Metadata } from "next/types";
 
 import Box from "@/components/Box";
-import Container from "@/components/Container";
 import {
   findByMaker,
   findByMakerAndModel,
@@ -13,6 +12,7 @@ import { titles } from "@/config/config";
 import { getCars } from "@/lib/cars";
 
 import Item from "./components/Item";
+import Pagination from "./components/Pagination";
 
 export const metadata: Metadata = {
   title: titles.catalog,
@@ -20,11 +20,16 @@ export const metadata: Metadata = {
 
 type Props = {
   params: {
-    model: string[];
+    model?: string[];
+  };
+  searchParams: {
+    page?: number;
   };
 };
 
-async function Page({ params }: Props) {
+async function Page({ params, searchParams }: Props) {
+  const { page = 1 } = searchParams;
+
   let maker: string | undefined;
   let model: string | undefined;
   if (params.model && Array.isArray(params.model)) {
@@ -33,13 +38,17 @@ async function Page({ params }: Props) {
   }
 
   let data = await getCars();
-
   if (maker && !model && isValidMaker(maker)) {
     data = findByMaker(data, maker);
   }
   if (maker && model && isValidModel(maker, model)) {
     data = findByMakerAndModel(data, maker, model);
   }
+
+  const itemsPerPage = 8;
+  const offset = (page - 1) * itemsPerPage;
+  const currentItems = data.slice(offset, offset + itemsPerPage);
+
   return (
     <Box>
       <div className="flex flex-col items-center">
@@ -49,13 +58,19 @@ async function Page({ params }: Props) {
         </span>
       </div>
       <div className="mt-5 grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {data?.map((item) => (
+        {currentItems?.map((item) => (
           <Item
             key={item.id}
             {...item}
           />
         ))}
       </div>
+      <Pagination
+        basePath="/catalog/list"
+        currentPage={Number(page)}
+        pageSize={itemsPerPage}
+        totalCount={data.length}
+      />
     </Box>
   );
 }
