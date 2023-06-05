@@ -92,7 +92,7 @@ async function Page({ params }: Props) {
               <React.Fragment key={title}>
                 <div
                   className={clsx(
-                    "col-span-2 flex items-center rounded-l-md pl-1",
+                    "col-span-2 flex items-center rounded-l-md pl-2",
                     {
                       "bg-white": i % 2 === 0,
                     }

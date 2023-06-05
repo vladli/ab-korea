@@ -55,6 +55,7 @@ function Page() {
       <div className="p-5">
         {faq.map(({ title, Component }) => (
           <Collapse
+            checkbox
             className="rounded-box m-2 border border-base-300 bg-white"
             icon="arrow"
             key={title}

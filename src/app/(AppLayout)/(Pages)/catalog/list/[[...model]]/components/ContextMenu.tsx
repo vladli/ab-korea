@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 import { Item, Menu } from "react-contexify";
 import { toast } from "react-hot-toast";
+import { MdEditNote, MdOutlineDeleteForever } from "react-icons/md";
 import { Catalog } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
@@ -33,9 +34,23 @@ export default function ContextMenu(props: Catalog) {
     <>
       <Menu id={id}>
         <Item
+          id="edit"
+          onClick={handleItemClick}
+        >
+          <MdEditNote
+            className="mr-2"
+            color="#00BFFF"
+          />
+          Редактировать
+        </Item>
+        <Item
           id="delete"
           onClick={handleItemClick}
         >
+          <MdOutlineDeleteForever
+            className="mr-2"
+            color="red"
+          />
           Удалить
         </Item>
       </Menu>

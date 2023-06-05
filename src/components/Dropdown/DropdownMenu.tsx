@@ -9,7 +9,13 @@ const DropdownMenu = ({ className, ...props }: DropdownMenuProps) => {
     className
   );
 
-  return <ul {...props} tabIndex={0} className={classes} />;
+  return (
+    <ul
+      {...props}
+      className={classes}
+      tabIndex={0}
+    />
+  );
 };
 
 export default DropdownMenu;

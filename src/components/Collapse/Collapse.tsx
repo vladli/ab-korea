@@ -1,5 +1,5 @@
 "use client";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -54,14 +54,14 @@ const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       setIsChecked(checkboxRef.current?.checked);
     };
 
-    // Handle blur events, specifically handling open/close for non checkbox types
+    // Handle blur events, specifically handling open/close for non-checkbox types
     const handleBlur = (event: React.FocusEvent<HTMLDivElement, Element>) => {
       if (!checkbox && onToggle) onToggle();
       if (!checkbox && onClose) onClose();
       if (props.onBlur) props.onBlur(event);
     };
 
-    // Handle focus events, specifically handling open/close for non checkbox types
+    // Handle focus events, specifically handling open/close for non-checkbox types
     const handleFocus = (event: React.FocusEvent<HTMLDivElement, Element>) => {
       if (!checkbox && onToggle) onToggle();
       if (!checkbox && onOpen) onOpen();

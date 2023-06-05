@@ -2,8 +2,8 @@ import React, { forwardRef, ReactNode } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import DropdownMenu from "./DropdownMenu";
 import DropdownItem from "./DropdownItem";
+import DropdownMenu from "./DropdownMenu";
 import DropdownToggle from "./DropdownToggle";
 
 export type DropdownProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -30,7 +30,12 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       })
     );
     return (
-      <div role="listbox" {...props} ref={ref} className={classes}>
+      <div
+        role="listbox"
+        {...props}
+        className={classes}
+        ref={ref}
+      >
         {children}
         <ul className="dropdown-content">{item}</ul>
       </div>

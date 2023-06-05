@@ -10,16 +10,18 @@ import {
 import { Catalog } from "@prisma/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 
 import Badge from "@/components/Badge";
 import Card from "@/components/Cards/Card";
 import Divider from "@/components/Divider";
+import useIsAdmin from "@/hooks/useIsAdmin";
+import useIsMobile from "@/hooks/useIsMobile";
 
 import ContextMenu from "./ContextMenu";
 
 function Items(props: Catalog) {
-  const { data: session } = useSession();
+  const isAdmin = useIsAdmin();
+  const isMobile = useIsMobile();
   const {
     id,
     Maker,
@@ -50,8 +52,8 @@ function Items(props: Catalog) {
       <Card className="w-full max-w-md hover:cursor-pointer">
         <Link href={`/catalog/listing/${id}`}>
           <motion.div
-            onContextMenu={displayMenu}
-            whileHover={{ opacity: 0.75 }}
+            onContextMenu={isAdmin ? displayMenu : null}
+            whileHover={!isMobile ? { opacity: 0.75 } : {}}
           >
             <Card.Image image={Images[0].url} />
             <Card.Body>

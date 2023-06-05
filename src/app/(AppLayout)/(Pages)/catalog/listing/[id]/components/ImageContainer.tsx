@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import FsLightbox from "fslightbox-react";
 import Image from "next/image";
 
+import useIsMobile from "@/hooks/useIsMobile";
+
 const imageSources = [
   "https://imgmk.lotteautoauction.net/AU_CAR_IMG_ORG_HP/202305/KS20230504001623.JPG",
   "https://imgmk.lotteautoauction.net/AU_CAR_IMG_ORG_HP/202305/KS20230504001623.JPG",
@@ -11,16 +13,17 @@ const imageSources = [
 
 export default function ImageContainer({ Images }: any) {
   const [toggler, setToggler] = useState(false);
+  const isMobile = useIsMobile();
   return (
     <>
       <motion.div
-        className="cursor-pointer select-none"
+        className="cursor-pointer select-none object-fill"
         onClick={() => setToggler(!toggler)}
-        whileHover={{ opacity: 0.8 }}
+        whileHover={!isMobile ? { opacity: 0.8 } : {}}
       >
         <Image
           alt=""
-          className="rounded-t-box lg:rounded-l-box lg:rounded-r-none"
+          className="rounded-t-box object-cover lg:rounded-l-box lg:rounded-r-none"
           height={1080}
           src={Images[0].url}
           width={1920}
