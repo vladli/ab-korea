@@ -67,7 +67,7 @@ async function Page({ params }: Props) {
   return (
     <Container className="relative">
       <BackButton />
-      <div className="absolute right-10 flex h-20 w-20">
+      <div className="absolute right-10 hidden h-20 w-20 lg:flex">
         <Image
           alt=""
           className="h-full w-full object-contain"
@@ -78,6 +78,15 @@ async function Page({ params }: Props) {
       </div>
       <section className="flex flex-col items-center">
         <div className="flex flex-col items-center gap-2">
+          <div className="h-16 w-16 lg:hidden">
+            <Image
+              alt=""
+              className="mask mask-hexagon-2 h-full w-full bg-gray-100 object-contain p-2"
+              height={128}
+              src={`/carLogos/${Maker}.png`}
+              width={128}
+            />
+          </div>
           <span className="text-center text-4xl">
             {Maker} {Model}
           </span>
@@ -88,7 +97,7 @@ async function Page({ params }: Props) {
           >
             {Year}
           </Badge>
-          <span className="rounded-full bg-gray-100 p-1 text-sm">{VIN}</span>
+          <span className="rounded-full bg-gray-100 p-2 text-sm">{VIN}</span>
         </div>
       </section>
       <section className="mx-auto mt-5 flex max-w-xl flex-col items-center lg:max-w-6xl lg:flex-row lg:items-stretch lg:justify-center">

@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { getServerSession } from "next-auth";
 
 import { authOptions } from "./api/auth/[...nextauth]/authOptions";
@@ -22,6 +23,9 @@ export default async function RootLayout({
       data-theme="light"
       lang="en"
     >
+      <head>
+        <Script src="https://unpkg.com/@johanaarstein/dotlottie-player@latest/dist/index.js" />
+      </head>
       <body>
         <Providers session={session}>{children}</Providers>
       </body>

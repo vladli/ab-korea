@@ -104,6 +104,7 @@ function CarCheck() {
                 autoplay
                 loop
                 src={`/car_check.lottie`}
+                subframe
               />
             </div>
           </div>

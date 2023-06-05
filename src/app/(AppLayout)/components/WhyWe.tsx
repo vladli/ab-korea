@@ -1,7 +1,5 @@
 import React from "react";
 
-import "@johanaarstein/dotlottie-player";
-
 const data = [
   {
     icon: "money",
