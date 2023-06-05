@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import BackButton from "@/components/BackButton";
 import Badge from "@/components/Badge";
 import Container from "@/components/Container";
+import Divider from "@/components/Divider";
 import { titles } from "@/config/config";
 import { getCar } from "@/lib/cars";
 
@@ -85,8 +86,8 @@ async function Page({ params }: Props) {
         <div>
           <ImageContainer {...{ Images }} />
         </div>
-        <div className="rounded-b-box flex w-full flex-col gap-1 bg-[#f5f5f5] p-5 font-medium lg:rounded-r-box lg:rounded-l-none">
-          <div className="grid h-full grid-cols-3">
+        <div className="rounded-b-box w-full gap-1 bg-[#f5f5f5] p-5 font-medium lg:rounded-r-box lg:rounded-l-none">
+          <div className="my-auto grid h-full grid-cols-3">
             {list.map(({ title, value, helper }: any, i: number) => (
               <React.Fragment key={title}>
                 <div
@@ -112,9 +113,11 @@ async function Page({ params }: Props) {
           </div>
         </div>
       </section>
+      <Divider />
       <section>
         <PriceTable {...{ Price }} />
       </section>
+      <Divider />
       <section className="mx-auto my-5 flex w-full max-w-xl flex-col lg:max-w-6xl">
         <div className="mx-auto mb-5 flex flex-col items-center gap-2">
           <span className="text-center text-3xl font-normal">
@@ -130,6 +133,7 @@ async function Page({ params }: Props) {
         </div>
         <CarGrade {...{ AuctionMark }} />
       </section>
+      <Divider />
       <section className="mx-auto my-5 flex w-full max-w-xl flex-col items-center lg:max-w-6xl">
         <span className="text-3xl font-normal">Состояние кузова</span>
         <FrameImage {...{ bodyImg }} />

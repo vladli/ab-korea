@@ -10,7 +10,7 @@ export default function BackButton() {
     <motion.div
       className="flex w-fit cursor-pointer items-center gap-2"
       onClick={() => router.back()}
-      whileHover={{ opacity: 0.5 }}
+      whileHover={{ opacity: 0.5, scale: 1.05 }}
     >
       <MdArrowBack />
       <span>Назад</span>

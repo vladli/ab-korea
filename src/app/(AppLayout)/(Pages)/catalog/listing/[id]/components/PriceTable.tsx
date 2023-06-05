@@ -13,8 +13,12 @@ export default function PriceTable({ Price }: { Price: number }) {
 
   const [total, setTotal] = useState(0);
 
-  const car = convertCurrency(Price, "KRW", selectedCurrency);
-  const carTax = convertCurrency(Price * 0.15, "KRW", selectedCurrency);
+  const car = convertCurrency(Price + Price * 0.2, "KRW", selectedCurrency);
+  const carTax = convertCurrency(
+    (Price + Price * 0.2) * 0.15,
+    "KRW",
+    selectedCurrency
+  );
   const abFee = convertCurrency(300, "USD", selectedCurrency);
   const auctionFee = convertCurrency(400, "USD", selectedCurrency);
   const skDelivery = convertCurrency(190, "USD", selectedCurrency);
@@ -66,7 +70,7 @@ export default function PriceTable({ Price }: { Price: number }) {
   }
   const prices = [
     {
-      title: "Примерная ставка на аукционе",
+      title: "Примерная ставка на аукционе (+20%)",
       helper: "(может быть меньше или больше)",
       price: Currency.format(car),
     },
@@ -111,9 +115,9 @@ export default function PriceTable({ Price }: { Price: number }) {
           ))}
         </Table.Body>
       </Table>
-      <div>
+      <div className="text-center">
         Стоимость на автомобиль указана как начальная ставка аукциона +20%
-        (средний процент повышения ставок на торгах).
+        (средний процент повышения ставок на торгах)
       </div>
       <div className="form-control mt-2 w-full max-w-xl">
         <label className="label">
@@ -145,7 +149,7 @@ export default function PriceTable({ Price }: { Price: number }) {
           <div>Обновление: {format_time(currency.time)}</div>
         </div>
       ) : null}
-      <div>
+      <div className="text-center">
         *Все цены указаны - приблизительно, конечная цена может отличаться.
       </div>
     </div>
