@@ -198,7 +198,7 @@ function Main() {
             required
             {...register("FuelType")}
           >
-            {["Бензин", "Дизель", "Электрокар"].map((key) => (
+            {["Бензин", "Дизель", "Электрокар", "LPG", "Гибрид"].map((key) => (
               <Select.Option key={key}>{key}</Select.Option>
             ))}
           </Select>

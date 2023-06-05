@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { Metadata } from "next";
+import Image from "next/image";
 
 import BackButton from "@/components/BackButton";
 import Badge from "@/components/Badge";
@@ -64,9 +65,17 @@ async function Page({ params }: Props) {
   ];
 
   return (
-    <Container>
+    <Container className="relative">
       <BackButton />
-
+      <div className="absolute right-10 flex h-20 w-20">
+        <Image
+          alt=""
+          className="h-full w-full object-contain"
+          height={128}
+          src={`/carLogos/${Maker}.png`}
+          width={128}
+        />
+      </div>
       <section className="flex flex-col items-center">
         <div className="flex flex-col items-center gap-2">
           <span className="text-center text-4xl">

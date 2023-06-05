@@ -9,6 +9,7 @@ import {
 } from "react-icons/gi";
 import { Catalog } from "@prisma/client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 import Badge from "@/components/Badge";
@@ -67,6 +68,15 @@ function Items(props: Catalog) {
                   {Year}
                 </Badge>
               </Card.Header>
+              <div className="absolute right-5 flex h-16 w-16 items-center">
+                <Image
+                  alt=""
+                  className="h-full w-full object-contain"
+                  height={128}
+                  src={`/carLogos/${Maker}.png`}
+                  width={128}
+                />
+              </div>
               <p className="text-xl font-semibold">{Currency.format(Price)}</p>
               <Divider />
               <div className="flex w-full justify-between">
