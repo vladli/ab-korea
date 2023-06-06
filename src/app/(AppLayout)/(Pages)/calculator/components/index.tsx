@@ -103,7 +103,6 @@ function Main() {
             />
             <Select
               components={{ Option: FlagOption }}
-              isSearchable={false}
               onChange={(e) =>
                 setCarCurrency({ value: e!.value, label: e!.label })
               }
@@ -129,7 +128,6 @@ function Main() {
           </label>
           <Select
             components={{ Option: FlagOption }}
-            isSearchable={false}
             onChange={(e) =>
               setSelectedCurrency({ value: e!.value, label: e!.label })
             }

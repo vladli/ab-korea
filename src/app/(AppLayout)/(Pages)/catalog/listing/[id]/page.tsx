@@ -70,7 +70,7 @@ async function Page({ params }: Props) {
       <div className="absolute right-10 hidden h-20 w-20 lg:flex">
         <Image
           alt=""
-          className="h-full w-full object-contain"
+          className="h-full w-full select-none object-contain"
           height={128}
           src={`/carLogos/${Maker}.svg`}
           width={128}
@@ -81,7 +81,7 @@ async function Page({ params }: Props) {
           <div className="h-16 w-16 lg:hidden">
             <Image
               alt=""
-              className="mask mask-hexagon-2 h-full w-full bg-gray-100 object-contain p-2"
+              className="h-full w-full select-none object-contain"
               height={128}
               src={`/carLogos/${Maker}.svg`}
               width={128}
@@ -104,7 +104,7 @@ async function Page({ params }: Props) {
         <div className="w-full">
           <ImageContainer {...{ Images }} />
         </div>
-        <div className="rounded-b-box w-full gap-1 bg-[#f5f5f5] p-5 font-medium lg:rounded-r-box lg:w-[70%] lg:rounded-l-none">
+        <div className="rounded-b-box w-full gap-1 border border-l-0 p-5 font-medium lg:rounded-r-box lg:w-[70%] lg:rounded-l-none">
           <div className="my-auto grid h-full grid-cols-3">
             {list.map(({ title, value, helper }: any, i: number) => (
               <React.Fragment key={title}>
@@ -112,15 +112,15 @@ async function Page({ params }: Props) {
                   className={clsx(
                     "col-span-2 flex items-center rounded-l-md pl-2",
                     {
-                      " bg-white": i % 2 === 0,
+                      "border border-r-0": i % 2 === 0,
                     }
                   )}
                 >
                   {title}
                 </div>
                 <div
-                  className={clsx("flex items-center rounded-r-md", {
-                    "bg-white": i % 2 === 0,
+                  className={clsx("flex items-center rounded-r-md ", {
+                    "border border-l-0": i % 2 === 0,
                   })}
                 >
                   {value}

@@ -110,7 +110,6 @@ export default function PriceTable({ Price }: { Price: number }) {
         </label>
         <Select
           components={{ Option: FlagOption }}
-          isSearchable={false}
           onChange={(e) =>
             setSelectedCurrency({ value: e!.value, label: e!.label })
           }

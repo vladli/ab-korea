@@ -204,7 +204,6 @@ function Main() {
             control={control}
             defaultValue={{ value: "Автомат", label: "Автомат" }}
             formControl
-            isSearchable
             label="Трансмиссия"
             name="Transmission"
             options={["Автомат", "Механика"].map((key) => ({
@@ -217,7 +216,6 @@ function Main() {
             control={control}
             defaultValue={{ value: "Бензин", label: "Бензин" }}
             formControl
-            isSearchable
             label="Тип топлива"
             name="FuelType"
             options={["Бензин", "Дизель", "Электрокар", "LPG", "Гибрид"].map(

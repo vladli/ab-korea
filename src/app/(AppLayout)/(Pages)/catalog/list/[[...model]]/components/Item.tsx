@@ -71,7 +71,7 @@ function Items(props: Catalog) {
               <div className="absolute right-5 flex h-16 w-16 items-center">
                 <Image
                   alt=""
-                  className="h-full w-full object-contain"
+                  className="h-full w-full select-none object-contain"
                   height={128}
                   src={`/carLogos/${Maker}.svg`}
                   width={128}

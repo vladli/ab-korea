@@ -30,8 +30,8 @@ function SelectInner<
     required,
     name,
     defaultValue,
-    placeholder = "Варианты...",
-
+    placeholder = "Выбрать...",
+    isSearchable = false,
     ...rest
   } = props;
 
@@ -51,6 +51,7 @@ function SelectInner<
           render={({ field }) => (
             <ReactSelect
               instanceId={name}
+              isSearchable={isSearchable}
               placeholder={placeholder}
               required={required}
               {...field}
