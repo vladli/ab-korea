@@ -72,7 +72,7 @@ async function Page({ params }: Props) {
           alt=""
           className="h-full w-full object-contain"
           height={128}
-          src={`/carLogos/${Maker}.png`}
+          src={`/carLogos/${Maker}.svg`}
           width={128}
         />
       </div>
@@ -83,7 +83,7 @@ async function Page({ params }: Props) {
               alt=""
               className="mask mask-hexagon-2 h-full w-full bg-gray-100 object-contain p-2"
               height={128}
-              src={`/carLogos/${Maker}.png`}
+              src={`/carLogos/${Maker}.svg`}
               width={128}
             />
           </div>

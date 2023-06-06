@@ -73,7 +73,7 @@ function Items(props: Catalog) {
                   alt=""
                   className="h-full w-full object-contain"
                   height={128}
-                  src={`/carLogos/${Maker}.png`}
+                  src={`/carLogos/${Maker}.svg`}
                   width={128}
                 />
               </div>
