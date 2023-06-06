@@ -45,4 +45,3 @@ declare namespace JSX {
     };
   }
 }
-import "@johanaarstein/dotlottie-player";
