@@ -55,7 +55,7 @@ async function Page({ params }: Props) {
     {
       title: "Объем двигателя",
       value: Engine,
-      helper: " CC",
+      helper: " cc",
     },
     { title: "Топливо", value: FuelType },
     { title: "Трансмиссия", value: Transmission },
