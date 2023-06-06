@@ -2,26 +2,34 @@
 import React, { useEffect, useState } from "react";
 
 import CurrencyBlock from "@/components/CurrencyBlock";
-import Select from "@/components/Form/Select";
+import Select, { FlagOption } from "@/components/Form/Select";
 import Table from "@/components/Table";
+import { currencies } from "@/config/config";
 import useCurrency from "@/hooks/useCurrency";
 
 export default function PriceTable({ Price }: { Price: number }) {
   const currency = useCurrency();
 
-  const [selectedCurrency, setSelectedCurrency] = useState("KRW");
+  const [selectedCurrency, setSelectedCurrency] = useState({
+    value: currencies[0].value,
+    label: currencies[0].label,
+  });
 
   const [total, setTotal] = useState(0);
 
-  const car = convertCurrency(Price + Price * 0.2, "KRW", selectedCurrency);
+  const car = convertCurrency(
+    Price + Price * 0.2,
+    "KRW",
+    selectedCurrency.value
+  );
   const carTax = convertCurrency(
     (Price + Price * 0.2) * 0.15,
     "KRW",
-    selectedCurrency
+    selectedCurrency.value
   );
-  const abFee = convertCurrency(300, "USD", selectedCurrency);
-  const auctionFee = convertCurrency(400, "USD", selectedCurrency);
-  const skDelivery = convertCurrency(190, "USD", selectedCurrency);
+  const abFee = convertCurrency(300, "USD", selectedCurrency.value);
+  const auctionFee = convertCurrency(400, "USD", selectedCurrency.value);
+  const skDelivery = convertCurrency(190, "USD", selectedCurrency.value);
 
   useEffect(() => {
     setTotal(car + carTax + abFee + auctionFee + skDelivery);
@@ -29,7 +37,7 @@ export default function PriceTable({ Price }: { Price: number }) {
 
   const Currency = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: selectedCurrency,
+    currency: selectedCurrency.value,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
@@ -101,13 +109,18 @@ export default function PriceTable({ Price }: { Price: number }) {
           <span className="label-text">Выберите расчетную валюту</span>
         </label>
         <Select
-          onChange={(e) => setSelectedCurrency(e.target.value)}
+          components={{ Option: FlagOption }}
+          isSearchable={false}
+          onChange={(e) =>
+            setSelectedCurrency({ value: e!.value, label: e!.label })
+          }
+          options={currencies.map(({ value, label, icon }) => ({
+            value: value,
+            label: label,
+            icon: icon,
+          }))}
           value={selectedCurrency}
-        >
-          <Select.Option value="KRW">KRW</Select.Option>
-          <Select.Option value="KZT">KZT</Select.Option>
-          <Select.Option value="USD">USD</Select.Option>
-        </Select>
+        />
       </div>
 
       <CurrencyBlock />

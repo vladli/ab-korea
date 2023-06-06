@@ -100,11 +100,11 @@ async function Page({ params }: Props) {
           <span className="rounded-full bg-gray-100 p-2 text-sm">{VIN}</span>
         </div>
       </section>
-      <section className="mx-auto mt-5 flex max-w-xl flex-col items-center lg:max-w-6xl lg:flex-row lg:items-stretch lg:justify-center">
-        <div>
+      <section className="mx-auto mt-5 flex w-full max-w-xl flex-col items-center lg:max-w-6xl lg:flex-row lg:items-stretch lg:justify-center">
+        <div className="w-full">
           <ImageContainer {...{ Images }} />
         </div>
-        <div className="rounded-b-box w-full gap-1 bg-[#f5f5f5] p-5 font-medium lg:rounded-r-box lg:rounded-l-none">
+        <div className="rounded-b-box w-full gap-1 bg-[#f5f5f5] p-5 font-medium lg:rounded-r-box lg:w-[70%] lg:rounded-l-none">
           <div className="my-auto grid h-full grid-cols-3">
             {list.map(({ title, value, helper }: any, i: number) => (
               <React.Fragment key={title}>
@@ -112,7 +112,7 @@ async function Page({ params }: Props) {
                   className={clsx(
                     "col-span-2 flex items-center rounded-l-md pl-2",
                     {
-                      "bg-white": i % 2 === 0,
+                      " bg-white": i % 2 === 0,
                     }
                   )}
                 >

@@ -13,6 +13,7 @@ import { getCars } from "@/lib/cars";
 
 import Item from "./components/Item";
 import Pagination from "./components/Pagination";
+import SearchFilter from "./components/SearchFilter";
 
 export const metadata: Metadata = {
   title: titles.catalog,
@@ -57,14 +58,17 @@ async function Page({ params, searchParams }: Props) {
           (Информация обновляется еженедельно по пятницам)
         </span>
       </div>
-      <div className="mt-5 grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <section className="rounded-box h-48 bg-gray-100">
+        <SearchFilter />
+      </section>
+      <section className="mt-5 grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 xl:grid-cols-4">
         {currentItems?.map((item) => (
           <Item
             key={item.id}
             {...item}
           />
         ))}
-      </div>
+      </section>
       <Pagination
         basePath="/catalog/list"
         currentPage={Number(page)}

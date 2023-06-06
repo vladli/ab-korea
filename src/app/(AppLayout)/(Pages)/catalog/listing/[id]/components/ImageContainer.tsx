@@ -17,16 +17,17 @@ export default function ImageContainer({ Images }: any) {
   return (
     <>
       <motion.div
-        className="cursor-pointer select-none object-fill"
+        className="h-full w-full cursor-pointer select-none"
         onClick={() => setToggler(!toggler)}
         whileHover={!isMobile ? { opacity: 0.8 } : {}}
       >
         <Image
           alt=""
-          className="rounded-t-box object-cover lg:rounded-l-box lg:rounded-r-none"
-          height={1080}
+          className="rounded-t-box h-full w-full object-cover lg:rounded-l-box lg:rounded-r-none"
+          height={600}
+          priority
           src={Images[0].url}
-          width={1920}
+          width={800}
         />
       </motion.div>
       <FsLightbox

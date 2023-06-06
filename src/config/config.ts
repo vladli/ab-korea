@@ -15,3 +15,9 @@ export const titles = {
   adminUsers: "Пользователи | " + adminTitle,
   adminAddItem: "Добавить авто | " + adminTitle,
 };
+
+export const currencies = [
+  { value: "KRW", label: "Корейская вона", icon: "🇰🇷" },
+  { value: "KZT", label: "Тенге", icon: "🇰🇿" },
+  { value: "USD", label: "Доллар", icon: "🇺🇸" },
+];

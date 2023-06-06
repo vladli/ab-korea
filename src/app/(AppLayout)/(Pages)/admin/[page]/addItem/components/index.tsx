@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -16,6 +16,7 @@ import { createCar } from "@/lib/cars";
 
 function Main() {
   const {
+    control,
     register,
     handleSubmit,
     reset,
@@ -23,6 +24,15 @@ function Main() {
   } = useForm();
 
   const onSubmit = async (data: any) => {
+    //Select
+    data.AuctionMark = data.AuctionMark.value;
+    data.FuelType = data.FuelType.value;
+    data.Maker = maker.value;
+    data.Model = data.Model.value;
+    data.Transmission = data.Transmission.value;
+    data.Year = data.Year.value;
+    data.WheelDrive = data.WheelDrive.value;
+    //
     data.Images = inputFields;
     data.Price = carPrice;
     data.Year = Number(data.Year);
@@ -36,13 +46,22 @@ function Main() {
         setInputFields([{ url: "" }]);
         return "Автомобиль - добавлен";
       },
-      error: "Произошла - ошибка",
+      error: (err) => {
+        console.log(err);
+        return "Произошла - ошибка";
+      },
     });
   };
   const [tabValue, setTabValue] = React.useState(0);
-  const [maker, setMaker] = useState("Audi");
+  const [maker, setMaker] = useState({ value: "Audi", label: "Audi" });
+
   const [inputFields, setInputFields] = useState<any>([{ url: "" }]);
   const [carPrice, setCarPrice] = useState(0);
+
+  useEffect(() => {
+    reset({ Model: null, Year: null });
+  }, [maker]);
+
   const handleFormChange = (event: any, index: any) => {
     const data = [...inputFields];
     data[index][event.target.name] = event.target.value;
@@ -87,49 +106,47 @@ function Main() {
       >
         <div className="flex w-full gap-2">
           <Select
+            control={control}
+            defaultValue={{ value: maker.value, label: maker.label }}
             formControl
+            isSearchable
             label="Марка"
+            name="Maker"
+            onChange={(e) => {
+              setMaker({ value: e!.value, label: e!.label });
+            }}
+            options={Object.keys(Maker).map((key) => ({
+              value: key,
+              label: key,
+            }))}
             required
-            {...register("Maker")}
-            onChange={(e) => setMaker(e.target.value)}
-          >
-            {Object.keys(Maker).map((key) => (
-              <Select.Option key={key}>{key}</Select.Option>
-            ))}
-          </Select>
-
+            value={maker}
+          />
           <Select
+            control={control}
             formControl
+            isSearchable
             label="Модель"
+            name="Model"
+            options={Maker[maker.value as keyof typeof Maker].map((key) => ({
+              value: key,
+              label: key,
+            }))}
             required
-            {...register("Model", { required: true })}
-            defaultValue=""
-          >
-            <Select.Option
-              disabled
-              value=""
-            ></Select.Option>
-            {Maker[maker as keyof typeof Maker].map((key) => (
-              <Select.Option
-                key={key}
-                value={key}
-              >
-                {key}
-              </Select.Option>
-            ))}
-          </Select>
-
-          <Select
-            formControl
-            label="Год"
-            required
-            {...register("Year")}
-          >
-            {generateArrayOfYears().map((key) => (
-              <Select.Option key={key}>{key}</Select.Option>
-            ))}
-          </Select>
+          />
         </div>
+        <Select
+          control={control}
+          formControl
+          isSearchable
+          label="Год"
+          name="Year"
+          options={generateArrayOfYears().map((key) => ({
+            value: key,
+            label: key,
+          }))}
+          required
+        />
         <Input
           label="VIN номер"
           name="VIN"
@@ -172,36 +189,45 @@ function Main() {
         />
         <div className="flex w-full flex-col gap-2 md:flex-row">
           <Select
+            control={control}
+            defaultValue={{ value: "AWD", label: "AWD" }}
             formControl
             label="Привод"
+            name="WheelDrive"
+            options={["AWD", "FWD", "RWD"].map((key) => ({
+              value: key,
+              label: key,
+            }))}
             required
-            {...register("WheelDrive")}
-          >
-            {["AWD", "FWD", "RWD"].map((key) => (
-              <Select.Option key={key}>{key}</Select.Option>
-            ))}
-          </Select>
-
+          />
           <Select
+            control={control}
+            defaultValue={{ value: "Автомат", label: "Автомат" }}
             formControl
+            isSearchable
             label="Трансмиссия"
+            name="Transmission"
+            options={["Автомат", "Механика"].map((key) => ({
+              value: key,
+              label: key,
+            }))}
             required
-            {...register("Transmission")}
-          >
-            {["Автомат", "Механика"].map((key) => (
-              <Select.Option key={key}>{key}</Select.Option>
-            ))}
-          </Select>
+          />
           <Select
+            control={control}
+            defaultValue={{ value: "Бензин", label: "Бензин" }}
             formControl
+            isSearchable
             label="Тип топлива"
+            name="FuelType"
+            options={["Бензин", "Дизель", "Электрокар", "LPG", "Гибрид"].map(
+              (key) => ({
+                value: key,
+                label: key,
+              })
+            )}
             required
-            {...register("FuelType")}
-          >
-            {["Бензин", "Дизель", "Электрокар", "LPG", "Гибрид"].map((key) => (
-              <Select.Option key={key}>{key}</Select.Option>
-            ))}
-          </Select>
+          />
         </div>
         <div className="flex w-full flex-col gap-2 md:flex-row">
           <Input
@@ -222,15 +248,17 @@ function Main() {
           />
         </div>
         <Select
+          control={control}
+          defaultValue={{ value: AuctionMark[0], label: AuctionMark[0] }}
           formControl
           label="Оценка аукциона"
+          name="AuctionMark"
+          options={AuctionMark.map((key) => ({
+            value: key,
+            label: key,
+          }))}
           required
-          {...register("AuctionMark")}
-        >
-          {AuctionMark.map((key) => (
-            <Select.Option key={key}>{key}</Select.Option>
-          ))}
-        </Select>
+        />
         <Divider />
         <h3>Картинки</h3>
         <Input

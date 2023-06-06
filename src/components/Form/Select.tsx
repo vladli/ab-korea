@@ -1,50 +1,41 @@
-import React, { ReactElement } from "react";
-import clsx from "clsx";
+"use client";
+import React from "react";
+import { Controller } from "react-hook-form";
+import ReactSelect, { GroupBase, Props } from "react-select";
+import { components } from "react-select";
 import { twMerge } from "tailwind-merge";
 
-import { ComponentColor, ComponentSize } from "@/components/@types";
+declare module "react-select/dist/declarations/src/Select" {
+  export interface Props<
+    Option,
+    IsMulti extends boolean,
+    Group extends GroupBase<Option>
+  > {
+    label?: string;
+    formControl?: boolean;
+    control?: any;
+  }
+}
 
-export type SelectProps = Omit<
-  React.SelectHTMLAttributes<HTMLSelectElement>,
-  "size" | "color"
-> & {
-  children: any;
-  size?: ComponentSize;
-  color?: ComponentColor;
-  bordered?: boolean;
-  borderOffset?: boolean;
-  label?: string;
-  required?: boolean;
-  formControl?: boolean;
-};
-
-const SelectInner = (
-  props: SelectProps,
-  ref: React.ForwardedRef<HTMLSelectElement>
-): JSX.Element => {
+function SelectInner<
+  Option,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(props: Props<Option, IsMulti, Group>) {
   const {
-    children,
-    size,
-    color,
-    bordered = true,
-    borderOffset,
     className,
     label,
-    required,
     formControl = false,
+    control,
+    required,
+    name,
+    defaultValue,
+    placeholder = "Варианты...",
+
     ...rest
   } = props;
 
-  const classes = twMerge(
-    "select focus:outline-none",
-    className,
-    clsx({
-      [`select-${size}`]: size,
-      [`select-${color}`]: color,
-      [`focus:outline-offset-0`]: !borderOffset,
-      "select-bordered": bordered,
-    })
-  );
+  const classes = twMerge(className);
   if (formControl) {
     return (
       <div className="form-control w-full">
@@ -53,35 +44,40 @@ const SelectInner = (
             {label} {required ? <span className="text-red-500">*</span> : null}
           </span>
         </label>
-        <select
-          {...rest}
-          className={classes}
-          ref={ref}
-        >
-          {children}
-        </select>
+        <Controller
+          control={control}
+          defaultValue={defaultValue}
+          name={name!}
+          render={({ field }) => (
+            <ReactSelect
+              instanceId={name}
+              placeholder={placeholder}
+              required={required}
+              {...field}
+              {...rest}
+            />
+          )}
+        />
       </div>
     );
   }
   return (
-    <select
+    <ReactSelect
       {...rest}
       className={classes}
-      ref={ref}
-    >
-      {children}
-    </select>
+      placeholder={placeholder}
+      required={required}
+    />
   );
-};
+}
+const { Option } = components;
+export const FlagOption = (props: any) => (
+  <Option {...props}>
+    <div className="flex items-center gap-1">
+      <span>{props.data.icon}</span>
+      <span>{props.data.label}</span>
+    </div>
+  </Option>
+);
 
-export type SelectOptionProps = React.OptionHTMLAttributes<HTMLOptionElement>;
-
-const SelectOption = ({
-  children,
-  ...props
-}: SelectOptionProps): JSX.Element => {
-  return <option {...props}>{children}</option>;
-};
-
-const Select = React.forwardRef(SelectInner);
-export default Object.assign(Select, { Option: SelectOption });
+export default SelectInner;

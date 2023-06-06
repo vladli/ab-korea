@@ -19,7 +19,9 @@ const CardImage = ({ image, className, ...rest }: Props) => {
         className="rounded-t-box w-full grow object-cover"
         src={image}
         {...rest}
-        fill
+        height={600}
+        priority
+        width={800}
       />
     </figure>
   );

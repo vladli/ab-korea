@@ -3,38 +3,48 @@ import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 
 import CurrencyBlock from "@/components/CurrencyBlock";
-import Select from "@/components/Form/Select";
+import Select, { FlagOption } from "@/components/Form/Select";
 import Join from "@/components/Join";
 import Table from "@/components/Table";
+import { currencies } from "@/config/config";
 import useCurrency from "@/hooks/useCurrency";
 
 function Main() {
   const currency = useCurrency();
 
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
-
+  const [selectedCurrency, setSelectedCurrency] = useState({
+    value: currencies[0].value,
+    label: currencies[0].label,
+  });
   const [carPrice, setCarPrice] = useState(0);
-  const [carCurrency, setCarCurrency] = useState("KRW");
+  const [carCurrency, setCarCurrency] = useState({
+    value: currencies[0].value,
+    label: currencies[0].value,
+  });
 
   const [total, setTotal] = useState(0);
 
-  const car = convertCurrency(carPrice, carCurrency, selectedCurrency);
+  const car = convertCurrency(
+    carPrice,
+    carCurrency.value,
+    selectedCurrency.value
+  );
   const carTax = convertCurrency(
     carPrice * 0.15,
-    carCurrency,
-    selectedCurrency
+    carCurrency.value,
+    selectedCurrency.value
   );
-  const abFee = convertCurrency(300, "USD", selectedCurrency);
-  const auctionFee = convertCurrency(400, "USD", selectedCurrency);
-  const skDelivery = convertCurrency(190, "USD", selectedCurrency);
+  const abFee = convertCurrency(300, "USD", selectedCurrency.value);
+  const auctionFee = convertCurrency(400, "USD", selectedCurrency.value);
+  const skDelivery = convertCurrency(190, "USD", selectedCurrency.value);
 
   useEffect(() => {
     setTotal(car + carTax + abFee + auctionFee + skDelivery);
-  }, [carPrice, carCurrency, selectedCurrency]);
+  }, [carPrice, carCurrency, selectedCurrency.value]);
 
   const Currency = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: selectedCurrency,
+    currency: selectedCurrency.value,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
@@ -84,7 +94,7 @@ function Main() {
           <label className="label">
             <span>Цена</span>
           </label>
-          <Join>
+          <div className="flex w-full">
             <CurrencyInput
               className="input-bordered input w-full focus:outline-none"
               decimalsLimit={0}
@@ -92,15 +102,25 @@ function Main() {
               placeholder="Цена автомобиля"
             />
             <Select
-              className="join-item"
-              onChange={(e) => setCarCurrency(e.target.value)}
+              components={{ Option: FlagOption }}
+              isSearchable={false}
+              onChange={(e) =>
+                setCarCurrency({ value: e!.value, label: e!.label })
+              }
+              options={currencies.map(({ value, label, icon }) => ({
+                value: value,
+                label: value,
+              }))}
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  height: "3rem",
+                  width: "8rem",
+                }),
+              }}
               value={carCurrency}
-            >
-              <Select.Option value="KRW">KRW</Select.Option>
-              <Select.Option value="KZT">KZT</Select.Option>
-              <Select.Option value="USD">USD</Select.Option>
-            </Select>
-          </Join>
+            />
+          </div>
         </div>
 
         <div className="form-control w-full">
@@ -108,13 +128,18 @@ function Main() {
             <span className="label-text">Выберите расчетную валюту</span>
           </label>
           <Select
-            onChange={(e) => setSelectedCurrency(e.target.value)}
+            components={{ Option: FlagOption }}
+            isSearchable={false}
+            onChange={(e) =>
+              setSelectedCurrency({ value: e!.value, label: e!.label })
+            }
+            options={currencies.map(({ value, label, icon }) => ({
+              value: value,
+              label: label,
+              icon: icon,
+            }))}
             value={selectedCurrency}
-          >
-            <Select.Option value="KRW">KRW</Select.Option>
-            <Select.Option value="KZT">KZT</Select.Option>
-            <Select.Option value="USD">USD</Select.Option>
-          </Select>
+          />
         </div>
 
         <CurrencyBlock />
