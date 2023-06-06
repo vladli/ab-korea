@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { twMerge } from "tailwind-merge";
 
+import Button from "@/components/Button";
 import { menu } from "@/config/menu";
 
 import Sidebar from "./Sidebar";
@@ -41,9 +42,11 @@ function Header({ className }: { className?: string }) {
       }}
     >
       <section className="flex h-16">
-        <button
-          className="btn-ghost btn-square btn my-auto ml-2 lg:hidden"
+        <Button
+          className="my-auto ml-2 lg:hidden"
+          color="ghost"
           onClick={() => setSideBar(true)}
+          shape="square"
         >
           <svg
             className="inline-block h-6 w-6 stroke-current"
@@ -58,7 +61,7 @@ function Header({ className }: { className?: string }) {
               strokeWidth="2"
             ></path>
           </svg>
-        </button>
+        </Button>
         {sideBar ? <Sidebar {...{ sideBar, setSideBar }} /> : null}
         {sideBar ? (
           <motion.div
@@ -107,25 +110,31 @@ function Header({ className }: { className?: string }) {
         <div className="mr-2 flex items-center">
           {!session ? (
             <Link href="/auth/signin">
-              <button className="btn-ghost btn gap-2">
-                <MdOutlineLogin
+              <Button
+                color="ghost"
+                leftIcon={
+                  <MdOutlineLogin
+                    color="red"
+                    size="1.3rem"
+                  />
+                }
+              >
+                Вход
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              color="ghost"
+              leftIcon={
+                <MdOutlineLogout
                   color="red"
                   size="1.3rem"
                 />
-                Вход
-              </button>
-            </Link>
-          ) : (
-            <button
-              className="btn-ghost btn gap-2"
+              }
               onClick={() => signOut()}
             >
-              <MdOutlineLogout
-                color="red"
-                size="1.3rem"
-              />
               Выход
-            </button>
+            </Button>
           )}
         </div>
       </section>

@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
+import CurrencyBlock from "@/components/CurrencyBlock";
 import Select from "@/components/Form/Select";
 import Table from "@/components/Table";
-import useCurrency from "@/swr/useCurrency";
+import useCurrency from "@/hooks/useCurrency";
 
 export default function PriceTable({ Price }: { Price: number }) {
-  const [data] = useCurrency();
+  const currency = useCurrency();
 
-  const [currency, setCurrency] = useState<any>(null);
   const [selectedCurrency, setSelectedCurrency] = useState("KRW");
 
   const [total, setTotal] = useState(0);
@@ -22,18 +22,6 @@ export default function PriceTable({ Price }: { Price: number }) {
   const abFee = convertCurrency(300, "USD", selectedCurrency);
   const auctionFee = convertCurrency(400, "USD", selectedCurrency);
   const skDelivery = convertCurrency(190, "USD", selectedCurrency);
-
-  useEffect(() => {
-    if (data) {
-      setCurrency({
-        ...currency,
-        USD: 1,
-        KZT: Math.round(data?.conversion_rates?.KZT),
-        KRW: Math.round(data?.conversion_rates?.KRW),
-        time: data?.time_last_update_unix,
-      });
-    }
-  }, [data]);
 
   useEffect(() => {
     setTotal(car + carTax + abFee + auctionFee + skDelivery);
@@ -56,18 +44,7 @@ export default function PriceTable({ Price }: { Price: number }) {
     const convertedAmount = exchangeRate * amount;
     return convertedAmount;
   }
-  function format_time(s: number) {
-    const dtFormat = new Intl.DateTimeFormat("ru-RU", {
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
 
-    return dtFormat.format(new Date(s * 1e3));
-  }
   const prices = [
     {
       title: "Примерная ставка на аукционе (+20%)",
@@ -133,22 +110,7 @@ export default function PriceTable({ Price }: { Price: number }) {
         </Select>
       </div>
 
-      {currency ? (
-        <div className="flex w-full max-w-xl flex-col items-center">
-          <div className="flex w-full justify-between">
-            <span>
-              KRW: <strong>{currency.KRW}</strong>
-            </span>
-            <span>
-              KZT: <strong>{currency.KZT}</strong>
-            </span>
-            <span>
-              USD: <strong>{currency.USD}</strong>
-            </span>
-          </div>
-          <div>Обновление: {format_time(currency.time)}</div>
-        </div>
-      ) : null}
+      <CurrencyBlock />
       <div className="text-center">
         *Все цены указаны - приблизительно, конечная цена может отличаться.
       </div>

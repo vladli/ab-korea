@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import type { Metadata } from "next/types";
 
+import Button from "@/components/Button";
 import Table from "@/components/Table";
 import { titles } from "@/config/config";
 import { getUsers } from "@/lib/users";
@@ -60,7 +61,12 @@ async function Page() {
                 ) : null}
               </span>
               <span>
-                <button className="btn-ghost btn-xs btn">details</button>
+                <Button
+                  color="ghost"
+                  size="xs"
+                >
+                  details
+                </Button>
               </span>
             </Table.Row>
           ))}
