@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import { useContextMenu } from "react-contexify";
+import { FaGasPump } from "react-icons/fa";
 import {
   GiCartwheel,
   GiGearStickPattern,
@@ -32,6 +33,7 @@ function Items(props: Catalog) {
     Price,
     Transmission,
     WheelDrive,
+    FuelType,
     Images,
   } = props;
   const Currency = new Intl.NumberFormat("en-US", {
@@ -60,13 +62,6 @@ function Items(props: Catalog) {
             <Card.Body>
               <Card.Header>
                 {Maker} {Model}
-                <Badge
-                  className="text-white"
-                  color="secondary"
-                  size="lg"
-                >
-                  {Year}
-                </Badge>
               </Card.Header>
               <div className="absolute right-5 flex h-16 w-16 items-center">
                 <Image
@@ -80,9 +75,22 @@ function Items(props: Catalog) {
               <p className="text-xl font-semibold">{Currency.format(Price)}</p>
               <Divider />
               <div className="flex w-full justify-between">
+                <Badge
+                  className="text-white"
+                  color="secondary"
+                  size="lg"
+                >
+                  {Year}
+                </Badge>
                 <div className="flex items-center gap-1">
                   <GiSteeringWheel />
                   {Range} км.
+                </div>
+              </div>
+              <div className="flex w-full justify-between">
+                <div className="flex items-center gap-1">
+                  <FaGasPump />
+                  {FuelType}
                 </div>
                 <div className="flex items-center gap-1">
                   <GiCartwheel />

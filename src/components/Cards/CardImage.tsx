@@ -10,13 +10,13 @@ const CardImage = ({ image, className, ...rest }: Props) => {
   return (
     <figure
       className={twMerge(
-        "relative flex h-[15rem] w-full select-none rounded-t-box ",
+        "relative flex h-[15rem] w-full select-none rounded-t-box",
         className
       )}
     >
       <Image
         alt=""
-        className="w-full grow object-cover"
+        className="rounded-t-box w-full grow object-cover"
         src={image}
         {...rest}
         height={600}
