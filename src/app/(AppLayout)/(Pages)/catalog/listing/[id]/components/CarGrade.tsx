@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 const text = [
   {
@@ -61,15 +62,22 @@ export default function CarGrade({ AuctionMark }: { AuctionMark: string }) {
       <span className="border p-4 font-bold">
         Первая буква – это история повреждений автомобиля
       </span>
-      <span className="border p-4 font-bold">
+      <span className="border border-l-0 p-4 font-bold">
         Вторая буква – это оценка внешнего состояния кузова
       </span>
 
       {text.map(({ text }, index) => (
         <div
-          className={clsx("border p-4", {
-            "bg-yellow-100": index === getBodyIndex || index === getFrameIndex,
-          })}
+          className={twMerge(
+            "border border-t-0 p-4",
+            clsx({
+              "bg-yellow-100":
+                index === getBodyIndex || index === getFrameIndex,
+              "border-l-0": index % 2 !== 0,
+              "border-b": index === 9 || index === 10,
+              "border-r": index === 10,
+            })
+          )}
           key={text}
         >
           <span>{text}</span>
