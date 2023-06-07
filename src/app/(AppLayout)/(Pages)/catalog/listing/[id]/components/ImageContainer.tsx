@@ -6,14 +6,10 @@ import Image from "next/image";
 
 import useIsMobile from "@/hooks/useIsMobile";
 
-const imageSources = [
-  "https://imgmk.lotteautoauction.net/AU_CAR_IMG_ORG_HP/202305/KS20230504001623.JPG",
-  "https://imgmk.lotteautoauction.net/AU_CAR_IMG_ORG_HP/202305/KS20230504001623.JPG",
-];
-
 export default function ImageContainer({ Images }: any) {
   const [toggler, setToggler] = useState(false);
   const isMobile = useIsMobile();
+
   return (
     <>
       <motion.div

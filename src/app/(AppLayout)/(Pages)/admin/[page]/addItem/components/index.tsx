@@ -24,21 +24,24 @@ function Main() {
   } = useForm();
 
   const onSubmit = async (data: any) => {
+    const newData = { ...data };
     //Select
-    data.AuctionMark = data.AuctionMark.value;
-    data.FuelType = data.FuelType.value;
-    data.Maker = maker.value;
-    data.Model = data.Model.value;
-    data.Transmission = data.Transmission.value;
-    data.Year = data.Year.value;
-    data.WheelDrive = data.WheelDrive.value;
+
+    newData.AuctionMark = data.AuctionMark.value;
+    newData.FuelType = data.FuelType.value;
+    newData.Maker = maker.value;
+    newData.Model = data.Model.value;
+    newData.Transmission = data.Transmission.value;
+    newData.WheelDrive = data.WheelDrive.value;
+    newData.Year = Number(data.Year.value);
     //
-    data.Images = inputFields;
-    data.Price = carPrice;
-    data.Year = Number(data.Year);
-    data.Range = Number(data.Range);
-    data.Engine = Number(data.Engine);
-    const res = createCar(data);
+    newData.Images = inputFields;
+    newData.Price = carPrice;
+    newData.Range = Number(data.Range);
+    newData.Engine = Number(data.Engine);
+
+    const res = createCar(newData);
+
     toast.promise(res, {
       loading: "Добавление в каталог",
       success: () => {
@@ -46,10 +49,7 @@ function Main() {
         setInputFields([{ url: "" }]);
         return "Автомобиль - добавлен";
       },
-      error: (err) => {
-        console.log(err);
-        return "Произошла - ошибка";
-      },
+      error: "Произошла - ошибка",
     });
   };
   const [tabValue, setTabValue] = React.useState(0);
