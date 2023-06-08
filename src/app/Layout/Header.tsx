@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MdOutlineLogin, MdOutlineLogout } from "react-icons/md";
 import clsx from "clsx";
 import { motion } from "framer-motion";
@@ -20,15 +20,6 @@ function Header({ className }: { className?: string }) {
 
   const [sideBar, setSideBar] = useState(false);
   const pathname = usePathname();
-  useEffect(() => {
-    if (pathname === "/") {
-      if (sideBar) {
-        window.fullpage_api.setAllowScrolling(false);
-      } else {
-        window.fullpage_api.setAllowScrolling(true);
-      }
-    }
-  }, [sideBar]);
 
   return (
     <header
