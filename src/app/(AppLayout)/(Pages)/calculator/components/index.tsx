@@ -113,6 +113,7 @@ function Main() {
               styles={{
                 control: (baseStyles) => ({
                   ...baseStyles,
+                  height: "3rem",
                   width: "8rem",
                 }),
               }}

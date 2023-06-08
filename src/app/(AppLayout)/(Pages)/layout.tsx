@@ -1,5 +1,5 @@
 import React from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 import Footer from "@/app/Layout/Footer";
 import Header from "@/app/Layout/Header";

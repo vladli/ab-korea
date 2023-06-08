@@ -97,14 +97,16 @@ async function Page({ params }: Props) {
           >
             {Year}
           </Badge>
-          <span className="rounded-full bg-gray-100 p-2 text-sm">{VIN}</span>
+          {VIN ? (
+            <span className="rounded-full bg-gray-100 p-2 text-sm">{VIN}</span>
+          ) : null}
         </div>
       </section>
       <section className="mx-auto mt-5 flex w-full max-w-xl flex-col items-center lg:max-w-6xl lg:flex-row lg:items-stretch lg:justify-center">
         <div className="w-full">
           <ImageContainer {...{ Images }} />
         </div>
-        <div className="rounded-b-box w-full gap-1 border p-5 font-medium lg:rounded-r-box lg:w-[70%] lg:rounded-l-none lg:border-l-0">
+        <div className="rounded-b-box w-full gap-1 border p-5 font-medium lg:rounded-r-box lg:w-[70%] lg:rounded-l-none">
           <div className="my-auto grid h-full grid-cols-3">
             {list.map(({ title, value, helper }: any, i: number) => (
               <React.Fragment key={title}>

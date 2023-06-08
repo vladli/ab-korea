@@ -18,15 +18,7 @@ declare module "react-select/dist/declarations/src/Select" {
   }
 }
 
-const StyledSelect = styled(ReactSelect)<any>`
-  .Select__control {
-    height: 3rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
-`;
-
-function SelectInner<
+function Select<
   Option,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>
@@ -60,10 +52,11 @@ function SelectInner<
           defaultValue={defaultValue}
           name={name!}
           render={({ field }) => (
-            <StyledSelect
+            <ReactSelect
               classNamePrefix="Select"
               instanceId={name}
               isSearchable={isSearchable}
+              noOptionsMessage={() => "Нет вариантов"}
               placeholder={placeholder}
               required={required}
               {...field}
@@ -75,10 +68,11 @@ function SelectInner<
     );
   }
   return (
-    <StyledSelect
+    <ReactSelect
       className={classes}
       classNamePrefix="Select"
       isSearchable={isSearchable}
+      noOptionsMessage={() => "Нет вариантов"}
       placeholder={placeholder}
       required={required}
       {...rest}
@@ -95,4 +89,4 @@ export const FlagOption = (props: any) => (
   </Option>
 );
 
-export default SelectInner;
+export default Select;
