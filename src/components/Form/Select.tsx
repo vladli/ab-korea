@@ -3,6 +3,7 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import ReactSelect, { GroupBase, Props } from "react-select";
 import { components } from "react-select";
+import styled from "styled-components";
 import { twMerge } from "tailwind-merge";
 
 declare module "react-select/dist/declarations/src/Select" {
@@ -16,6 +17,14 @@ declare module "react-select/dist/declarations/src/Select" {
     control?: any;
   }
 }
+
+const StyledSelect = styled(ReactSelect)`
+  .Select__control {
+    height: 3rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+`;
 
 function SelectInner<
   Option,
@@ -32,10 +41,12 @@ function SelectInner<
     defaultValue,
     placeholder = "Выбрать...",
     isSearchable = false,
+
     ...rest
   } = props;
 
   const classes = twMerge(className);
+
   if (formControl) {
     return (
       <div className="form-control w-full">
@@ -66,6 +77,7 @@ function SelectInner<
     <ReactSelect
       {...rest}
       className={classes}
+      classNamePrefix="Select"
       placeholder={placeholder}
       required={required}
     />

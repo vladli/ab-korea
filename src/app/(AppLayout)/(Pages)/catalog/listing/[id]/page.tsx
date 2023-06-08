@@ -104,7 +104,7 @@ async function Page({ params }: Props) {
         <div className="w-full">
           <ImageContainer {...{ Images }} />
         </div>
-        <div className="rounded-b-box w-full gap-1 border border-l-0 p-5 font-medium lg:rounded-r-box lg:w-[70%] lg:rounded-l-none">
+        <div className="rounded-b-box w-full gap-1 border p-5 font-medium lg:rounded-r-box lg:w-[70%] lg:rounded-l-none lg:border-l-0">
           <div className="my-auto grid h-full grid-cols-3">
             {list.map(({ title, value, helper }: any, i: number) => (
               <React.Fragment key={title}>

@@ -21,7 +21,7 @@ export default async function RootLayout({
   return (
     <html
       data-theme="light"
-      lang="en"
+      lang="ru"
     >
       <head>
         <Script src="https://unpkg.com/@johanaarstein/dotlottie-player@latest/dist/index.js" />
