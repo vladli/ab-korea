@@ -18,7 +18,7 @@ declare module "react-select/dist/declarations/src/Select" {
   }
 }
 
-const StyledSelect = styled(ReactSelect)`
+const StyledSelect = styled(ReactSelect)<any>`
   .Select__control {
     height: 3rem;
     border-radius: 0.5rem;
@@ -60,7 +60,8 @@ function SelectInner<
           defaultValue={defaultValue}
           name={name!}
           render={({ field }) => (
-            <ReactSelect
+            <StyledSelect
+              classNamePrefix="Select"
               instanceId={name}
               isSearchable={isSearchable}
               placeholder={placeholder}
@@ -74,12 +75,13 @@ function SelectInner<
     );
   }
   return (
-    <ReactSelect
-      {...rest}
+    <StyledSelect
       className={classes}
       classNamePrefix="Select"
+      isSearchable={isSearchable}
       placeholder={placeholder}
       required={required}
+      {...rest}
     />
   );
 }
