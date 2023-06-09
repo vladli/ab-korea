@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import CurrencyBlock from "@/components/CurrencyBlock";
-import Select, { FlagOption } from "@/components/Form/Select";
+import Select, { IconOption } from "@/components/Form/Select";
 import Table from "@/components/Table";
 import { currencies } from "@/config/config";
 import useCurrency from "@/hooks/useCurrency";
@@ -109,7 +109,7 @@ export default function PriceTable({ Price }: { Price: number }) {
           <span className="label-text">Выберите расчетную валюту</span>
         </label>
         <Select
-          components={{ Option: FlagOption }}
+          components={{ Option: IconOption }}
           onChange={(e) =>
             setSelectedCurrency({ value: e!.value, label: e!.label })
           }

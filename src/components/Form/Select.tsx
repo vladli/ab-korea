@@ -3,7 +3,6 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import ReactSelect, { GroupBase, Props } from "react-select";
 import { components } from "react-select";
-import styled from "styled-components";
 import { twMerge } from "tailwind-merge";
 
 declare module "react-select/dist/declarations/src/Select" {
@@ -53,7 +52,6 @@ function Select<
           name={name!}
           render={({ field }) => (
             <ReactSelect
-              classNamePrefix="Select"
               instanceId={name}
               isSearchable={isSearchable}
               noOptionsMessage={() => "Нет вариантов"}
@@ -70,17 +68,21 @@ function Select<
   return (
     <ReactSelect
       className={classes}
-      classNamePrefix="Select"
+      instanceId={name}
       isSearchable={isSearchable}
       noOptionsMessage={() => "Нет вариантов"}
       placeholder={placeholder}
       required={required}
+      theme={(theme: any) => ({
+        ...theme,
+        borderRadius: "0.5rem",
+      })}
       {...rest}
     />
   );
 }
 const { Option } = components;
-export const FlagOption = (props: any) => (
+export const IconOption = (props: any) => (
   <Option {...props}>
     <div className="flex items-center gap-1">
       <span>{props.data.icon}</span>

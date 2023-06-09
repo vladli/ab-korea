@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 
 import CurrencyBlock from "@/components/CurrencyBlock";
-import Select, { FlagOption } from "@/components/Form/Select";
+import Select, { IconOption } from "@/components/Form/Select";
 import Join from "@/components/Join";
 import Table from "@/components/Table";
 import { currencies } from "@/config/config";
@@ -102,7 +102,7 @@ function Main() {
               placeholder="Цена автомобиля"
             />
             <Select
-              components={{ Option: FlagOption }}
+              components={{ Option: IconOption }}
               onChange={(e) =>
                 setCarCurrency({ value: e!.value, label: e!.label })
               }
@@ -127,7 +127,7 @@ function Main() {
             <span className="label-text">Выберите расчетную валюту</span>
           </label>
           <Select
-            components={{ Option: FlagOption }}
+            components={{ Option: IconOption }}
             onChange={(e) =>
               setSelectedCurrency({ value: e!.value, label: e!.label })
             }

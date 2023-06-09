@@ -58,7 +58,7 @@ async function Page({ params, searchParams }: Props) {
           (Информация обновляется еженедельно по пятницам)
         </span>
       </div>
-      <section className="rounded-box h-48 bg-gray-100">
+      <section className="rounded-box  bg-gray-100">
         <SearchFilter />
       </section>
       <section className="mt-5 grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
