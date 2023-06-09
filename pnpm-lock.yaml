@@ -116,8 +116,8 @@ devDependencies:
     specifier: ^6.0.0
     version: 6.0.0(react-dom@18.2.0)(react@18.2.0)
   tailwind-merge:
-    specifier: ^1.13.0
-    version: 1.13.0
+    specifier: ^1.13.1
+    version: 1.13.1
   typescript:
     specifier: ^5.0.4
     version: 5.0.4
@@ -4864,8 +4864,8 @@ packages:
       tslib: 2.5.0
     dev: true
 
-  /tailwind-merge@1.13.0:
-    resolution: {integrity: sha512-mUTmDbcU+IhOvJ0c42eLQ/nRkvolTqfpVaVQRSxfJAv9TabS6Y2zW/1wKpKLdKzyL3Gh8j6NTLl6MWNmvOM6kA==}
+  /tailwind-merge@1.13.1:
+    resolution: {integrity: sha512-tRtRN22TDokGi2TuYSvuHQuuW6BJ/zlUEG+iYpAQ9i66msc/0eU/+HPccbPnNNH0mCPp0Ob8thaC8Uy9CxHitQ==}
     dev: true
 
   /tailwindcss@3.3.2:
