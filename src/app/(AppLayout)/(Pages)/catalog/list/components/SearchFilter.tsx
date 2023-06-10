@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   useParams,
   usePathname,
@@ -10,11 +10,13 @@ import {
 import Select from "@/components/Form/Select";
 import {
   AuctionMark,
+  CarYear,
   FuelType,
   Maker,
   Transmission,
   WheelDrive,
 } from "@/config/cars";
+import { generateNumbers } from "@/lib/utils";
 
 export default function SearchFilter() {
   const router = useRouter();
@@ -62,12 +64,6 @@ export default function SearchFilter() {
               label: key,
             }))}
             placeholder="Марка"
-            styles={{
-              control: (baseStyles) => ({
-                ...baseStyles,
-                width: "100%",
-              }),
-            }}
             value={maker}
           />
           <Select
@@ -88,23 +84,38 @@ export default function SearchFilter() {
             }}
           />
         </div>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 items-center gap-4 md:grid-cols-5">
           <Select
             isClearable
             onChange={(e) => handleChange(e, "range")}
+            options={generateNumbers(10000, 10000, 10).map((key) => ({
+              value: key,
+              label: "< " + key,
+            }))}
             placeholder="Пробег до"
           />
 
           <div>Price</div>
-          <div className="flex gap-1">
+
+          <div className="col-span-2 flex w-full gap-1">
             <Select
+              className="w-full"
               isClearable
               onChange={(e) => handleChange(e, "yearStart")}
+              options={CarYear().map((key) => ({
+                value: key,
+                label: key,
+              }))}
               placeholder="Год от"
             />
             <Select
+              className="w-full"
               isClearable
               onChange={(e) => handleChange(e, "yearEnd")}
+              options={CarYear().map((key) => ({
+                value: key,
+                label: key,
+              }))}
               placeholder="Год до"
             />
           </div>
@@ -132,8 +143,8 @@ export default function SearchFilter() {
             isClearable
             onChange={(e) => handleChange(e, "fuel")}
             options={FuelType.map((key) => ({
-              value: key,
-              label: key,
+              value: key.en,
+              label: key.ru,
             }))}
             placeholder="Топливо"
           />
@@ -141,8 +152,8 @@ export default function SearchFilter() {
             isClearable
             onChange={(e) => handleChange(e, "transmission")}
             options={Transmission.map((key) => ({
-              value: key,
-              label: key,
+              value: key.en,
+              label: key.ru,
             }))}
             placeholder="Трансмиссия"
           />

@@ -6,8 +6,28 @@ export const Maker = {
   "Mercedes-Benz": ["C200", "E250", "E350"],
 };
 
-export const FuelType = ["Бензин", "Дизель", "Электрокар", "LPG", "Гибрид"];
-export const Transmission = ["Автомат", "Механика"];
+export function CarYear() {
+  var max = new Date().getFullYear();
+  var min = max - 15;
+  var years = [];
+
+  for (var i = max; i >= min; i--) {
+    years.push(i);
+  }
+  return years;
+}
+export const FuelType = [
+  { ru: "Бензин", en: "Gasoline" },
+  { ru: "Дизель", en: "Diesel" },
+  { ru: "Электрокар", en: "Electric" },
+  { ru: "LPG", en: "LPG" },
+  { ru: "Гибрид", en: "Hybrid" },
+];
+export const Transmission = [
+  { ru: "Автомат", en: "Automatic" },
+  { ru: "Механика", en: "Manual" },
+];
+
 export const WheelDrive = ["AWD", "FWD", "RWD"];
 
 const lowerCaseMakerMap: Record<string, string[]> = {};

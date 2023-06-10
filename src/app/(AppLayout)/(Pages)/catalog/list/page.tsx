@@ -30,7 +30,7 @@ type Props = {
 async function Page({ searchParams }: Props) {
   const { page = 1, maker, model } = searchParams;
 
-  console.log(maker, model);
+  console.log(searchParams);
 
   let data = await getCars();
   if (maker && !model && isValidMaker(maker)) {
