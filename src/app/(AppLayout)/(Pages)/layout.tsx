@@ -7,12 +7,12 @@ import Header from "@/app/Layout/Header";
 function Layout({ children }: any) {
   return (
     <div className="flex min-h-screen flex-col">
-      <div>
+      {/*  <div>
         <Toaster />
       </div>
       <Header />
       <section className="flex grow">{children}</section>
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }

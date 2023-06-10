@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <section className="flex flex-col">
-      <WhyWe key={0} />
+      {/*  <WhyWe key={0} />
       <CarCheck key={1} />
-      <BuyingGuide key={2} />
+      <BuyingGuide key={2} /> */}
     </section>
   );
 }
