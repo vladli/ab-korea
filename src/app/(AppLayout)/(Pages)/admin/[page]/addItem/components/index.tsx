@@ -11,7 +11,13 @@ import Select from "@/components/Form/Select";
 import Textarea from "@/components/Form/Textarea";
 import Join from "@/components/Join";
 import Tabs from "@/components/Navigation/Tabs";
-import { AuctionMark, Maker } from "@/config/cars";
+import {
+  AuctionMark,
+  FuelType,
+  Maker,
+  Transmission,
+  WheelDrive,
+} from "@/config/cars";
 import { createCar } from "@/lib/cars";
 
 function Main() {
@@ -194,7 +200,7 @@ function Main() {
             formControl
             label="Привод"
             name="WheelDrive"
-            options={["AWD", "FWD", "RWD"].map((key) => ({
+            options={WheelDrive.map((key) => ({
               value: key,
               label: key,
             }))}
@@ -206,7 +212,7 @@ function Main() {
             formControl
             label="Трансмиссия"
             name="Transmission"
-            options={["Автомат", "Механика"].map((key) => ({
+            options={Transmission.map((key) => ({
               value: key,
               label: key,
             }))}
@@ -218,12 +224,10 @@ function Main() {
             formControl
             label="Тип топлива"
             name="FuelType"
-            options={["Бензин", "Дизель", "Электрокар", "LPG", "Гибрид"].map(
-              (key) => ({
-                value: key,
-                label: key,
-              })
-            )}
+            options={FuelType.map((key) => ({
+              value: key,
+              label: key,
+            }))}
             required
           />
         </div>

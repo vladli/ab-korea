@@ -6,6 +6,10 @@ export const Maker = {
   "Mercedes-Benz": ["C200", "E250", "E350"],
 };
 
+export const FuelType = ["Бензин", "Дизель", "Электрокар", "LPG", "Гибрид"];
+export const Transmission = ["Автомат", "Механика"];
+export const WheelDrive = ["AWD", "FWD", "RWD"];
+
 const lowerCaseMakerMap: Record<string, string[]> = {};
 for (const key in Maker) {
   lowerCaseMakerMap[key.toLowerCase()] = Maker[key as keyof typeof Maker].map(

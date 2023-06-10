@@ -20,23 +20,17 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
-    model?: string[];
-  };
   searchParams: {
     page?: number;
+    maker?: string;
+    model?: string;
   };
 };
 
-async function Page({ params, searchParams }: Props) {
-  const { page = 1 } = searchParams;
+async function Page({ searchParams }: Props) {
+  const { page = 1, maker, model } = searchParams;
 
-  let maker: string | undefined;
-  let model: string | undefined;
-  if (params.model && Array.isArray(params.model)) {
-    maker = params.model[0];
-    model = params.model[1];
-  }
+  console.log(maker, model);
 
   let data = await getCars();
   if (maker && !model && isValidMaker(maker)) {
