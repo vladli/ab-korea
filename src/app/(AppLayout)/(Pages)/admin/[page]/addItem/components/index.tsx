@@ -13,6 +13,7 @@ import Join from "@/components/Join";
 import Tabs from "@/components/Navigation/Tabs";
 import {
   AuctionMark,
+  CarYear,
   FuelType,
   Maker,
   Transmission,
@@ -93,16 +94,6 @@ function Main() {
     setInputFields(data);
   };
 
-  function generateArrayOfYears() {
-    var max = new Date().getFullYear();
-    var min = max - 15;
-    var years = [];
-
-    for (var i = max; i >= min; i--) {
-      years.push(i);
-    }
-    return years;
-  }
   const today = new Date().toISOString().split("T")[0];
   return (
     <section className="my-10 w-full">
@@ -147,7 +138,7 @@ function Main() {
           isSearchable
           label="Год"
           name="Year"
-          options={generateArrayOfYears().map((key) => ({
+          options={CarYear().map((key) => ({
             value: key,
             label: key,
           }))}
@@ -213,8 +204,8 @@ function Main() {
             label="Трансмиссия"
             name="Transmission"
             options={Transmission.map((key) => ({
-              value: key,
-              label: key,
+              value: key.ru,
+              label: key.ru,
             }))}
             required
           />
@@ -225,8 +216,8 @@ function Main() {
             label="Тип топлива"
             name="FuelType"
             options={FuelType.map((key) => ({
-              value: key,
-              label: key,
+              value: key.ru,
+              label: key.ru,
             }))}
             required
           />
