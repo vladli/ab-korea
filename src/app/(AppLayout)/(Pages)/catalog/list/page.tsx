@@ -45,17 +45,17 @@ async function Page({ searchParams }: Props) {
   const currentItems = data.slice(offset, offset + itemsPerPage);
 
   return (
-    <Box>
+    <Box className="mb-5">
       <div className="flex flex-col items-center">
         <h2 className="text-center">Каталог автомобилей с аукциона Lotte</h2>
         <span className="text-sm opacity-70">
           (Информация обновляется еженедельно по пятницам)
         </span>
       </div>
-      <section className="rounded-box  bg-gray-100">
+      <section className="rounded-box my-5 bg-gray-100">
         <SearchFilter />
       </section>
-      <section className="mt-5 grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <section className="grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {currentItems?.map((item) => (
           <Item
             key={item.id}

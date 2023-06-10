@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineLogin, MdOutlineLogout } from "react-icons/md";
 import clsx from "clsx";
 import { motion } from "framer-motion";
@@ -20,7 +20,21 @@ function Header({ className }: { className?: string }) {
 
   const [sideBar, setSideBar] = useState(false);
   const pathname = usePathname();
+  useEffect(() => {
+    function handleResize() {
+      if (sideBar && window.innerWidth > 1024) {
+        setSideBar(false);
+      }
+    }
 
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <header
       className={twMerge(
@@ -57,7 +71,7 @@ function Header({ className }: { className?: string }) {
         {sideBar ? (
           <motion.div
             animate={{ opacity: 0.5 }}
-            className="fixed left-0 top-0 block h-full w-full cursor-pointer bg-black"
+            className="fixed left-0 top-0 z-30 block h-full w-full cursor-pointer bg-black"
             initial={{ opacity: 0 }}
             onClick={() => setSideBar(false)}
           />
