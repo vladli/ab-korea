@@ -82,8 +82,22 @@ export function findByMakerAndModel(
   });
 }
 
-export const filterBy = (filter: string, value: string, data: Catalog[]) => {
-  return data.filter((item) => item.Maker.toLowerCase() === value);
+export const filterBy = (
+  filter: keyof Catalog,
+  value: string | number,
+  data: Catalog[]
+) => {
+  if (filter === "Range" && typeof value === "number") {
+    console.log(value);
+    return data.filter((item) => {
+      const propertyValue = item[filter];
+      return propertyValue <= value;
+    });
+  }
+  return data.filter((item) => {
+    const propertyValue = item[filter];
+    return propertyValue === value;
+  });
 };
 
 export const AuctionMark = [

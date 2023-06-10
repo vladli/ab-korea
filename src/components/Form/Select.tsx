@@ -36,7 +36,7 @@ function Select<
     ...rest
   } = props;
 
-  const classes = twMerge(className);
+  const classes = twMerge("cursor-pointer", className);
 
   if (formControl) {
     return (

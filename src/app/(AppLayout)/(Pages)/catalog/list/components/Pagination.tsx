@@ -1,10 +1,12 @@
+"use client";
 import React from "react";
 import { BiChevronsLeft, BiChevronsRight } from "react-icons/bi";
 import clsx from "clsx";
-import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 
 import { DOTS, usePagination } from "@/hooks/usePagination";
+import { createQueryString } from "@/lib/utils";
 
 type Props = {
   basePath: string;
@@ -16,15 +18,16 @@ type Props = {
 };
 
 const Pagination = (props: Props) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const {
-    basePath,
     totalCount,
     siblingCount = 1,
     currentPage,
     pageSize,
     className,
   } = props;
-
   const paginationRange = usePagination({
     currentPage,
     totalCount,
@@ -41,14 +44,20 @@ const Pagination = (props: Props) => {
   const classes = twMerge(
     "px-3 py-1 mx-1 flex items-center transition-colors hover:bg-gray-300"
   );
+  const handlePageChange = (pageNumber: string) => {
+    router.push(
+      pathname + "?" + createQueryString(searchParams, "page", pageNumber)
+    );
+  };
   return (
     <ul className="my-5 flex justify-center">
-      <Link
+      <button
         className={classes}
-        href={`${basePath}?page=${1}`}
+        disabled={currentPage === 1}
+        onClick={() => handlePageChange("1")}
       >
         <BiChevronsLeft />
-      </Link>
+      </button>
       {paginationRange?.map((pageNumber, i) => {
         if (pageNumber === DOTS) {
           return (
@@ -62,23 +71,29 @@ const Pagination = (props: Props) => {
         }
 
         return (
-          <Link
+          <button
             className={clsx(classes, {
               "bg-gray-200": currentPage === pageNumber,
             })}
-            href={`${basePath}?page=${pageNumber}`}
+            disabled={currentPage === pageNumber}
             key={i}
+            onClick={() => handlePageChange(pageNumber.toString())}
           >
             {pageNumber}
-          </Link>
+          </button>
         );
       })}
-      <Link
+      <button
         className={classes}
-        href={`${basePath}?page=${paginationRange[paginationRange.length - 1]}`}
+        disabled={currentPage === paginationRange[paginationRange.length - 1]}
+        onClick={() =>
+          handlePageChange(
+            paginationRange[paginationRange.length - 1].toString()
+          )
+        }
       >
         <BiChevronsRight />
-      </Link>
+      </button>
     </ul>
   );
 };

@@ -22,7 +22,7 @@ export const generateNumbers = (
 };
 
 export const createQueryString = (
-  searchParams: URLSearchParams,
+  searchParams: any,
   name: string | string[],
   value?: string | null,
   type = "Create"

@@ -1,12 +1,16 @@
 import React from "react";
+import { Catalog } from "@prisma/client";
 import type { Metadata } from "next/types";
 
 import Box from "@/components/Box";
 import {
+  filterBy,
   findByMaker,
   findByMakerAndModel,
+  FuelType,
   isValidMaker,
   isValidModel,
+  Transmission,
 } from "@/config/cars";
 import { titles } from "@/config/config";
 import { getCars } from "@/lib/cars";
@@ -39,16 +43,17 @@ async function Page({ searchParams }: Props) {
     page = 1,
     maker,
     model,
-    range,
-    yearStart,
-    yearEnd,
+    range: rangeStartString,
+    yearStart: yearStartString,
+    yearEnd: yearEndString,
     auctionMark,
     wheelDrive,
     fuel,
     transmission,
   } = searchParams;
-
-  console.log(searchParams);
+  const range = rangeStartString ? Number(rangeStartString) : undefined;
+  const yearStart = yearStartString ? Number(yearStartString) : undefined;
+  const yearEnd = yearEndString ? Number(yearEndString) : undefined;
 
   let data = await getCars();
   if (maker && !model && isValidMaker(maker)) {
@@ -57,6 +62,25 @@ async function Page({ searchParams }: Props) {
   if (maker && model && isValidModel(maker, model)) {
     data = findByMakerAndModel(data, maker, model);
   }
+  const filterParams: Array<{
+    filter: keyof Catalog;
+    value: string | number | undefined;
+  }> = [
+    { filter: "Range", value: range },
+    { filter: "AuctionMark", value: auctionMark },
+    { filter: "WheelDrive", value: wheelDrive },
+    { filter: "FuelType", value: FuelType.find((obj) => obj.en === fuel)?.ru },
+    {
+      filter: "Transmission",
+      value: Transmission.find((obj) => obj.en === transmission)?.ru,
+    },
+  ];
+
+  filterParams.forEach((param) => {
+    if (param.value) {
+      data = filterBy(param.filter, param.value, data);
+    }
+  });
 
   const itemsPerPage = 8;
   const offset = (page - 1) * itemsPerPage;
