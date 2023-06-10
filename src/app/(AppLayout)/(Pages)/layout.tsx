@@ -1,5 +1,5 @@
 import React from "react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import Footer from "@/app/Layout/Footer";
 import Header from "@/app/Layout/Header";
@@ -7,12 +7,12 @@ import Header from "@/app/Layout/Header";
 function Layout({ children }: any) {
   return (
     <div className="flex min-h-screen flex-col">
-      {/*  <div>
+      <div>
         <Toaster />
       </div>
       <Header />
       <section className="flex grow">{children}</section>
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }

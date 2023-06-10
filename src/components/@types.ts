@@ -11,6 +11,7 @@ export const brandColors = ["primary", "secondary", "accent"] as const;
 export const componentColors = [
   ...brandColors,
   "ghost",
+  "neutral",
   ...componentStatuses,
 ] as const;
 export const bgColors = [

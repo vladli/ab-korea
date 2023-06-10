@@ -24,11 +24,29 @@ type Props = {
     page?: number;
     maker?: string;
     model?: string;
+    range?: number;
+    yearStart?: number;
+    yearEnd?: number;
+    auctionMark?: string;
+    wheelDrive?: string;
+    fuel?: string;
+    transmission?: string;
   };
 };
 
 async function Page({ searchParams }: Props) {
-  const { page = 1, maker, model } = searchParams;
+  const {
+    page = 1,
+    maker,
+    model,
+    range,
+    yearStart,
+    yearEnd,
+    auctionMark,
+    wheelDrive,
+    fuel,
+    transmission,
+  } = searchParams;
 
   console.log(searchParams);
 

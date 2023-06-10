@@ -82,6 +82,10 @@ export function findByMakerAndModel(
   });
 }
 
+export const filterBy = (filter: string, value: string, data: Catalog[]) => {
+  return data.filter((item) => item.Maker.toLowerCase() === value);
+};
+
 export const AuctionMark = [
   "A/A",
   "A/B",

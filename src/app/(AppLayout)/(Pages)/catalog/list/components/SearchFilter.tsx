@@ -1,12 +1,8 @@
 "use client";
-import React, { useCallback, useState } from "react";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import React, { useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import Button from "@/components/Button";
 import Select from "@/components/Form/Select";
 import {
   AuctionMark,
@@ -22,12 +18,36 @@ export default function SearchFilter() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams()!;
-  const [maker, setMaker] = useState<any>(null);
+
+  const maker = searchParams.get("maker")?.toString();
+  const model = searchParams.get("model")?.toString();
+  const range = Number(searchParams.get("range"));
+  const yearStart = Number(searchParams.get("yearStart"));
+  const yearEnd = Number(searchParams.get("yearEnd")?.toString());
+  const auctionMark = searchParams.get("auctionMark")?.toString();
+  const wheelDrive = searchParams.get("wheelDrive")?.toString();
+  const fuel = searchParams.get("fuel")?.toString();
+  const transmission = searchParams.get("transmission")?.toString();
+
   const createQueryString = useCallback(
-    (name: string, value?: string | null, type = "Create") => {
-      const params = new URLSearchParams(searchParams.toString()); // Convert to string
-      if (type === "Create" && value) params.set(name, value);
-      else params.delete(name);
+    (name: string | string[], value?: string | null, type = "Create") => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (typeof name === "string") {
+        if (type === "Create" && value) {
+          params.set(name, value);
+        } else {
+          params.delete(name);
+        }
+      } else if (Array.isArray(name)) {
+        name.forEach((paramName) => {
+          if (type === "Create" && value) {
+            params.set(paramName, value);
+          } else {
+            params.delete(paramName);
+          }
+        });
+      }
 
       return params.toString();
     },
@@ -36,11 +56,12 @@ export default function SearchFilter() {
 
   const handleChange = (e: any, name: string) => {
     if (name === "maker") {
-      setMaker(e);
       if (e) {
         router.push(pathname + "?" + createQueryString(name, e.value));
       } else {
-        router.push(pathname);
+        router.push(
+          pathname + "?" + createQueryString(["maker", "model"], null, "Delete")
+        );
       }
       return;
     }
@@ -64,24 +85,19 @@ export default function SearchFilter() {
               label: key,
             }))}
             placeholder="Марка"
-            value={maker}
+            value={maker ? { value: maker, label: maker } : null}
           />
           <Select
             isClearable
             isDisabled={!maker}
             name="Model"
             onChange={(e) => handleChange(e, "model")}
-            options={Maker[maker?.value as keyof typeof Maker]?.map((key) => ({
+            options={Maker[maker as keyof typeof Maker]?.map((key) => ({
               value: key,
               label: key,
             }))}
             placeholder="Модель"
-            styles={{
-              control: (baseStyles) => ({
-                ...baseStyles,
-                width: "100%",
-              }),
-            }}
+            value={model ? { value: model, label: model } : null}
           />
         </div>
         <div className="grid grid-cols-2 items-center gap-4 md:grid-cols-5">
@@ -93,6 +109,7 @@ export default function SearchFilter() {
               label: "< " + key,
             }))}
             placeholder="Пробег до"
+            value={range ? { value: range, label: "< " + range } : null}
           />
 
           <div>Price</div>
@@ -107,6 +124,7 @@ export default function SearchFilter() {
                 label: key,
               }))}
               placeholder="Год от"
+              value={yearStart ? { value: yearStart, label: yearStart } : null}
             />
             <Select
               className="w-full"
@@ -117,6 +135,7 @@ export default function SearchFilter() {
                 label: key,
               }))}
               placeholder="Год до"
+              value={yearEnd ? { value: yearEnd, label: yearEnd } : null}
             />
           </div>
           <Select
@@ -127,6 +146,9 @@ export default function SearchFilter() {
               label: key,
             }))}
             placeholder="Оценка аукциона"
+            value={
+              auctionMark ? { value: auctionMark, label: auctionMark } : null
+            }
           />
         </div>
         <div className="grid grid-cols-3 gap-4">
@@ -138,6 +160,7 @@ export default function SearchFilter() {
               label: key,
             }))}
             placeholder="Привод"
+            value={wheelDrive ? { value: wheelDrive, label: wheelDrive } : null}
           />
           <Select
             isClearable
@@ -147,6 +170,14 @@ export default function SearchFilter() {
               label: key.ru,
             }))}
             placeholder="Топливо"
+            value={
+              fuel
+                ? {
+                    value: fuel,
+                    label: FuelType.find((obj) => obj.en === fuel)?.ru,
+                  }
+                : null
+            }
           />
           <Select
             isClearable
@@ -156,6 +187,15 @@ export default function SearchFilter() {
               label: key.ru,
             }))}
             placeholder="Трансмиссия"
+            value={
+              transmission
+                ? {
+                    value: transmission,
+                    label: Transmission.find((obj) => obj.en === transmission)
+                      ?.ru,
+                  }
+                : null
+            }
           />
         </div>
       </div>
