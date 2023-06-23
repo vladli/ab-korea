@@ -8,11 +8,11 @@ const socials = [
   },
   {
     icon: "whatsapp",
-    link: "/sd",
+    link: "/",
   },
   {
     icon: "telegram",
-    link: "/sf",
+    link: "/",
   },
 ];
 
@@ -42,22 +42,22 @@ function Footer({ className }: { className?: string }) {
               className="h-14 w-14 cursor-pointer rounded hover:bg-slate-800"
               key={icon}
             >
-              <Image
-                alt=""
-                className="p-2"
-                height={512}
-                src={`/socials/${icon}.png`}
-                width={512}
-              />
               <a
                 href={link}
                 target="_blank"
-              ></a>
+              >
+                <Image
+                  alt=""
+                  className="p-2"
+                  height={512}
+                  src={`/socials/${icon}.png`}
+                  width={512}
+                />
+              </a>
             </div>
           ))}
         </div>
       </div>
-      <div className="p-4">visa</div>
     </div>
   );
 }

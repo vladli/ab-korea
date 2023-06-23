@@ -19,15 +19,8 @@ async function Page() {
   return (
     <div className="flex items-center justify-center">
       <div className="flex w-screen flex-col items-center">
-        <div className="text-center">
+        <div className="my-4 text-center">
           <h1 className="text-5xl font-bold">Авторизация</h1>
-          <div className="py-6">
-            Войдите в свой аккаунт, чтобы:
-            <ul className="list-inside list-disc">
-              <li>asd</li>
-              <li>asd</li>
-            </ul>
-          </div>
         </div>
         <div className="card w-full max-w-md shrink-0 border bg-base-100 shadow-2xl">
           <div className="card-body">

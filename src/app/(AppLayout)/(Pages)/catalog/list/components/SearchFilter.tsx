@@ -112,12 +112,28 @@ export default function SearchFilter() {
             value={range ? { value: range, label: "< " + range } : null}
           />
 
-          <div>Price</div>
+          <div className="col-span-2 flex w-full gap-1">
+            <Select
+              className="w-full"
+              isClearable
+              isDisabled
+              onChange={(e) => handleChange(e, "priceStart")}
+              placeholder="Цена от"
+            />
+            <Select
+              className="w-full"
+              isClearable
+              isDisabled
+              onChange={(e) => handleChange(e, "priceEnd")}
+              placeholder="Цена до"
+            />
+          </div>
 
           <div className="col-span-2 flex w-full gap-1">
             <Select
               className="w-full"
               isClearable
+              isDisabled
               onChange={(e) => handleChange(e, "yearStart")}
               options={CarYear().map((key) => ({
                 value: key,
@@ -129,6 +145,7 @@ export default function SearchFilter() {
             <Select
               className="w-full"
               isClearable
+              isDisabled
               onChange={(e) => handleChange(e, "yearEnd")}
               options={CarYear().map((key) => ({
                 value: key,
@@ -138,20 +155,8 @@ export default function SearchFilter() {
               value={yearEnd ? { value: yearEnd, label: yearEnd } : null}
             />
           </div>
-          <Select
-            isClearable
-            onChange={(e) => handleChange(e, "auctionMark")}
-            options={AuctionMark.map((key) => ({
-              value: key,
-              label: key,
-            }))}
-            placeholder="Оценка аукциона"
-            value={
-              auctionMark ? { value: auctionMark, label: auctionMark } : null
-            }
-          />
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-4 gap-4">
           <Select
             isClearable
             onChange={(e) => handleChange(e, "wheelDrive")}
@@ -195,6 +200,18 @@ export default function SearchFilter() {
                       ?.ru,
                   }
                 : null
+            }
+          />
+          <Select
+            isClearable
+            onChange={(e) => handleChange(e, "auctionMark")}
+            options={AuctionMark.map((key) => ({
+              value: key,
+              label: key,
+            }))}
+            placeholder="Оценка аукциона"
+            value={
+              auctionMark ? { value: auctionMark, label: auctionMark } : null
             }
           />
         </div>

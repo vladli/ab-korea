@@ -30,19 +30,10 @@ export const menu: MenuItem = [
     url: "/calculator",
     title: "Калькулятор",
   },
-  {
-    icon: TbBrandPagekit,
-    url: "/cases",
-    title: "Кейсы",
-  },
+
   {
     icon: FaQuestion,
     url: "/faq",
     title: "FAQ",
-  },
-  {
-    icon: MdOutlineInfo,
-    url: "/about",
-    title: "О нас",
   },
 ];
