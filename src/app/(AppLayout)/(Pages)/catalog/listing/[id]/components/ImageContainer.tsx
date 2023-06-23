@@ -19,8 +19,10 @@ export default function ImageContainer({ Images }: any) {
       >
         <Image
           alt=""
+          blurDataURL={Images[0].blurUrl}
           className="rounded-t-box h-full w-full object-cover lg:rounded-l-box lg:rounded-r-none"
           height={600}
+          placeholder="blur"
           priority
           src={Images[0].url}
           width={800}
@@ -31,8 +33,10 @@ export default function ImageContainer({ Images }: any) {
         sources={Images.map(({ url }: { url: string }) => (
           <Image
             alt=""
+            blurDataURL={Images[0].blurUrl}
             height={1080}
             key={url}
+            placeholder="blur"
             src={url}
             width={1920}
           />

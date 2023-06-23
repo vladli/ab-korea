@@ -58,7 +58,11 @@ function Items(props: Catalog) {
             onContextMenu={isAdmin ? displayMenu : null}
             whileHover={!isMobile ? { opacity: 0.75 } : {}}
           >
-            <Card.Image image={Images[0].url} />
+            <Card.Image
+              blurDataURL={Images[0].blurUrl}
+              image={Images[0].url}
+              placeholder="blur"
+            />
             <Card.Body>
               <Card.Header>
                 {Maker} {Model}
