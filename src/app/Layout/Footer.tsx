@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 const socials = [
   {
     icon: "youtube",
-    link: "https://youtube.com/@abkorea",
+    link: "/",
   },
   {
     icon: "whatsapp",

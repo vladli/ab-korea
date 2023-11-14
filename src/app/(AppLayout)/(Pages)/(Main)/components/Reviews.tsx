@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import { Autoplay, EffectCreative, Navigation } from "swiper";
+import { Autoplay, EffectCreative, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
 
