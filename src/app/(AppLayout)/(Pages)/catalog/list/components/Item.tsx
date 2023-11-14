@@ -49,7 +49,6 @@ function Items(props: Catalog) {
   function displayMenu(e) {
     show({ event: e });
   }
-  console.log(isAdmin);
   return (
     <>
       <Card className="w-full max-w-md hover:cursor-pointer">
