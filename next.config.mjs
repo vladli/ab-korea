@@ -5,11 +5,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    serverActions: true,
-  },
+
   output: "standalone",
   images: {
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "**.googleusercontent.com" },
       { protocol: "https", hostname: "**.yandex.net" },

@@ -5,6 +5,7 @@ import { titles } from "@/config/config";
 import BuyingGuide from "./components/BuyingGuide";
 import CarCheck from "./components/CarCheck";
 import WhyWe from "./components/WhyWe";
+import Reviews from "./components/Reviews";
 
 export const metadata: Metadata = {
   title: titles.main,
