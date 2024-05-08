@@ -1,6 +1,6 @@
 <h1 align="center" id="title">AB Korea</h1>
 
-<p align="center"><img src="https://ab-korea-vladli.vercel.app/_next/image?url=%2FAB.png&amp;w=256&amp;q=75" alt="project-image"></p>
+<p align="center"><img src="https://ab-korea-vladli.vercel.app/AB.png" alt="project-image"></p>
 
 <p id="description">This website was made for a car selling company. It includes a car catalog with filters and the admin can add delete or edit items. For the database I used MongoDB with Prisma. You can sign in with Google Vkontakte or Yandex.</p>
 
