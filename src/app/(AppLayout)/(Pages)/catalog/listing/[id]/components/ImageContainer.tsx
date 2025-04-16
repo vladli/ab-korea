@@ -1,49 +1,49 @@
 "use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import FsLightbox from "fslightbox-react";
+import React, {useState} from "react";
+import {motion} from "framer-motion";
 import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
 
 import useIsMobile from "@/hooks/useIsMobile";
 
-export default function ImageContainer({ Images }: any) {
-  const [toggler, setToggler] = useState(false);
-  const isMobile = useIsMobile();
+import "yet-another-react-lightbox/styles.css";
 
-  return (
-    <>
-      <motion.div
-        className="h-full w-full cursor-pointer select-none"
-        onClick={() => setToggler(!toggler)}
-        whileHover={!isMobile ? { opacity: 0.8 } : {}}
-      >
-        <Image
-          alt=""
-          blurDataURL={Images[0].blurUrl}
-          className="rounded-t-box h-full w-full object-cover lg:rounded-l-box lg:rounded-r-none"
-          height={600}
-          placeholder="blur"
-          priority
-          src={Images[0].url}
-          width={800}
-        />
-      </motion.div>
-      <FsLightbox
-        showThumbsOnMount={true}
-        sources={Images.map(({ url }: { url: string }) => (
-          <Image
-            alt=""
-            blurDataURL={Images[0].blurUrl}
-            height={1080}
-            key={url}
-            placeholder="blur"
-            src={url}
-            width={1920}
-          />
-        ))}
-        thumbs={Images.map(({ url }: { url: string }) => url)}
-        toggler={toggler}
-      />
-    </>
-  );
+export default function ImageContainer({Images}: any) {
+    const [toggler, setToggler] = useState(false);
+    const isMobile = useIsMobile();
+
+    return (
+        <>
+            <motion.div
+                className="size-full cursor-pointer select-none"
+                onClick={() => setToggler(!toggler)}
+                whileHover={!isMobile ? {opacity: 0.8} : {}}
+            >
+                <Image
+                    alt=""
+                    blurDataURL={Images[0].blurUrl}
+                    className="size-full rounded-t-box object-cover lg:rounded-l-box lg:rounded-r-none"
+                    height={600}
+                    placeholder="blur"
+                    priority
+                    src={Images[0].url}
+                    width={800}
+                />
+            </motion.div>
+            <Lightbox
+                slides={[
+                    {
+                        src: Images[0].url,
+                        alt: Images[0].alt,
+                    },
+                    ...Images.slice(1).map((image: any) => ({
+                        src: image.url,
+                        alt: image.alt,
+                    })),
+                ]}
+                open={toggler}
+                close={() => setToggler(false)}
+            />
+        </>
+    );
 }

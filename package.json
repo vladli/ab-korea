@@ -17,7 +17,6 @@
     "autoprefixer": "10.4.21",
     "daisyui": "^5.0.21",
     "framer-motion": "^12.7.3",
-    "fslightbox-react": "file:src/lib/fslightbox-react-pro-1.7.7.tgz",
     "next": "15.3.0",
     "next-auth": "^4.24.11",
     "plaiceholder": "^3.0.0",
@@ -33,13 +32,13 @@
     "styled-components": "6.1.17",
     "swiper": "^11.2.6",
     "swr": "^2.3.3",
-    "tailwindcss": "3.4.17"
+    "tailwindcss": "3.4.17",
+    "yet-another-react-lightbox": "^3.22.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
     "@next/eslint-plugin-next": "^15.3.0",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/fslightbox-react": "^1.8.0",
     "@types/node": "^22.14.1",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
