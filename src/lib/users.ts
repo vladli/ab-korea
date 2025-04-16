@@ -1,9 +1,9 @@
 "use server";
-import { User } from "@prisma/client";
+import {User} from "@/../prisma/generated";
 
-import { prisma } from "./prisma";
+import {prisma} from "./prisma";
 
 export async function getUsers(): Promise<User[]> {
-  const data = await prisma.user.findMany();
-  return data;
+    const data = await prisma.user.findMany();
+    return data;
 }
