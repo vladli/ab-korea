@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
 type Props = React.TableHTMLAttributes<HTMLTableRowElement> & {
-  children?: React.ReactElement[];
+  children?: React.ReactElement<any>[];
   active?: boolean;
   hover?: boolean;
 };

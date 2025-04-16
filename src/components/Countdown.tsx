@@ -1,5 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
+import type { JSX } from "react";
+
 export type CountdownProps = React.HTMLAttributes<HTMLSpanElement> & {
   value: number;
 };

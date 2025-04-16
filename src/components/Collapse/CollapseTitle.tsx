@@ -1,5 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
+import type { JSX } from "react";
+
 export type CollapseTitleProps = React.HTMLAttributes<HTMLDivElement>;
 
 const CollapseTitle = ({

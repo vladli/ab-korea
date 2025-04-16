@@ -1,5 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
+import type { JSX } from "react";
+
 export type CollapseContentProps = React.HTMLAttributes<HTMLDivElement>;
 
 const CollapseContent = ({

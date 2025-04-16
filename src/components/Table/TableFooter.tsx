@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, type JSX } from "react";
 
 export type TableFooterProps =
   React.TableHTMLAttributes<HTMLTableSectionElement> & {
-    children?: ReactElement[];
+    children?: ReactElement<any>[];
   };
 
 const TableFooter = React.forwardRef<HTMLTableSectionElement, TableFooterProps>(

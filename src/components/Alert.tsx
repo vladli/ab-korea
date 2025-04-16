@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode } from "react";
+import { forwardRef, ReactNode, type JSX } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 

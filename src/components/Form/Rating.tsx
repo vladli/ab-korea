@@ -1,4 +1,4 @@
-import { Children, cloneElement, forwardRef, ReactElement } from "react";
+import { Children, cloneElement, forwardRef, ReactElement, type JSX } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 

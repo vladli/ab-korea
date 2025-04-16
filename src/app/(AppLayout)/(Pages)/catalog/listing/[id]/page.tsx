@@ -15,7 +15,8 @@ import FrameImage from "./components/FrameImage";
 import ImageContainer from "./components/ImageContainer";
 import PriceTable from "./components/PriceTable";
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const data = await getCar(params.id);
   return {
     title: `${data?.Maker} ${data?.Model} | ` + titles.main,
@@ -23,10 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-async function Page({ params }: Props) {
+async function Page(props: Props) {
+  const params = await props.params;
   const data = await getCar(params.id);
   if (!data) return null;
   const {

@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, type JSX } from "react";
 import { twMerge } from "tailwind-merge";
 
 export type StackProps = React.HTMLAttributes<HTMLDivElement>;

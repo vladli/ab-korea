@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement } from "react";
+import React, { forwardRef, ReactElement, type JSX } from "react";
 import clsx from "clsx";
 
 import { AvatarProps } from "./Avatar";

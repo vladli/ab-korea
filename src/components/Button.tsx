@@ -18,8 +18,8 @@ type ButtonProps = Omit<
   animation?: boolean;
   loading?: boolean;
   active?: boolean;
-  leftIcon?: React.ReactElement;
-  rightIcon?: React.ReactElement;
+  leftIcon?: React.ReactElement<any>;
+  rightIcon?: React.ReactElement<any>;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

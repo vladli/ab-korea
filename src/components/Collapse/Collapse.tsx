@@ -1,5 +1,5 @@
 "use client";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useRef, useState, type JSX } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 

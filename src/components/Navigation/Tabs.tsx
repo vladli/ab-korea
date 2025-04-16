@@ -1,4 +1,4 @@
-import React, { cloneElement, ReactElement } from "react";
+import React, { cloneElement, ReactElement, type JSX } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 

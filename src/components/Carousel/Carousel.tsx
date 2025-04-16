@@ -6,6 +6,7 @@ import {
   RefObject,
   useEffect,
   useState,
+  type JSX,
 } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -23,7 +24,7 @@ export type CarouselProps = React.HTMLAttributes<HTMLDivElement> & {
   snap?: "start" | "center" | "end";
   vertical?: boolean;
   width?: CarouselItemWidth;
-  buttonStyle?: (value: string) => React.ReactElement;
+  buttonStyle?: (value: string) => React.ReactElement<any>;
 };
 
 const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
@@ -50,11 +51,11 @@ const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
       })
     );
 
-    const [itemRefs, setItemRefs] = useState<RefObject<HTMLDivElement>[]>([]);
+    const [itemRefs, setItemRefs] = useState<RefObject<HTMLDivElement | null>[]>([]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
-      const newRefs: RefObject<HTMLDivElement>[] = [];
+      const newRefs: RefObject<HTMLDivElement | null>[] = [];
       children.map((_) => {
         newRefs.push(createRef<HTMLDivElement>());
       });

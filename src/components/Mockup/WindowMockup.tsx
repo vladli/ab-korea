@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, type JSX } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -57,7 +57,7 @@ const WindowMockup = forwardRef<HTMLDivElement, WindowMockupProps>(
 
     const innerEl =
       firstChild && React.isValidElement(firstChild) ? (
-        React.cloneElement(firstChild as React.ReactElement, {
+        React.cloneElement(firstChild as React.ReactElement<any>, {
           className: twMerge(innerClasses, firstChild.props.className),
         })
       ) : (

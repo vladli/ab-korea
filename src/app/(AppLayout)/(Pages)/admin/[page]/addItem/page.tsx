@@ -10,12 +10,13 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     page: string;
-  };
+  }>;
 };
 
-function Page({ params }: Props) {
+async function Page(props: Props) {
+  const params = await props.params;
   console.log(params);
   return (
     <>

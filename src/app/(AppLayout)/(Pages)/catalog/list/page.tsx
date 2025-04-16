@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     page?: number;
     maker?: string;
     model?: string;
@@ -35,10 +35,11 @@ type Props = {
     wheelDrive?: string;
     fuel?: string;
     transmission?: string;
-  };
+  }>;
 };
 
-async function Page({ searchParams }: Props) {
+async function Page(props: Props) {
+  const searchParams = await props.searchParams;
   const {
     page = 1,
     maker,

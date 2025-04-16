@@ -1,4 +1,4 @@
-import { forwardRef, ReactElement } from "react";
+import { forwardRef, ReactElement, type JSX } from "react";
 import { twMerge } from "tailwind-merge";
 
 export type BreadcrumbsProps = React.HTMLAttributes<HTMLDivElement> & {

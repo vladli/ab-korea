@@ -97,7 +97,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           </div>
         );
       } else if (Children.count(children) === 1) {
-        const firstChild = Children.only(children) as React.ReactElement;
+        const firstChild = Children.only(children) as React.ReactElement<any>;
         return cloneElement(firstChild, {
           className: twMerge(imgClasses, firstChild.props.className),
           style: { ...customImgDimension, ...firstChild.props.style },

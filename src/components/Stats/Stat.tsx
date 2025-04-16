@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, type JSX } from "react";
 import { twMerge } from "tailwind-merge";
 
 import StatItem from "./StatItem";

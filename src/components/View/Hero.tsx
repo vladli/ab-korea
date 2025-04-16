@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, type JSX } from "react";
 import { twMerge } from "tailwind-merge";
 
 export type HeroProps = React.HTMLAttributes<HTMLDivElement>;

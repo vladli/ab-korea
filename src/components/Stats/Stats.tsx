@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { forwardRef } from "react";
+import { forwardRef, type JSX } from "react";
 import { twMerge } from "tailwind-merge";
 
 import Stat from "./Stat";

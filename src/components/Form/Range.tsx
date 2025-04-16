@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from "react";
+import { forwardRef, useMemo, type JSX } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
